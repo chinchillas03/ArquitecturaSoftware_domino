@@ -17,6 +17,11 @@ public class FrmInicio extends javax.swing.JFrame {
     public FrmInicio() {
         initComponents();
     }
+    
+    private void irCrearPartida(){
+        FrmCrearPartida crearPartida = new FrmCrearPartida();
+        crearPartida.setVisible(true);
+    }
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -68,6 +73,7 @@ public class FrmInicio extends javax.swing.JFrame {
 
     private void btnCrearPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearPartidaActionPerformed
         // TODO add your handling code here:
+        this.irCrearPartida();
     }//GEN-LAST:event_btnCrearPartidaActionPerformed
 
 
