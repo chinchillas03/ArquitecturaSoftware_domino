@@ -27,43 +27,53 @@ public class FrmInicio extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnEntrar = new javax.swing.JButton();
+        btnCrearPartida = new javax.swing.JButton();
         pnlInicio = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Inicio");
-        setPreferredSize(new java.awt.Dimension(1024, 768));
         setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnEntrar.setBackground(new java.awt.Color(255, 255, 255));
+        btnEntrar.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        btnEntrar.setForeground(new java.awt.Color(0, 0, 0));
+        btnEntrar.setText("Entrar");
+        getContentPane().add(btnEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 390, 270, 60));
+
+        btnCrearPartida.setBackground(new java.awt.Color(255, 255, 255));
+        btnCrearPartida.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        btnCrearPartida.setForeground(new java.awt.Color(0, 0, 0));
+        btnCrearPartida.setText("Crear Partida");
+        btnCrearPartida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearPartidaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnCrearPartida, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 470, 270, 60));
 
         pnlInicio.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().add(pnlInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(1024, 0, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itson/frames/multimedia/Inicio.png"))); // NOI18N
         jLabel1.setFocusCycleRoot(true);
         jLabel1.setIconTextGap(0);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(jLabel1)
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(pnlInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(pnlInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel1))
-        );
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCrearPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearPartidaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCrearPartidaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCrearPartida;
+    private javax.swing.JButton btnEntrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel pnlInicio;
     // End of variables declaration//GEN-END:variables
