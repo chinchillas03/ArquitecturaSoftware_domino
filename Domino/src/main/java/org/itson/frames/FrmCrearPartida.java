@@ -32,9 +32,15 @@ public class FrmCrearPartida extends javax.swing.JFrame {
         return valor;
     }
     
-    private void notificarAlListenerBotonPrecionado(){
+    private void notificarAlListenerBotonPrecionadoAplicar(){
         for (final CrearPartidaListener listener : listeners) {
             listener.clickSeleccionarCantidadFichas(obtenerValorFicha());
+        }
+    }
+    
+    private void notificarAlListenerBotonPrecionadoCancelar(){
+        for (final CrearPartidaListener listener : listeners) {
+            listener.clickCancelar();
         }
     }
     
@@ -50,7 +56,7 @@ public class FrmCrearPartida extends javax.swing.JFrame {
         cmbFichas = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         btnAplicar = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(229, 239, 226));
@@ -71,8 +77,13 @@ public class FrmCrearPartida extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jButton2.setText("Cancelar");
+        btnCancelar.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -83,7 +94,7 @@ public class FrmCrearPartida extends javax.swing.JFrame {
                 .addGap(81, 81, 81)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton2)
+                        .addComponent(btnCancelar)
                         .addGap(345, 345, 345)
                         .addComponent(btnAplicar))
                     .addComponent(cmbFichas, javax.swing.GroupLayout.PREFERRED_SIZE, 543, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -99,7 +110,7 @@ public class FrmCrearPartida extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAplicar)
-                    .addComponent(jButton2))
+                    .addComponent(btnCancelar))
                 .addGap(64, 64, 64))
         );
 
@@ -109,13 +120,18 @@ public class FrmCrearPartida extends javax.swing.JFrame {
 
     private void btnAplicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAplicarActionPerformed
         // TODO add your handling code here:
-        this.notificarAlListenerBotonPrecionado();
+        this.notificarAlListenerBotonPrecionadoAplicar();
     }//GEN-LAST:event_btnAplicarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        // TODO add your handling code here:
+        this.notificarAlListenerBotonPrecionadoCancelar();
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAplicar;
+    private javax.swing.JButton btnCancelar;
     private javax.swing.JComboBox<String> cmbFichas;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

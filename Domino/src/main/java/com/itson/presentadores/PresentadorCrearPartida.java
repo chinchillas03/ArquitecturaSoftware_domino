@@ -6,7 +6,10 @@ package com.itson.presentadores;
 
 import com.itson.listeners.CrearPartidaListener;
 import org.itson.Modelos.ModelCrearPartida;
+import org.itson.Modelos.ModelSalaEspera;
 import org.itson.frames.FrmCrearPartida;
+import org.itson.frames.FrmInicio;
+import org.itson.frames.FrmSalaEspera;
 
 /**
  *
@@ -33,7 +36,16 @@ public class PresentadorCrearPartida implements CrearPartidaListener{
         crearPartida.setVisible(false);
         
         //Hablo al siguiente presentador
-        
+        final FrmSalaEspera view = new FrmSalaEspera();
+        final ModelSalaEspera model = new ModelSalaEspera();
+        new PresentadorSalaEspera();
+    }
+
+    @Override
+    public void clickCancelar() {
+        this.crearPartida.setVisible(false);
+        final FrmInicio view = new FrmInicio();
+        PresentadorInicio inicio = new PresentadorInicio(view);
     }
     
 }

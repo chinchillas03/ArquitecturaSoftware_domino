@@ -12,4 +12,6 @@ public interface CrearPartidaListener {
     
     public void clickSeleccionarCantidadFichas(Integer cantidadFichas);
     
+    public void clickCancelar();
+    
 }
