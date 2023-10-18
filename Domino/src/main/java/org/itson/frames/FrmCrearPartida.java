@@ -4,19 +4,40 @@
  */
 package org.itson.frames;
 
+import com.itson.listeners.CrearPartidaListener;
+import java.util.ArrayList;
+
 /**
  *
  * @author Usuario
  */
 public class FrmCrearPartida extends javax.swing.JFrame {
 
+    private final ArrayList<CrearPartidaListener> listeners;
+    
     /**
      * Creates new form FrmCrearPartida
      */
     public FrmCrearPartida() {
+        this.listeners = new ArrayList<CrearPartidaListener>();
         initComponents();
     }
-
+    
+    public void addListener(final CrearPartidaListener listener) {
+        listeners.add(listener);
+    }
+    
+    private Integer obtenerValorFicha(){
+        Integer valor = Integer.valueOf(cmbFichas.getSelectedItem().toString());
+        return valor;
+    }
+    
+    private void notificarAlListenerBotonPrecionado(){
+        for (final CrearPartidaListener listener : listeners) {
+            listener.clickSeleccionarCantidadFichas(obtenerValorFicha());
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,7 +49,7 @@ public class FrmCrearPartida extends javax.swing.JFrame {
 
         cmbFichas = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnAplicar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -42,11 +63,11 @@ public class FrmCrearPartida extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Selecciona la cantidad de fichas para tu partida");
 
-        jButton1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jButton1.setText("Aplicar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnAplicar.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        btnAplicar.setText("Aplicar");
+        btnAplicar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnAplicarActionPerformed(evt);
             }
         });
 
@@ -64,7 +85,7 @@ public class FrmCrearPartida extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton2)
                         .addGap(345, 345, 345)
-                        .addComponent(jButton1))
+                        .addComponent(btnAplicar))
                     .addComponent(cmbFichas, javax.swing.GroupLayout.PREFERRED_SIZE, 543, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(81, Short.MAX_VALUE))
         );
@@ -77,7 +98,7 @@ public class FrmCrearPartida extends javax.swing.JFrame {
                 .addComponent(cmbFichas, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(btnAplicar)
                     .addComponent(jButton2))
                 .addGap(64, 64, 64))
         );
@@ -86,13 +107,14 @@ public class FrmCrearPartida extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnAplicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAplicarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        this.notificarAlListenerBotonPrecionado();
+    }//GEN-LAST:event_btnAplicarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAplicar;
     private javax.swing.JComboBox<String> cmbFichas;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
