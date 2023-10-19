@@ -5,8 +5,6 @@
 package com.itson.presentadores;
 
 import com.itson.listeners.InicioListener;
-import org.itson.Modelos.ModelCrearPartida;
-import org.itson.frames.FrmCrearPartida;
 import org.itson.frames.FrmInicio;
 
 /**
@@ -15,10 +13,9 @@ import org.itson.frames.FrmInicio;
  */
 public class PresentadorInicio implements InicioListener{
     
-    private final FrmInicio view;
+    private final FrmInicio view = new FrmInicio();
     
-    public PresentadorInicio(final FrmInicio view){
-        this.view = view;
+    public PresentadorInicio(){
         view.addListener(this);
         view.setVisible(true);
     }
@@ -26,9 +23,7 @@ public class PresentadorInicio implements InicioListener{
     @Override
     public void clickCrearPartida() {
         this.view.setVisible(false);
-        final FrmCrearPartida view = new FrmCrearPartida();
-        final ModelCrearPartida model = new ModelCrearPartida();
-        new PresentadorCrearPartida(view, model);
+        PresentadorCrearPartida presenter = new PresentadorCrearPartida();
     }
 
     @Override

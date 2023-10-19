@@ -15,6 +15,7 @@ public class Jugador {
     private String nombre;
     private int puntuacion;
     private List<FichaJuego> fichas;
+    private Avatar avatar;
 
     public Jugador() {
     }
@@ -23,6 +24,14 @@ public class Jugador {
         this.nombre = nombre;
         this.puntuacion = puntuacion;
         this.fichas = fichas;
+    }
+
+    public Avatar getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(Avatar avatar) {
+        this.avatar = avatar;
     }
 
     public String getNombre() {

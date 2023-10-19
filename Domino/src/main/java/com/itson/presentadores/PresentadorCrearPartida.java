@@ -6,10 +6,7 @@ package com.itson.presentadores;
 
 import com.itson.listeners.CrearPartidaListener;
 import org.itson.Modelos.ModelCrearPartida;
-import org.itson.Modelos.ModelSalaEspera;
 import org.itson.frames.FrmCrearPartida;
-import org.itson.frames.FrmInicio;
-import org.itson.frames.FrmSalaEspera;
 
 /**
  *
@@ -17,35 +14,34 @@ import org.itson.frames.FrmSalaEspera;
  */
 public class PresentadorCrearPartida implements CrearPartidaListener{
 
-    private final FrmCrearPartida crearPartida;
-    private final ModelCrearPartida modelo;
+    private final FrmCrearPartida view =  new FrmCrearPartida();
+    private final ModelCrearPartida modelo = new ModelCrearPartida();
     
-    public PresentadorCrearPartida(FrmCrearPartida crearPartida, ModelCrearPartida modelo){
-        this.crearPartida = crearPartida;
-        crearPartida.addListener(this);
-        crearPartida.setVisible(true);
-        this.modelo = modelo;
+    public PresentadorCrearPartida(){
+        view.addListener(this);
+        view.setVisible(true);
     }
     
     @Override
     public void clickSeleccionarCantidadFichas(Integer cantidadFichas) {
-        // Seteo valor de fichas del modelo.
+        // Seteo valor de fichas del modelo
         modelo.setCantidadFichas(cantidadFichas);   
         
         //Cierro mi vista
-        crearPartida.setVisible(false);
+        view.setVisible(false);
         
-        //Hablo al siguiente presentador
-        final FrmSalaEspera view = new FrmSalaEspera();
-        final ModelSalaEspera model = new ModelSalaEspera();
-        new PresentadorSalaEspera();
+        //Hablo al siguiente presentadorra
+        PresentadorSalaEspera presenter = new PresentadorSalaEspera();
     }
 
     @Override
     public void clickCancelar() {
-        this.crearPartida.setVisible(false);
-        final FrmInicio view = new FrmInicio();
-        PresentadorInicio inicio = new PresentadorInicio(view);
+        this.pasarPantallaInicio();
+    }
+    
+    private void pasarPantallaInicio(){
+        this.view.setVisible(false);
+        PresentadorInicio inicio = new PresentadorInicio();
     }
     
 }

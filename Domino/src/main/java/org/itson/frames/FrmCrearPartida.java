@@ -32,13 +32,13 @@ public class FrmCrearPartida extends javax.swing.JFrame {
         return valor;
     }
     
-    private void notificarAlListenerBotonPrecionadoAplicar(){
+    private void notificarBotonPrecionadoAplicar(){
         for (final CrearPartidaListener listener : listeners) {
             listener.clickSeleccionarCantidadFichas(obtenerValorFicha());
         }
     }
     
-    private void notificarAlListenerBotonPrecionadoCancelar(){
+    private void notificarPrecionadoCancelar(){
         for (final CrearPartidaListener listener : listeners) {
             listener.clickCancelar();
         }
@@ -120,12 +120,12 @@ public class FrmCrearPartida extends javax.swing.JFrame {
 
     private void btnAplicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAplicarActionPerformed
         // TODO add your handling code here:
-        this.notificarAlListenerBotonPrecionadoAplicar();
+        this.notificarBotonPrecionadoAplicar();
     }//GEN-LAST:event_btnAplicarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
-        this.notificarAlListenerBotonPrecionadoCancelar();
+        this.notificarPrecionadoCancelar();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

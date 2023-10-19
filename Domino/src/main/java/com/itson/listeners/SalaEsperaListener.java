@@ -10,4 +10,8 @@ package com.itson.listeners;
  */
 public interface SalaEsperaListener {
     
+    public void clickBotonIniciarPartida();
+    
+    public void clickBotonSalirPartida();
+    
 }

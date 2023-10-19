@@ -4,19 +4,53 @@
  */
 package org.itson.frames;
 
+import com.itson.dominio.Avatar;
+import com.itson.listeners.SalaEsperaListener;
+import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author Usuario
  */
 public class FrmSalaEspera extends javax.swing.JFrame {
 
+    private final ArrayList<SalaEsperaListener> listeners;
+    
     /**
      * Creates new form FrmSalaEspera
      */
     public FrmSalaEspera() {
+        listeners = new ArrayList<SalaEsperaListener>();
         initComponents();
     }
 
+    public void addListener(final SalaEsperaListener listener) {
+        listeners.add(listener);
+    }
+    
+    private void notificarBotonPrecionadoIniciarPartida(){
+        for (final SalaEsperaListener listener : listeners) {
+            listener.clickBotonIniciarPartida();
+        }
+    }
+    
+    private void notificarBotonPrecionadoSalir(){
+        for (final SalaEsperaListener listener : listeners) {
+            listener.clickBotonSalirPartida();
+        }
+    }
+    
+    public void setCombosAvatares(List<Avatar> avatares){
+        for (Avatar avatare : avatares) {
+            cmbAvatarJugador1.addItem(avatare.getColor());
+            cmbAvatarJugador2.addItem(avatare.getColor());
+            cmbAvatarJugador3.addItem(avatare.getColor());
+            cmbAvatarJugador4.addItem(avatare.getColor());
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -26,51 +60,48 @@ public class FrmSalaEspera extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
+        btnIniciarPartida = new javax.swing.JButton();
+        lblNombreJugador1 = new javax.swing.JLabel();
+        lblNombreJugador2 = new javax.swing.JLabel();
+        lblNombreJugador4 = new javax.swing.JLabel();
+        lblNombreJugador3 = new javax.swing.JLabel();
+        btnSalir = new javax.swing.JButton();
+        cmbAvatarJugador1 = new javax.swing.JComboBox<>();
+        cmbAvatarJugador3 = new javax.swing.JComboBox<>();
+        cmbAvatarJugador4 = new javax.swing.JComboBox<>();
+        cmbAvatarJugador2 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(229, 239, 226));
         setResizable(false);
 
-        jButton1.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
-        jButton1.setText("Iniciar partida");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnIniciarPartida.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        btnIniciarPartida.setText("Iniciar partida");
+        btnIniciarPartida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnIniciarPartidaActionPerformed(evt);
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jLabel1.setText("Jugador 1");
+        lblNombreJugador1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        lblNombreJugador1.setText("Jugador 1");
 
-        jLabel2.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jLabel2.setText("Jugador 2");
+        lblNombreJugador2.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        lblNombreJugador2.setText("Jugador 2");
 
-        jLabel3.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jLabel3.setText("Jugador 4");
+        lblNombreJugador4.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        lblNombreJugador4.setText("Jugador 4");
 
-        jLabel4.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jLabel4.setText("Jugador 3");
+        lblNombreJugador3.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        lblNombreJugador3.setText("Jugador 3");
 
-        jButton2.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jButton2.setText("SALIR");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 115, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
+        btnSalir.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        btnSalir.setText("SALIR");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -78,38 +109,48 @@ public class FrmSalaEspera extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(134, 134, 134)
-                .addComponent(jLabel1)
+                .addComponent(lblNombreJugador1)
                 .addGap(134, 134, 134)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel2)
+                        .addComponent(lblNombreJugador2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel4))
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE))
+                        .addComponent(lblNombreJugador3))
+                    .addComponent(btnIniciarPartida, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 134, Short.MAX_VALUE)
-                .addComponent(jLabel3)
+                .addComponent(lblNombreJugador4)
                 .addGap(134, 134, 134))
             .addGroup(layout.createSequentialGroup()
-                .addGap(114, 114, 114)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(121, 121, 121)
+                .addComponent(cmbAvatarJugador1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(110, 110, 110)
+                .addComponent(cmbAvatarJugador2, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(cmbAvatarJugador3, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(107, 107, 107)
+                .addComponent(cmbAvatarJugador4, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(121, 121, 121))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(65, 65, 65)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(62, 62, 62)
+                .addGap(95, 95, 95)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4))
+                    .addComponent(cmbAvatarJugador1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbAvatarJugador3, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbAvatarJugador4, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbAvatarJugador2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblNombreJugador1)
+                    .addComponent(lblNombreJugador2)
+                    .addComponent(lblNombreJugador4)
+                    .addComponent(lblNombreJugador3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnIniciarPartida, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
+                .addComponent(btnSalir)
                 .addGap(49, 49, 49))
         );
 
@@ -117,17 +158,26 @@ public class FrmSalaEspera extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnIniciarPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarPartidaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        this.notificarBotonPrecionadoIniciarPartida();
+    }//GEN-LAST:event_btnIniciarPartidaActionPerformed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        // TODO add your handling code here:
+        this.notificarBotonPrecionadoSalir();
+    }//GEN-LAST:event_btnSalirActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton btnIniciarPartida;
+    private javax.swing.JButton btnSalir;
+    private javax.swing.JComboBox<Color> cmbAvatarJugador1;
+    private javax.swing.JComboBox<Color> cmbAvatarJugador2;
+    private javax.swing.JComboBox<Color> cmbAvatarJugador3;
+    private javax.swing.JComboBox<Color> cmbAvatarJugador4;
+    private javax.swing.JLabel lblNombreJugador1;
+    private javax.swing.JLabel lblNombreJugador2;
+    private javax.swing.JLabel lblNombreJugador3;
+    private javax.swing.JLabel lblNombreJugador4;
     // End of variables declaration//GEN-END:variables
 }

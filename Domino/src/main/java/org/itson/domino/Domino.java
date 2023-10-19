@@ -7,7 +7,6 @@ package org.itson.domino;
 
 import com.itson.presentadores.PresentadorInicio;
 import javax.swing.SwingUtilities;
-import org.itson.frames.FrmInicio;
 
 /**
  *
@@ -16,8 +15,7 @@ import org.itson.frames.FrmInicio;
 public class Domino {
 
     public Domino (){
-        final FrmInicio inicio = new FrmInicio();
-        new PresentadorInicio(inicio);
+        new PresentadorInicio();
     }
     
     public static void main(String[] args) {
