@@ -30,9 +30,29 @@ public class FrmInicio extends javax.swing.JFrame {
         listeners.add(listener);
     }
     
-    private void llamarPresentadorCrearPartida(){
+    public void mostrarPantallaInicio(){
+        this.setVisible(true);
+    }
+    
+    public void cerrarPantallaInicio(){
+        this.setVisible(false);
+    }
+    
+    private void notificarBotonPrecionadoEntrarPartida(){
+        for (final InicioListener listener : listeners) {
+            listener.clickEntrarPartida();
+        }
+    }
+    
+    private void notificarBotonPrecionadoCrearPartida(){
         for (final InicioListener listener : listeners) {
             listener.clickCrearPartida();
+        }
+    }
+    
+    private void notificarBotonPrecionadoConfigurar(){
+        for (final InicioListener listener : listeners) {
+            listener.clickConfigurarJugador();
         }
     }
 
@@ -47,6 +67,7 @@ public class FrmInicio extends javax.swing.JFrame {
 
         btnEntrar = new javax.swing.JButton();
         btnCrearPartida = new javax.swing.JButton();
+        btnConfigurarJugador = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Inicio");
@@ -56,6 +77,11 @@ public class FrmInicio extends javax.swing.JFrame {
         btnEntrar.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         btnEntrar.setForeground(new java.awt.Color(0, 0, 0));
         btnEntrar.setText("Entrar");
+        btnEntrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEntrarActionPerformed(evt);
+            }
+        });
 
         btnCrearPartida.setBackground(new java.awt.Color(255, 255, 255));
         btnCrearPartida.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
@@ -67,15 +93,26 @@ public class FrmInicio extends javax.swing.JFrame {
             }
         });
 
+        btnConfigurarJugador.setBackground(new java.awt.Color(255, 255, 255));
+        btnConfigurarJugador.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        btnConfigurarJugador.setForeground(new java.awt.Color(0, 0, 0));
+        btnConfigurarJugador.setText("Configurar");
+        btnConfigurarJugador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfigurarJugadorActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(380, 380, 380)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCrearPartida, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnEntrar, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
+                    .addComponent(btnCrearPartida, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
+                    .addComponent(btnConfigurarJugador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(374, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -85,7 +122,9 @@ public class FrmInicio extends javax.swing.JFrame {
                 .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addComponent(btnCrearPartida, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(238, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnConfigurarJugador, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(160, Short.MAX_VALUE))
         );
 
         pack();
@@ -94,11 +133,22 @@ public class FrmInicio extends javax.swing.JFrame {
 
     private void btnCrearPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearPartidaActionPerformed
         // TODO add your handling code here:
-        this.llamarPresentadorCrearPartida();
+        this.notificarBotonPrecionadoCrearPartida();
     }//GEN-LAST:event_btnCrearPartidaActionPerformed
+
+    private void btnConfigurarJugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfigurarJugadorActionPerformed
+        // TODO add your handling code here:
+        this.notificarBotonPrecionadoConfigurar();
+    }//GEN-LAST:event_btnConfigurarJugadorActionPerformed
+
+    private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
+        // TODO add your handling code here:
+        this.notificarBotonPrecionadoEntrarPartida();
+    }//GEN-LAST:event_btnEntrarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnConfigurarJugador;
     private javax.swing.JButton btnCrearPartida;
     private javax.swing.JButton btnEntrar;
     // End of variables declaration//GEN-END:variables

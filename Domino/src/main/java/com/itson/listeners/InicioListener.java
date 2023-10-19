@@ -14,4 +14,6 @@ public interface InicioListener {
     
     public void clickEntrarPartida();
     
+    public void clickConfigurarJugador();
+    
 }

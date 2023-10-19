@@ -18,20 +18,19 @@ public class PresentadorCrearPartida implements CrearPartidaListener{
     private final ModelCrearPartida modelo = new ModelCrearPartida();
     
     public PresentadorCrearPartida(){
-        view.addListener(this);
-        view.setVisible(true);
+        this.suscribirseListener();
     }
     
     @Override
     public void clickSeleccionarCantidadFichas(Integer cantidadFichas) {
         // Seteo valor de fichas del modelo
-        modelo.setCantidadFichas(cantidadFichas);   
+        this.modelo.setCantidadFichas(cantidadFichas);   
         
         //Cierro mi vista
-        view.setVisible(false);
+        this.cerrarPantallaCrearPartida();
         
         //Hablo al siguiente presentadorra
-        PresentadorSalaEspera presenter = new PresentadorSalaEspera();
+        this.mostrarPantallaSalaEspera();
     }
 
     @Override
@@ -39,9 +38,25 @@ public class PresentadorCrearPartida implements CrearPartidaListener{
         this.pasarPantallaInicio();
     }
     
+    private void suscribirseListener(){
+        this.view.addListener(this);
+    }
+    
+    public void cerrarPantallaCrearPartida(){
+        this.view.cerrarPantallaCrearPartida();
+    }
+    
+    public void mostrarPantallaCrearPartida(){
+        this.view.mostrarPantallaCrearPartida();
+    }
+    
+    public void mostrarPantallaSalaEspera(){
+        new PresentadorSalaEspera().mostrarPantallaSalaEspera();
+    }
+    
     private void pasarPantallaInicio(){
-        this.view.setVisible(false);
-        PresentadorInicio inicio = new PresentadorInicio();
+        this.cerrarPantallaCrearPartida();
+        new PresentadorInicio().mostrarPantallaInicio();
     }
     
 }

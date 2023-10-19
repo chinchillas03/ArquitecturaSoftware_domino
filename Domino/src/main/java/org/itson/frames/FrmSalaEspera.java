@@ -42,13 +42,12 @@ public class FrmSalaEspera extends javax.swing.JFrame {
         }
     }
     
-    public void setCombosAvatares(List<Avatar> avatares){
-        for (Avatar avatare : avatares) {
-            cmbAvatarJugador1.addItem(avatare.getColor());
-            cmbAvatarJugador2.addItem(avatare.getColor());
-            cmbAvatarJugador3.addItem(avatare.getColor());
-            cmbAvatarJugador4.addItem(avatare.getColor());
-        }
+    public void mostrarPantallaSalaEspera(){
+        this.setVisible(true);
+    }
+    
+    public void cerrarPantallaSalaEspera(){
+        this.setVisible(false);
     }
     
     /**

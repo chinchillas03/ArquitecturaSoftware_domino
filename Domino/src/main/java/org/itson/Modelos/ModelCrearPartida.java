@@ -4,6 +4,7 @@
  */
 package org.itson.Modelos;
 
+import com.itson.dominio.Partida;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -24,6 +25,11 @@ public class ModelCrearPartida {
 
     public void setCantidadFichas(Integer cantidadFichas) {
         this.cantidadFichas = cantidadFichas;
+    }
+    
+    public void crearPartida(){
+        //codigo para crear partida
+        Partida partida = new Partida();
     }
     
 }

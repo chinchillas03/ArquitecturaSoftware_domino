@@ -15,7 +15,7 @@ import javax.swing.SwingUtilities;
 public class Domino {
 
     public Domino (){
-        new PresentadorInicio();
+        new PresentadorInicio().mostrarPantallaInicio();
     }
     
     public static void main(String[] args) {

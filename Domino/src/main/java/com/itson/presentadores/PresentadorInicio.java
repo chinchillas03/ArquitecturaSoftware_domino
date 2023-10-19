@@ -16,19 +16,37 @@ public class PresentadorInicio implements InicioListener{
     private final FrmInicio view = new FrmInicio();
     
     public PresentadorInicio(){
-        view.addListener(this);
-        view.setVisible(true);
+        this.suscribirseListener();
     }
 
     @Override
     public void clickCrearPartida() {
-        this.view.setVisible(false);
-        PresentadorCrearPartida presenter = new PresentadorCrearPartida();
+        this.cerrarPantallaInicio();
+        new PresentadorCrearPartida().mostrarPantallaCrearPartida();
     }
 
     @Override
     public void clickEntrarPartida() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        this.cerrarPantallaInicio();
+        new PresentadorSalaEspera().mostrarPantallaSalaEspera();
     }
     
+    @Override
+    public void clickConfigurarJugador() {
+        this.cerrarPantallaInicio();
+        new PresentadorConfigurarJugador().mostrarPantallaConfigurarJugador();
+    }
+    
+    private void suscribirseListener(){
+        this.view.addListener(this);
+    }
+    
+    public void mostrarPantallaInicio(){
+        this.view.mostrarPantallaInicio();
+    }
+    
+    public void cerrarPantallaInicio(){
+        this.view.cerrarPantallaInicio();
+    }
+ 
 }
