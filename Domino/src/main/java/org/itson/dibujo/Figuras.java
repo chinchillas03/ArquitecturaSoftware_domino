@@ -5,6 +5,7 @@
 
 package org.itson.dibujo;
 
+import java.awt.Graphics;
 import javax.swing.JPanel;
 
 /**
@@ -13,5 +14,5 @@ import javax.swing.JPanel;
  * @author Joel Antonio Lopez Cota ID:228926 
  */
 public abstract class Figuras extends JPanel{
-    public abstract void dibujar();
+    public abstract void dibujar(Graphics g,JPanel panel);
 }

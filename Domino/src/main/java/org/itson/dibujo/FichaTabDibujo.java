@@ -5,6 +5,9 @@
 
 package org.itson.dibujo;
 
+import java.awt.Graphics;
+import javax.swing.JPanel;
+
 /**
  *
  * 
@@ -20,7 +23,7 @@ public class FichaTabDibujo extends Figuras {
     }
 
     @Override
-    public void dibujar() {
+    public void dibujar(Graphics g, JPanel jpanel) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

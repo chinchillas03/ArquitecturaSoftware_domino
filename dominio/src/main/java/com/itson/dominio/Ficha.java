@@ -12,7 +12,8 @@ public class Ficha {
     
     private int valorIzquierdo;
     private int valorDerecho;
-    
+    private int x;
+    private int y;
     public Ficha() {
     }
 
@@ -37,6 +38,25 @@ public class Ficha {
         this.valorDerecho = valorDerecho;
     }
 
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public boolean esMula(){
+        return valorDerecho==valorIzquierdo;
+    }
     @Override
     public String toString() {
         return "Ficha{" + "valorIzquierdo=" + valorIzquierdo + ", valorDerecho=" + valorDerecho + '}';

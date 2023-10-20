@@ -26,6 +26,11 @@ public class Jugador {
         this.fichas = fichas;
     }
 
+    public Jugador(String nombre) {
+        this.nombre = nombre;
+    }
+    
+
     public Avatar getAvatar() {
         return avatar;
     }
@@ -57,6 +62,22 @@ public class Jugador {
     public void setFichas(List<FichaJuego> fichas) {
         this.fichas = fichas;
     }
+    public FichaJuego mulaMasAlta(){
+        FichaJuego fichaAlta=null;
+        for (FichaJuego ficha : fichas) {
+            if (ficha.esMula()) {
+                if (fichaAlta==null) {
+                    fichaAlta=ficha;
+                }else{
+                    if (fichaAlta.getValorDerecho()<ficha.getValorDerecho()) {
+                        fichaAlta=ficha;
+                    }
+                }
+            }
+        }
+        return fichaAlta;
+    }
+    
 
     @Override
     public String toString() {

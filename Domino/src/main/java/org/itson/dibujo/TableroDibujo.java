@@ -5,6 +5,11 @@
 
 package org.itson.dibujo;
 
+import java.awt.Color;
+import java.awt.Graphics;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+
 /**
  *
  * 
@@ -22,8 +27,13 @@ public class TableroDibujo extends Figuras {
         
     }
 
+   
+
     @Override
-    public void dibujar() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void dibujar(Graphics g,JPanel jpanel) {
+       JPanel tablero=new JPanel();
+        tablero.setBackground(Color.GREEN);
+        JScrollPane jscp = new JScrollPane(tablero); 
+        jpanel.add(jscp);
     }
 }

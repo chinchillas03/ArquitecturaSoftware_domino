@@ -18,40 +18,42 @@ import java.util.List;
  * @author Joel Antonio Lopez Cota ID:228926 
  */
 public class ModelTablero {
-
+    List<Ficha> listaFichas;
+    List<Jugador> listaJugadores;
     /**
      * 
      */
     public ModelTablero(){
-
+        listaFichas = new ArrayList<>();
+        listaJugadores = new ArrayList<>();
     }
 
     public List<Ficha> generaFichasDomino(){
-        List<Ficha> fichas = new ArrayList<>();
+        listaFichas = new ArrayList<>();
         for (int i = 0; i <= 6; i++) {
             for (int j = i; j <= 6; j++) {
                 Ficha domino=new Ficha(i,j);
-                fichas.add(domino);
+                listaFichas.add(domino);
             }
         }
-        return fichas;
+        return listaFichas;
     }
     public List<Jugador> repartirFichas(List<Jugador> jugadores, int fichasPorJugador){
        List<Ficha> fichas=generaFichasDomino();
         Collections.shuffle(fichas);
-       List<Jugador> jugador=jugadores;
-        for (int i = 1; i < jugador.size(); i++) {
+        listaJugadores=jugadores;
+        for (int i = 0; i < listaJugadores.size(); i++) {
             List<Ficha> mano = new ArrayList<>();
             for (int j = 0; j < fichasPorJugador; j++) {
                 mano.add(fichas.remove(0));
             }
-           jugador.get(i).setFichas(converToFichaJuego(mano));
+           listaJugadores.get(i).setFichas(converToFichaJuego(mano));
         } 
-        return jugadores;
+        return listaJugadores;
     }
     
     
-    public List<FichaJuego> converToFichaJuego(List<Ficha> lista){
+    private List<FichaJuego> converToFichaJuego(List<Ficha> lista){
         List<FichaJuego> listaNueva=new ArrayList<>();
         for (Ficha ficha : lista) {
             FichaJuego fichaJ=new FichaJuego();
@@ -75,6 +77,14 @@ public class ModelTablero {
     }
 
     public void iniciarPartida(List<Jugador> jugadores, int fichasPorJugador) {
-        System.out.println(repartirFichas(jugadores, fichasPorJugador));
+        List<Jugador> jugadoresS=repartirFichas(jugadores, fichasPorJugador);
+        System.out.println();
+        for (int i = 0; i < jugadores.size(); i++) {
+            
+        System.out.println(jugadoresS.get(i).mulaMasAlta());
+    }
+    }
+    public List<FichaJuego> recuperaListaJugadores(){
+        return listaJugadores.get(1).getFichas();
     }
 }
