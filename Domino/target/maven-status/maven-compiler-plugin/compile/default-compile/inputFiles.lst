@@ -1,15 +1,27 @@
-D:\GITHUB\Domino\Domino\src\main\java\com\itson\presentadores\PresentadorSalaEspera.java
-D:\GITHUB\Domino\Domino\src\main\java\com\itson\listeners\InicioListener.java
-D:\GITHUB\Domino\Domino\src\main\java\com\itson\listeners\CrearPartidaListener.java
-D:\GITHUB\Domino\Domino\src\main\java\com\itson\presentadores\PresentadorCrearPartida.java
-D:\GITHUB\Domino\Domino\src\main\java\org\itson\frames\FrmJuego.java
-D:\GITHUB\Domino\Domino\src\main\java\org\itson\Modelos\ModelPuntuaciones.java
-D:\GITHUB\Domino\Domino\src\main\java\org\itson\frames\FrmSalaEspera.java
-D:\GITHUB\Domino\Domino\src\main\java\org\itson\frames\FrmInicio.java
-D:\GITHUB\Domino\Domino\src\main\java\org\itson\frames\FrmPuntuaciones.java
-D:\GITHUB\Domino\Domino\src\main\java\org\itson\Modelos\ModelSalaEspera.java
-D:\GITHUB\Domino\Domino\src\main\java\com\itson\presentadores\PresentadorInicio.java
-D:\GITHUB\Domino\Domino\src\main\java\org\itson\domino\Domino.java
-D:\GITHUB\Domino\Domino\src\main\java\com\itson\listeners\SalaEsperaListener.java
-D:\GITHUB\Domino\Domino\src\main\java\org\itson\frames\FrmCrearPartida.java
-D:\GITHUB\Domino\Domino\src\main\java\org\itson\Modelos\ModelCrearPartida.java
+C:\Users\aroco\OneDrive - potros.itson.edu.mx\Escritorio\Arquitectura\ArquitecturaSoftware_domino\Domino\src\main\java\com\itson\presentadores\PresentadorConfigurarJugador.java
+C:\Users\aroco\OneDrive - potros.itson.edu.mx\Escritorio\Arquitectura\ArquitecturaSoftware_domino\Domino\src\main\java\org\itson\dibujo\FichaTabDibujo.java
+C:\Users\aroco\OneDrive - potros.itson.edu.mx\Escritorio\Arquitectura\ArquitecturaSoftware_domino\Domino\src\main\java\org\itson\Modelos\ModelConfigurarJugador.java
+C:\Users\aroco\OneDrive - potros.itson.edu.mx\Escritorio\Arquitectura\ArquitecturaSoftware_domino\Domino\src\main\java\com\itson\presentadores\PresentadorInicio.java
+C:\Users\aroco\OneDrive - potros.itson.edu.mx\Escritorio\Arquitectura\ArquitecturaSoftware_domino\Domino\src\main\java\org\itson\dibujo\Figuras.java
+C:\Users\aroco\OneDrive - potros.itson.edu.mx\Escritorio\Arquitectura\ArquitecturaSoftware_domino\Domino\src\main\java\org\itson\Modelos\ModelPuntuaciones.java
+C:\Users\aroco\OneDrive - potros.itson.edu.mx\Escritorio\Arquitectura\ArquitecturaSoftware_domino\Domino\src\main\java\org\itson\frames\FrmSalaEspera.java
+C:\Users\aroco\OneDrive - potros.itson.edu.mx\Escritorio\Arquitectura\ArquitecturaSoftware_domino\Domino\src\main\java\org\itson\domino\Domino.java
+C:\Users\aroco\OneDrive - potros.itson.edu.mx\Escritorio\Arquitectura\ArquitecturaSoftware_domino\Domino\src\main\java\org\itson\frames\FrmInicio.java
+C:\Users\aroco\OneDrive - potros.itson.edu.mx\Escritorio\Arquitectura\ArquitecturaSoftware_domino\Domino\src\main\java\org\itson\frames\FrmCrearPartida.java
+C:\Users\aroco\OneDrive - potros.itson.edu.mx\Escritorio\Arquitectura\ArquitecturaSoftware_domino\Domino\src\main\java\org\itson\dibujo\FichaJugDibujo.java
+C:\Users\aroco\OneDrive - potros.itson.edu.mx\Escritorio\Arquitectura\ArquitecturaSoftware_domino\Domino\src\main\java\org\itson\frames\FrmTablero.java
+C:\Users\aroco\OneDrive - potros.itson.edu.mx\Escritorio\Arquitectura\ArquitecturaSoftware_domino\Domino\src\main\java\org\itson\dibujo\TableroDibujo.java
+C:\Users\aroco\OneDrive - potros.itson.edu.mx\Escritorio\Arquitectura\ArquitecturaSoftware_domino\Domino\src\main\java\org\itson\frames\FrmConfiguracionJugador.java
+C:\Users\aroco\OneDrive - potros.itson.edu.mx\Escritorio\Arquitectura\ArquitecturaSoftware_domino\Domino\src\main\java\com\itson\presentadores\PresentadorPartida.java
+C:\Users\aroco\OneDrive - potros.itson.edu.mx\Escritorio\Arquitectura\ArquitecturaSoftware_domino\Domino\src\main\java\org\itson\dibujo\PozoDibujo.java
+C:\Users\aroco\OneDrive - potros.itson.edu.mx\Escritorio\Arquitectura\ArquitecturaSoftware_domino\Domino\src\main\java\org\itson\Modelos\ModelCrearPartida.java
+C:\Users\aroco\OneDrive - potros.itson.edu.mx\Escritorio\Arquitectura\ArquitecturaSoftware_domino\Domino\src\main\java\org\itson\Modelos\ModelSalaEspera.java
+C:\Users\aroco\OneDrive - potros.itson.edu.mx\Escritorio\Arquitectura\ArquitecturaSoftware_domino\Domino\src\main\java\com\itson\listeners\ConfigurarJugadorListener.java
+C:\Users\aroco\OneDrive - potros.itson.edu.mx\Escritorio\Arquitectura\ArquitecturaSoftware_domino\Domino\src\main\java\org\itson\Modelos\ModelTablero.java
+C:\Users\aroco\OneDrive - potros.itson.edu.mx\Escritorio\Arquitectura\ArquitecturaSoftware_domino\Domino\src\main\java\com\itson\listeners\CrearPartidaListener.java
+C:\Users\aroco\OneDrive - potros.itson.edu.mx\Escritorio\Arquitectura\ArquitecturaSoftware_domino\Domino\src\main\java\com\itson\presentadores\PresentadorSalaEspera.java
+C:\Users\aroco\OneDrive - potros.itson.edu.mx\Escritorio\Arquitectura\ArquitecturaSoftware_domino\Domino\src\main\java\org\itson\frames\FrmPuntuaciones.java
+C:\Users\aroco\OneDrive - potros.itson.edu.mx\Escritorio\Arquitectura\ArquitecturaSoftware_domino\Domino\src\main\java\com\itson\listeners\InicioListener.java
+C:\Users\aroco\OneDrive - potros.itson.edu.mx\Escritorio\Arquitectura\ArquitecturaSoftware_domino\Domino\src\main\java\com\itson\listeners\SalaEsperaListener.java
+C:\Users\aroco\OneDrive - potros.itson.edu.mx\Escritorio\Arquitectura\ArquitecturaSoftware_domino\Domino\src\main\java\com\itson\presentadores\PresentadorCrearPartida.java
+C:\Users\aroco\OneDrive - potros.itson.edu.mx\Escritorio\Arquitectura\ArquitecturaSoftware_domino\Domino\src\main\java\org\itson\dibujo\Dibujante.java

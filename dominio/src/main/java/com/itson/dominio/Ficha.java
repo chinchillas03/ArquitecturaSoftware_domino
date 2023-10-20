@@ -12,7 +12,7 @@ public class Ficha {
     
     private int valorIzquierdo;
     private int valorDerecho;
-
+    
     public Ficha() {
     }
 
@@ -35,6 +35,11 @@ public class Ficha {
 
     public void setValorDerecho(int valorDerecho) {
         this.valorDerecho = valorDerecho;
+    }
+
+    @Override
+    public String toString() {
+        return "Ficha{" + "valorIzquierdo=" + valorIzquierdo + ", valorDerecho=" + valorDerecho + '}';
     }
     
 }

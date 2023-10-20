@@ -160,6 +160,8 @@ public class FrmSalaEspera extends javax.swing.JFrame {
     private void btnIniciarPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarPartidaActionPerformed
         // TODO add your handling code here:
         this.notificarBotonPrecionadoIniciarPartida();
+        new FrmTablero().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnIniciarPartidaActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed

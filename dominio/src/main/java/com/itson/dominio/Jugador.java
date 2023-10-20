@@ -57,5 +57,10 @@ public class Jugador {
     public void setFichas(List<FichaJuego> fichas) {
         this.fichas = fichas;
     }
+
+    @Override
+    public String toString() {
+        return "Jugador{" + "nombre=" + nombre + ", puntuacion=" + puntuacion + ", fichas=" + fichas + ", avatar=" + avatar + '}';
+    }
     
 }

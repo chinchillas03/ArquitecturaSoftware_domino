@@ -12334,7 +12334,7 @@
 																		"$ref": "AAAAAAGLRQx7kHdbKmM="
 																	},
 																	"edgePosition": 1,
-																	"text": "31 : Message29"
+																	"text": "31 : dibujarPozo()"
 																},
 																{
 																	"_type": "EdgeLabelView",
@@ -13710,7 +13710,10 @@
 													"target": {
 														"$ref": "AAAAAAGLQaMgQyIRv9A="
 													},
-													"messageSort": "asynchCall"
+													"messageSort": "asynchCall",
+													"signature": {
+														"$ref": "AAAAAAGLSQ4KI+KNMYs="
+													}
 												},
 												{
 													"_type": "UMLMessage",
@@ -14177,7 +14180,8 @@
 											"_parent": {
 												"$ref": "AAAAAAGK1+t2GPH8AEw="
 											},
-											"name": "Role11"
+											"name": "Role11",
+											"type": ""
 										},
 										{
 											"_type": "UMLAttribute",
@@ -14207,7 +14211,8 @@
 											"_parent": {
 												"$ref": "AAAAAAGK1+t2GPH8AEw="
 											},
-											"name": "Role14"
+											"name": "Role14",
+											"type": ""
 										},
 										{
 											"_type": "UMLAttribute",
@@ -34286,7 +34291,7 @@
 											"top": 663,
 											"width": 277.82421875,
 											"height": 13,
-											"text": "PresentadorPartida"
+											"text": "PresentadorTablero"
 										},
 										{
 											"_type": "LabelView",
@@ -34472,7 +34477,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 1061,
-											"top": 771,
+											"top": 786,
 											"width": 277.82421875,
 											"height": 13,
 											"text": "+mostrarFicha()",
@@ -34489,7 +34494,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 1061,
-											"top": 786,
+											"top": 801,
 											"width": 277.82421875,
 											"height": 13,
 											"text": "+pasarTurno()",
@@ -34500,7 +34505,7 @@
 									"left": 1056,
 									"top": 691,
 									"width": 287.82421875,
-									"height": 113
+									"height": 128
 								},
 								{
 									"_type": "UMLReceptionCompartmentView",
@@ -40224,6 +40229,14 @@
 								"$ref": "AAAAAAGLQRuXqSDp6VQ="
 							},
 							"name": "dibujarTodos"
+						},
+						{
+							"_type": "UMLOperation",
+							"_id": "AAAAAAGLSQ4KI+KNMYs=",
+							"_parent": {
+								"$ref": "AAAAAAGLQRuXqSDp6VQ="
+							},
+							"name": "dibujarPozo"
 						}
 					]
 				},

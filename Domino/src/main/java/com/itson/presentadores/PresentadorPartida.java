@@ -4,8 +4,10 @@
  */
 package com.itson.presentadores;
 
+import org.itson.Modelos.ModelTablero;
 import org.itson.dibujo.Dibujante;
 import org.itson.dibujo.Figuras;
+import org.itson.frames.FrmTablero;
 
 /**
  *
@@ -13,34 +15,36 @@ import org.itson.dibujo.Figuras;
  * @author Joel Antonio Lopez Cota ID:228926
  */
 public class PresentadorPartida {
-
-
+    FrmTablero frmTablero;
+    ModelTablero modelTablero;
     /**
      *
      */
-    public PresentadorPartida() {
+    public PresentadorPartida(){
+        frmTablero=new FrmTablero();
     }
 
     public void posicionarFicha() {
-
+        modelTablero.posicionarFicha();
     }
 
     public void jalarPozo() {
-
+        modelTablero.jalarPozo();
     }
 
-    public void actualizarPantalla(Figuras[] listaFiguras) {
+    public void actualizarPantalla() {
+        frmTablero.actualizarPantalla();
     }
 
     public void mostrarMsgError() {
-        new FrmTablero.
+        frmTablero.mostrarMsgError();
     }
 
     public void mostrarFicha() {
-
+        frmTablero.mostrarFicha();
     }
 
     public void pasarTurno() {
-
+        modelTablero.pasarTurno();
     }
 }
