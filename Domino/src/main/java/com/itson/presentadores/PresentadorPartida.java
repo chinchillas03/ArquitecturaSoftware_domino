@@ -4,6 +4,7 @@
  */
 package com.itson.presentadores;
 
+import com.itson.dominio.Jugador;
 import org.itson.Modelos.ModelTablero;
 import org.itson.dibujo.Dibujante;
 import org.itson.dibujo.Figuras;
@@ -28,8 +29,8 @@ public class PresentadorPartida {
         modelTablero.posicionarFicha();
     }
 
-    public void jalarPozo() {
-        modelTablero.jalarPozo();
+    public void jalarPozo(Jugador jugador) {
+        modelTablero.jalarPozo( jugador);
     }
 
     public void actualizarPantalla() {
@@ -47,4 +48,5 @@ public class PresentadorPartida {
     public void pasarTurno() {
         modelTablero.pasarTurno();
     }
+    public void iniciarPartida()
 }

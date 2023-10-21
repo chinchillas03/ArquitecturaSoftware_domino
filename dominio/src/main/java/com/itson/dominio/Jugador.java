@@ -52,7 +52,7 @@ public class Jugador {
     public void setFichas(List<FichaJuego> fichas) {
         this.fichas = fichas;
     }
-    public FichaJuego mulaMasAlta(){
+    public FichaJuego getMulaMasAlta(){
         FichaJuego fichaAlta=null;
         for (FichaJuego ficha : fichas) {
             if (ficha.esMula()) {

@@ -14,7 +14,7 @@ import javax.swing.JPanel;
  * 
  * @author Joel Antonio Lopez Cota ID:228926 
  */
-public class Dibujante {
+public class Dibujante  {
     JPanel panel;
     /**
      * 

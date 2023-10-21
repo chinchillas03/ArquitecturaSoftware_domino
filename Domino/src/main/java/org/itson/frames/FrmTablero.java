@@ -8,15 +8,10 @@ import com.itson.dominio.FichaJuego;
 import com.itson.dominio.Jugador;
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import org.itson.Modelos.ModelTablero;
@@ -35,23 +30,21 @@ public class FrmTablero extends JFrame {
     ModelTablero tablero;
     Dibujante dibujante;
     List<Figuras> figuras;
+    JPanel panel;
 
     public FrmTablero(List<Jugador> listaJugadores, int cantidadFichas) {
         setTitle("Dibujando en JFrame");
-        setSize(1024, 758); // Establece el tamaño del JFrame
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        tablero = new ModelTablero();
-        tablero.iniciarPartida(listaJugadores, cantidadFichas);
-        MiPanel panel = new MiPanel();
-        panel.setLayout(null);
-        this.add(panel);
-        this.setTitle("Domino");
-        this.setResizable(false);
-        this.setLocationRelativeTo(null);
+        
         setVisible(true);
+        this.paint(this.getGraphics());
+    }
 
-        iniciarPantalla(panel);
-
+    @Override
+    public void paint(Graphics g) {
+        super.add(panel);
+        super.paint(g); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+           iniciarPantalla(panel);
     }
 
     public static void main(String[] args) {
@@ -64,6 +57,11 @@ public class FrmTablero extends JFrame {
     }
 
     private void iniciarPantalla(JPanel panel) {
+        Graphics g = panel.getGraphics();
+        g.setColor(Color.BLACK);
+        g.fillRect(0, 35, 1024, 40);
+        g.setColor(Color.BLACK);
+        g.fillRect(0, 715, 1024, 40);
         List<FichaJuego> listaJ = tablero.recuperaListaJugadores();
         this.figuras = List.of(
                 new JugadorDibujo(25, 65, Color.DARK_GRAY),
@@ -82,52 +80,39 @@ public class FrmTablero extends JFrame {
         panel.add(jscp);
         panel.add(btnPozo);
         dibujante.dibujarTodos(figuras);
+//
+//        panel.addMouseListener(new MouseAdapter() {
+//            @Override
+//            public void mousePressed(MouseEvent e) {
+//                // Obtiene las coordenadas del clic
+//                System.out.println(e.getX());
+//                System.out.println(e.getY());
+//                for (int i = 0; i < figuras.size(); i++) {
+//                    System.out.println(listaJ.get(i).getX());
+//                    System.out.println(listaJ.get(i).getY());
+//                    if (e.getX() == listaJ.get(i).getX() && e.getY() == listaJ.get(i).getY()) {
+//                        System.out.println(listaJ.get(i));
+//                    }
+//                }
+//                int x = e.getX();
+//                int y = e.getY();
+//            }
+//        });
 
-        panel.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mousePressed(MouseEvent e) {
-                // Obtiene las coordenadas del clic
-                System.out.println(e.getX());
-                System.out.println(e.getY());
-                for (int i = 0; i < figuras.size(); i++) {
-                    System.out.println(listaJ.get(i).getX());
-                    System.out.println(listaJ.get(i).getY());
-                    if (e.getX() == listaJ.get(i).getX() && e.getY() == listaJ.get(i).getY()) {
-                        System.out.println(listaJ.get(i));
-                    }
-                }
-                int x = e.getX();
-                int y = e.getY();
-            }
-        });
-
-        btnPozo.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Acción a realizar cuando se hace clic en el botón
-                JOptionPane.showMessageDialog(null, "Soy el pozo");
-            }
-        });
-        btnAbandonar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Acción a realizar cuando se hace clic en el botón
-                JOptionPane.showMessageDialog(null, "¡Botón clickeado!");
-            }
-        });
+//        btnPozo.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                // Acción a realizar cuando se hace clic en el botón
+//                JOptionPane.showMessageDialog(null, "Soy el pozo");
+//            }
+//        });
+//        btnAbandonar.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                // Acción a realizar cuando se hace clic en el botón
+//                JOptionPane.showMessageDialog(null, "¡Botón clickeado!");
+//            }
+//        });
     }
 
-}
-
-class MiPanel extends JPanel {
-
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        g.setColor(Color.BLACK);
-        g.fillRect(0, 0, 1024, 50);
-        g.setColor(Color.BLACK);
-        g.fillRect(0, 671, 1024, 50);
-
-    }
 }

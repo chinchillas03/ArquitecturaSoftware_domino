@@ -7,7 +7,9 @@ package org.itson.dibujo;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 
 /**
  *
@@ -24,8 +26,13 @@ public class JugadorDibujo extends Figuras{
     }
 
     @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+    }
+
+    @Override
     public void dibujar(Graphics g, JPanel jpanel) {
-        System.out.println("soy la ficha");
+       super.paintComponent(g);
         g.setColor(color);
         g.fillOval(x, y, width, height); }
 }
