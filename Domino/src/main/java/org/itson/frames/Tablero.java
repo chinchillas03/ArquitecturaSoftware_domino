@@ -8,6 +8,7 @@ package org.itson.frames;
 
 import com.itson.dominio.FichaJuego;
 import com.itson.dominio.Jugador;
+import com.itson.presentadores.PresentadorPartida;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
@@ -30,7 +31,7 @@ import org.itson.dibujo.JugadorDibujo;
  * @author Joel Antonio Lopez Cota ID:228926
  */
 public class Tablero extends javax.swing.JFrame {
- ModelTablero tablero;
+ PresentadorPartida tablero;
     Dibujante dibujante;
     List<Figuras> figuras;
     List<Jugador> listaJugadores;
@@ -39,7 +40,7 @@ public class Tablero extends javax.swing.JFrame {
      * @param List */
     public Tablero(List<Jugador> listaJugadores, int cantidadFichas) {
         initComponents();
-        tablero = new ModelTablero();
+        tablero = new PresentadorPartida();
         panel = new JPanel();
        this.listaJugadores=listaJugadores;
         tablero.iniciarPartida(listaJugadores, cantidadFichas);

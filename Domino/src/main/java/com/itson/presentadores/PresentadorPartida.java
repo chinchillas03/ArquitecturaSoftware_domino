@@ -4,7 +4,9 @@
  */
 package com.itson.presentadores;
 
+import com.itson.dominio.FichaJuego;
 import com.itson.dominio.Jugador;
+import java.util.List;
 import org.itson.Modelos.ModelTablero;
 import org.itson.dibujo.Dibujante;
 import org.itson.dibujo.Figuras;
@@ -18,19 +20,21 @@ import org.itson.frames.FrmTablero;
 public class PresentadorPartida {
     FrmTablero frmTablero;
     ModelTablero modelTablero;
+    
     /**
      *
      */
     public PresentadorPartida(){
-//        frmTablero=new FrmTablero();
+        this.modelTablero = new ModelTablero();
+
     }
 
     public void posicionarFicha() {
         modelTablero.posicionarFicha();
     }
 
-    public void jalarPozo(Jugador jugador) {
-        modelTablero.jalarPozo( jugador);
+    public boolean jalarPozo(Jugador jugador) {
+       return modelTablero.jalarPozo( jugador);
     }
 
     public void actualizarPantalla() {
@@ -48,5 +52,12 @@ public class PresentadorPartida {
     public void pasarTurno() {
         modelTablero.pasarTurno();
     }
-    public void iniciarPartida()
+
+    public void iniciarPartida(List<Jugador> listaJugadores, int cantidadFichas) {
+        modelTablero.iniciarPartida(listaJugadores, cantidadFichas);
+    }
+
+    public List<FichaJuego> recuperaListaJugadores() {
+       return modelTablero.recuperaListaJugadores();
+    }
 }
