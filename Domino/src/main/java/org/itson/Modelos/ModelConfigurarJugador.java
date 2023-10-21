@@ -4,6 +4,8 @@
  */
 package org.itson.Modelos;
 
+import com.itson.dominio.Jugador;
+
 /**
  *
  * @author Usuario
@@ -11,9 +13,14 @@ package org.itson.Modelos;
 public class ModelConfigurarJugador {
     
     private String nombre;
-
+    private Jugador jugador;
     public ModelConfigurarJugador() {
     }
+
+    public ModelConfigurarJugador(Jugador jugador) {
+        this.jugador = jugador;
+    }
+    
 
     public String getNombre() {
         return nombre;

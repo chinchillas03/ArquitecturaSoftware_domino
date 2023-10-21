@@ -8,6 +8,7 @@ package org.itson.Modelos;
 import com.itson.dominio.Ficha;
 import com.itson.dominio.FichaJuego;
 import com.itson.dominio.Jugador;
+import com.itson.dominio.Partida;
 import com.itson.dominio.Pozo;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -41,15 +42,15 @@ public class ModelTablero {
         }
         return listaFichas;
     }
-    public List<Jugador> repartirFichas(List<Jugador> jugadores, int fichasPorJugador){
+    public List<Jugador> repartirFichas(Partida partida){
        List<Ficha> fichas=generaFichasDomino();
         Collections.shuffle(fichas);
         Collections.shuffle(fichas);
                 pozo.setFichas(listaFichas);
-        listaJugadores=jugadores;
+        listaJugadores=partida.getJugadores();
         for (int i = 0; i < listaJugadores.size(); i++) {
             List<Ficha> mano = new ArrayList<>();
-            for (int j = 0; j < fichasPorJugador; j++) {
+            for (int j = 0; j < partida.getNumCantidadFichas(); j++) {
                 mano.add(fichas.remove(0));
                 pozo.getFichas().remove(0);
             }
@@ -101,8 +102,8 @@ public class ModelTablero {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    public void iniciarPartida(List<Jugador> jugadores, int fichasPorJugador) {
-        List<Jugador> jugadoresS=repartirFichas(jugadores, fichasPorJugador);
+    public void iniciarPartida(Partida partida) {
+        List<Jugador> jugadoresS=repartirFichas(partida);
         setearTurnos();
        
     }

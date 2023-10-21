@@ -8,6 +8,7 @@ package org.itson.frames;
 
 import com.itson.dominio.FichaJuego;
 import com.itson.dominio.Jugador;
+import com.itson.dominio.Partida;
 import com.itson.presentadores.PresentadorPartida;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -34,16 +35,16 @@ public class Tablero extends javax.swing.JFrame {
  PresentadorPartida tablero;
     Dibujante dibujante;
     List<Figuras> figuras;
-    List<Jugador> listaJugadores;
+    Partida partida;
     JPanel panel;
     /** Creates new form Tablero
      * @param List */
-    public Tablero(List<Jugador> listaJugadores, int cantidadFichas) {
+    public Tablero(Partida partida) {
         initComponents();
         tablero = new PresentadorPartida();
         panel = new JPanel();
-       this.listaJugadores=listaJugadores;
-        tablero.iniciarPartida(listaJugadores, cantidadFichas);
+        this.partida=partida;
+        tablero.iniciarPartida(partida);
         this.setTitle("Domino");
         this.setResizable(false);
         this.setLocationRelativeTo(null);
@@ -317,8 +318,8 @@ public class Tablero extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnJalarPozoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJalarPozoActionPerformed
-        if (tablero.jalarPozo(listaJugadores.get(0))) {
-            System.out.println(listaJugadores.get(0).getFichas().get(listaJugadores.get(0).getFichas().size()-1));
+        if (tablero.jalarPozo(partida.getJugadores().get(0))) {
+            System.out.println(partida.getJugadores().get(0).getFichas().get(partida.getJugadores().get(0).getFichas().size()-1));
         }else{
             JOptionPane.showMessageDialog(null,"No hay fichas disponibles");
             this.btnJalarPozo.setEnabled(false);
@@ -361,7 +362,7 @@ public class Tablero extends javax.swing.JFrame {
         lista.add(new Jugador("Juan"));
         lista.add(new Jugador("Diego"));
         lista.add(new Jugador("Javier"));
-        new Tablero(lista, 3).setVisible(true);
+        new Tablero(new Partida(lista,3)).setVisible(true);
             }
         });
     }
@@ -397,10 +398,10 @@ public class Tablero extends javax.swing.JFrame {
         List<JLabel> listaNombres=List.of(this.lblNombreJugador2,this.lblNombreJugador4,this.lblNombreJugador1,this.lblNombreJugador3);
                 List<JLabel> listaFichas=List.of(this.fichas2,this.fichas3,this.fichas4);
                 for (int i = 0; i < listaFichas.size(); i++) {
-                    listaFichas.get(i).setText(String.valueOf(listaJugadores.get(i).getFichas().size()));
+                    listaFichas.get(i).setText(String.valueOf(partida.getJugadores().get(i).getFichas().size()));
         }
         for (int i = 0; i < listaNombres.size(); i++) {
-           listaNombres.get(i).setText(listaJugadores.get(i).getNombre());
+           listaNombres.get(i).setText(partida.getJugadores().get(i).getNombre());
         }
         
         List<JPanel> listaPanelesJugadores=List.of(this.pnlJugador1,this.pnlJugador2,this.pnlJugador3,this.pnlJugador4);

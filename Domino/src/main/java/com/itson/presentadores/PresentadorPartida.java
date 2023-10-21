@@ -6,6 +6,7 @@ package com.itson.presentadores;
 
 import com.itson.dominio.FichaJuego;
 import com.itson.dominio.Jugador;
+import com.itson.dominio.Partida;
 import java.util.List;
 import org.itson.Modelos.ModelTablero;
 import org.itson.dibujo.Dibujante;
@@ -53,8 +54,8 @@ public class PresentadorPartida {
         modelTablero.pasarTurno();
     }
 
-    public void iniciarPartida(List<Jugador> listaJugadores, int cantidadFichas) {
-        modelTablero.iniciarPartida(listaJugadores, cantidadFichas);
+    public void iniciarPartida(Partida partida) {
+        modelTablero.iniciarPartida(partida);
     }
 
     public List<FichaJuego> recuperaListaJugadores() {

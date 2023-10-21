@@ -14,8 +14,21 @@ public class Partida {
     
     private Pozo pozo;
     private List<Jugador> jugadores;
+    private int numCantidadFichas;
 
+    public int getNumCantidadFichas() {
+        return numCantidadFichas;
+    }
+
+    public void setNumCantidadFichas(int numCantidadFichas) {
+        this.numCantidadFichas = numCantidadFichas;
+    }
     public Partida() {
+    }
+
+    public Partida(List<Jugador> jugadores, int numCantidadFichas) {
+        this.jugadores = jugadores;
+        this.numCantidadFichas = numCantidadFichas;
     }
 
     public Partida(Pozo pozo, List<Jugador> jugadores) {

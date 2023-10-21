@@ -4,6 +4,8 @@
  */
 package com.itson.listeners;
 
+import com.itson.dominio.Jugador;
+
 /**
  *
  * @author Usuario
@@ -14,6 +16,6 @@ public interface InicioListener {
     
     public void clickEntrarPartida();
     
-    public void clickConfigurarJugador();
+    public void clickConfigurarJugador(Jugador jugador);
     
 }
