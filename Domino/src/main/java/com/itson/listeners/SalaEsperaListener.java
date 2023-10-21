@@ -10,8 +10,22 @@ package com.itson.listeners;
  */
 public interface SalaEsperaListener {
     
-    public void clickBotonIniciarPartida();
+    /**
+     * Este método se llama cuando el usuario hace clic en el botón "Iniciar Partida" en la sala de espera.
+     * Inicia la partida y permite a los jugadores comenzar el juego.
+     */
+    void clickBotonIniciarPartida();
     
-    public void clickBotonSalirPartida();
+    /**
+     * Este método se llama cuando el usuario hace clic en el botón "Salir de la Partida" en la sala de espera.
+     * Permite al usuario salir de la sala de espera y regresar a la pantalla principal o a otra ubicación relevante.
+     */
+    void clickBotonSalirPartida();
+    
+    /**
+     * Este método se llama para mostrar la lista de jugadores en la sala de espera.
+     * Actualiza la información de los jugadores presentes en la sala de espera.
+     */
+    void mostrarJugadores();
     
 }

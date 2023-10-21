@@ -10,6 +10,11 @@ package com.itson.listeners;
  */
 public interface PuntuacionesListener {
     
-    public void clickBotonSalir();
+   
+    /**
+     * Este método se llama cuando el usuario hace clic en el botón "Salir" en la pantalla de puntuaciones.
+     * Permite al usuario salir de la pantalla de puntuaciones y regresar a la pantalla principal
+     */
+    void clickBotonSalir();
     
 }

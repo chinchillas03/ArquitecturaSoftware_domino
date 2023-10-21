@@ -8,7 +8,6 @@ package org.itson.Modelos;
 import com.itson.dominio.Ficha;
 import com.itson.dominio.FichaJuego;
 import com.itson.dominio.Jugador;
-import com.itson.dominio.Partida;
 import com.itson.dominio.Pozo;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -20,37 +19,81 @@ import java.util.List;
  * @author Joel Antonio Lopez Cota ID:228926 
  */
 public class ModelTablero {
-    List<Ficha> listaFichas;
-    List<Jugador> listaJugadores;
-    Pozo pozo;
+    
+    private List<Ficha> listaFichas;
+    private List<Jugador> listaJugadores;
+    private int cantidadFichas;
+    private Pozo pozo;
     /**
-     * 
+     * Constructor por defecto de la clase ModelTablero.
      */
-    public ModelTablero(){
+    public ModelTablero() {
         listaFichas = new ArrayList<>();
         listaJugadores = new ArrayList<>();
-        pozo=new Pozo();
+        pozo = new Pozo();
     }
 
-    public List<Ficha> generaFichasDomino(){
+    /**
+     * Obtiene la cantidad de fichas en el tablero.
+     *
+     * @return La cantidad de fichas en el tablero.
+     */
+    public int getCantidadFichas() {
+        return cantidadFichas;
+    }
+
+    /**
+     * Establece la cantidad de fichas en el tablero.
+     *
+     * @param cantidadFichas La cantidad de fichas que se desea configurar en el tablero.
+     */
+    public void setCantidadFichas(int cantidadFichas) {
+        this.cantidadFichas = cantidadFichas;
+    }
+
+    /**
+     * Obtiene la lista de jugadores en el juego.
+     *
+     * @return La lista de jugadores en el juego.
+     */
+    public List<Jugador> getListaJugadores() {
+        return listaJugadores;
+    }
+
+    /**
+     * Establece la lista de jugadores en el juego.
+     *
+     * @param listaJugadores La lista de jugadores que se desea configurar en el juego.
+     */
+    public void setListaJugadores(List<Jugador> listaJugadores) {
+        this.listaJugadores = listaJugadores;
+    }
+
+    /**
+     * Genera y devuelve una lista de fichas para un juego de dominó.
+     *
+     * @return La lista de fichas generadas.
+     */
+    public List<Ficha> generaFichasDomino() {
         listaFichas = new ArrayList<>();
         for (int i = 0; i <= 6; i++) {
             for (int j = i; j <= 6; j++) {
-                Ficha domino=new Ficha(i,j);
+                Ficha domino = new Ficha(i, j);
                 listaFichas.add(domino);
             }
         }
         return listaFichas;
     }
-    public List<Jugador> repartirFichas(Partida partida){
+    
+    public List<Jugador> repartirFichas(List<Jugador> jugadores, int fichasPorJugador){
        List<Ficha> fichas=generaFichasDomino();
         Collections.shuffle(fichas);
         Collections.shuffle(fichas);
                 pozo.setFichas(listaFichas);
-        listaJugadores=partida.getJugadores();
+        listaJugadores=jugadores;
         for (int i = 0; i < listaJugadores.size(); i++) {
             List<Ficha> mano = new ArrayList<>();
-            for (int j = 0; j < partida.getNumCantidadFichas(); j++) {
+            for (int j = 0; j < fichasPorJugador; j++) {
                 mano.add(fichas.remove(0));
                 pozo.getFichas().remove(0);
             }
@@ -102,8 +145,8 @@ public class ModelTablero {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    public void iniciarPartida(Partida partida) {
-        List<Jugador> jugadoresS=repartirFichas(partida);
+    public void iniciarPartida(List<Jugador> jugadores, int fichasPorJugador) {
+        List<Jugador> jugadoresS=repartirFichas(jugadores, fichasPorJugador);
         setearTurnos();
        
     }

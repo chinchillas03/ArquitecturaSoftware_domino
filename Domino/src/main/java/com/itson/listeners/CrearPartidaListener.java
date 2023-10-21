@@ -10,8 +10,17 @@ package com.itson.listeners;
  */
 public interface CrearPartidaListener {
     
-    public void clickSeleccionarCantidadFichas(Integer cantidadFichas);
+    /**
+     * Este método se llama cuando el usuario hace clic en el botón para seleccionar la cantidad de fichas en la partida.
+     *
+     * @param cantidadFichas La cantidad de fichas seleccionada por el usuario para la partida.
+     */
+    void clickSeleccionarCantidadFichas(Integer cantidadFichas);
     
-    public void clickCancelar();
+    /**
+     * Este método se llama cuando el usuario hace clic en el botón "Cancelar" durante la configuración de la partida.
+     * Permite al usuario cancelar la operación y volver atrás.
+     */
+    void clickCancelar();
     
 }

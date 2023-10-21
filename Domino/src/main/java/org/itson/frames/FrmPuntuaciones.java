@@ -23,6 +23,22 @@ public class FrmPuntuaciones extends javax.swing.JFrame {
         initComponents();
     }
     
+    public void setLblNombreJugador1(String texto) {
+        this.lblNombreJugador1.setText(texto);
+    }
+
+    public void setLblNombreJugador2(String texto) {
+        this.lblNombreJugador2.setText(texto);
+    }
+
+    public void setLblNombreJugador3(String texto) {
+        this.lblNombreJugador3.setText(texto);
+    }
+
+    public void setLblNombreJugador4(String texto) {
+        this.lblNombreJugador4.setText(texto);
+    }
+    
     public void addListener(final PuntuacionesListener listener) {
         listeners.add(listener);
     }
@@ -55,10 +71,10 @@ public class FrmPuntuaciones extends javax.swing.JFrame {
         lblTercerLugar = new javax.swing.JLabel();
         lblCuartoLugar = new javax.swing.JLabel();
         lblPrimerLugar = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        lblNombreJugador1 = new javax.swing.JLabel();
+        lblNombreJugador2 = new javax.swing.JLabel();
+        lblNombreJugador3 = new javax.swing.JLabel();
+        lblNombreJugador4 = new javax.swing.JLabel();
         btnSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -80,13 +96,13 @@ public class FrmPuntuaciones extends javax.swing.JFrame {
         lblPrimerLugar.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         lblPrimerLugar.setText("Primer Lugar:");
 
-        jLabel2.setText("Jugador 1");
+        lblNombreJugador1.setText("Jugador 1");
 
-        jLabel3.setText("Jugador 2");
+        lblNombreJugador2.setText("Jugador 2");
 
-        jLabel4.setText("Jugador 3 ");
+        lblNombreJugador3.setText("Jugador 3 ");
 
-        jLabel5.setText("Jugador 4");
+        lblNombreJugador4.setText("Jugador 4");
 
         btnSalir.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnSalir.setText("Salir");
@@ -114,10 +130,10 @@ public class FrmPuntuaciones extends javax.swing.JFrame {
                             .addComponent(lblTercerLugar))
                         .addGap(173, 173, 173)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))))
+                            .addComponent(lblNombreJugador1)
+                            .addComponent(lblNombreJugador2)
+                            .addComponent(lblNombreJugador3)
+                            .addComponent(lblNombreJugador4))))
                 .addContainerGap(117, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -132,19 +148,19 @@ public class FrmPuntuaciones extends javax.swing.JFrame {
                 .addGap(71, 71, 71)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPrimerLugar)
-                    .addComponent(jLabel2))
+                    .addComponent(lblNombreJugador1))
                 .addGap(118, 118, 118)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblSegundoLugar)
-                    .addComponent(jLabel3))
+                    .addComponent(lblNombreJugador2))
                 .addGap(125, 125, 125)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTercerLugar)
-                    .addComponent(jLabel4))
+                    .addComponent(lblNombreJugador3))
                 .addGap(116, 116, 116)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCuartoLugar)
-                    .addComponent(jLabel5))
+                    .addComponent(lblNombreJugador4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
                 .addComponent(btnSalir)
                 .addGap(54, 54, 54))
@@ -162,11 +178,11 @@ public class FrmPuntuaciones extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSalir;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel lblCuartoLugar;
+    private javax.swing.JLabel lblNombreJugador1;
+    private javax.swing.JLabel lblNombreJugador2;
+    private javax.swing.JLabel lblNombreJugador3;
+    private javax.swing.JLabel lblNombreJugador4;
     private javax.swing.JLabel lblPrimerLugar;
     private javax.swing.JLabel lblSegundoLugar;
     private javax.swing.JLabel lblTercerLugar;

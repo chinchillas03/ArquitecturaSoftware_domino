@@ -16,19 +16,37 @@ public class ModelCrearPartida {
     
     private Integer cantidadFichas;
     
-    public ModelCrearPartida(){            
+    /**
+     * Constructor por defecto de la clase ModelCrearPartida.
+     * Crea una instancia de la clase sin inicializar la cantidad de fichas.
+     */
+    public ModelCrearPartida() {
+        // El constructor por defecto no realiza ninguna acción especial.
     }
 
+    /**
+     * Obtiene la cantidad de fichas configurada para la partida.
+     *
+     * @return La cantidad de fichas para la partida.
+     */
     public Integer getCantidadFichas() {
         return cantidadFichas;
     }
 
+    /**
+     * Establece la cantidad de fichas para la partida.
+     *
+     * @param cantidadFichas La cantidad de fichas que se desea configurar para la partida.
+     */
     public void setCantidadFichas(Integer cantidadFichas) {
         this.cantidadFichas = cantidadFichas;
     }
-    
-    public void crearPartida(){
-        //codigo para crear partida
+
+    /**
+     * Crea una nueva partida utilizando la cantidad de fichas configurada.
+     * Esta función no devuelve la partida creada; solo la instancia de la clase ModelCrearPartida se utiliza para configurar la cantidad de fichas.
+     */
+    public void crearPartida() {
         Partida partida = new Partida();
     }
     
