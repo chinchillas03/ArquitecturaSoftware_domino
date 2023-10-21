@@ -4,11 +4,13 @@
  */
 package org.itson.frames;
 
-import com.itson.dominio.Avatar;
+import com.itson.dominio.Jugador;
 import com.itson.listeners.SalaEsperaListener;
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import org.itson.Modelos.ModelSalaEspera;
 
 /**
  *
@@ -17,6 +19,7 @@ import java.util.List;
 public class FrmSalaEspera extends javax.swing.JFrame {
 
     private final ArrayList<SalaEsperaListener> listeners;
+    private ModelSalaEspera model;
     
     /**
      * Creates new form FrmSalaEspera
@@ -34,6 +37,24 @@ public class FrmSalaEspera extends javax.swing.JFrame {
         for (final SalaEsperaListener listener : listeners) {
             listener.clickBotonIniciarPartida();
         }
+    }
+    
+    public void setModel(ModelSalaEspera model) {
+        this.model = model;    
+    }
+    
+    public void setModelPantalla(){
+        List<Jugador> jugadores = new LinkedList<>();
+        jugadores = this.model.getJugadores();
+        
+        lblNombreJugador1.setText(jugadores.get(0).getNombre());
+        lblNombreJugador2.setText(jugadores.get(1).getNombre());
+        lblNombreJugador3.setText(jugadores.get(2).getNombre());
+        lblNombreJugador4.setText(jugadores.get(3).getNombre());
+    }
+
+    public ModelSalaEspera getModel() {
+        return model;
     }
     
     private void notificarBotonPrecionadoSalir(){
@@ -160,7 +181,6 @@ public class FrmSalaEspera extends javax.swing.JFrame {
     private void btnIniciarPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarPartidaActionPerformed
         // TODO add your handling code here:
         this.notificarBotonPrecionadoIniciarPartida();
-        new FrmTablero().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnIniciarPartidaActionPerformed
 

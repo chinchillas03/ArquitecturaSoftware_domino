@@ -6,6 +6,7 @@ package org.itson.frames;
 
 import com.itson.listeners.ConfigurarJugadorListener;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -40,9 +41,26 @@ public class FrmConfiguracionJugador extends javax.swing.JFrame {
         this.setVisible(false);
     }
     
+    public boolean validarCampoNombre(){
+        int tamTexto = txtNombreJugador.getText().length();
+        if (txtNombreJugador.getText().isBlank() || txtNombreJugador.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "El campo del nombre esta vacio", "Campo nombre vacio", JOptionPane.ERROR_MESSAGE);
+            return true;
+        } else if (tamTexto < 3){
+            JOptionPane.showMessageDialog(null, "El campo del nombre es muy corto", "Campo nombre corto", JOptionPane.ERROR_MESSAGE);
+            return true;
+        } else if (tamTexto > 15){
+            JOptionPane.showMessageDialog(null, "El campo del nombre es muy grande", "Campo nombre demasiado grande", JOptionPane.ERROR_MESSAGE);
+            return true;
+        }
+        return false;
+    }
+    
     private void notificarBotonPrecionadoAplicar(){
-        for (final ConfigurarJugadorListener listener : listeners) {
-            listener.clickBotonAplicar(this.obtenerNombreJugador());
+        if (validarCampoNombre() == false) {
+            for (final ConfigurarJugadorListener listener : listeners) {
+                listener.clickBotonAplicar(this.obtenerNombreJugador());
+            }
         }
     }
     

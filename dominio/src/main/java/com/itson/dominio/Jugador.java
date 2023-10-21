@@ -15,7 +15,6 @@ public class Jugador {
     private String nombre;
     private int puntuacion;
     private List<FichaJuego> fichas;
-    private Avatar avatar;
 
     public Jugador() {
     }
@@ -30,15 +29,6 @@ public class Jugador {
         this.nombre = nombre;
     }
     
-
-    public Avatar getAvatar() {
-        return avatar;
-    }
-
-    public void setAvatar(Avatar avatar) {
-        this.avatar = avatar;
-    }
-
     public String getNombre() {
         return nombre;
     }
@@ -81,7 +71,7 @@ public class Jugador {
 
     @Override
     public String toString() {
-        return "Jugador{" + "nombre=" + nombre + ", puntuacion=" + puntuacion + ", fichas=" + fichas + ", avatar=" + avatar + '}';
+        return "Jugador{" + "nombre=" + nombre + ", puntuacion=" + puntuacion + ", fichas=" + fichas;
     }
     
 }

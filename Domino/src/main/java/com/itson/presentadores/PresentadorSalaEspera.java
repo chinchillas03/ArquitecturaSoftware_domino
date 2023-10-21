@@ -23,7 +23,8 @@ public class PresentadorSalaEspera implements SalaEsperaListener{
     
     @Override
     public void clickBotonIniciarPartida() {
-        
+        this.cerrarPantallaSalaEspera();
+//        new PresentadorPartida.mostrarPantallaPartida();
     }
 
     @Override

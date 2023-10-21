@@ -18,7 +18,7 @@ import java.util.ArrayList;
  */
 public class FrmInicio extends javax.swing.JFrame {
 
-   private final ArrayList<InicioListener> listeners;
+    private final ArrayList<InicioListener> listeners;
     
     /** Creates new form Inicio */
     public FrmInicio() {

@@ -21,7 +21,7 @@ public class PresentadorPartida {
      *
      */
     public PresentadorPartida(){
-        frmTablero=new FrmTablero();
+//        frmTablero=new FrmTablero();
     }
 
     public void posicionarFicha() {
@@ -33,15 +33,15 @@ public class PresentadorPartida {
     }
 
     public void actualizarPantalla() {
-        frmTablero.actualizarPantalla();
+//        frmTablero.actualizarPantalla();
     }
 
     public void mostrarMsgError() {
-        frmTablero.mostrarMsgError();
+//        frmTablero.mostrarMsgError();
     }
 
     public void mostrarFicha() {
-        frmTablero.mostrarFicha();
+//        frmTablero.mostrarFicha();
     }
 
     public void pasarTurno() {

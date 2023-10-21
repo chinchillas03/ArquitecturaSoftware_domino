@@ -4,7 +4,6 @@
  */
 package org.itson.Modelos;
 
-import com.itson.dominio.Avatar;
 import com.itson.dominio.Jugador;
 import java.util.List;
 
@@ -14,10 +13,9 @@ import java.util.List;
  */
 public class ModelSalaEspera {
     
-    private List<Jugador> jugadores;
-    private List<Avatar> avatares;
+    private List<Jugador> jugadores ;
 
-    public List<Jugador> getJugadores() {
+    public List<Jugador> getJugadores() {       
         return jugadores;
     }
 
@@ -25,12 +23,4 @@ public class ModelSalaEspera {
         this.jugadores = jugadores;
     }
 
-    public List<Avatar> getAvatares() {
-        return avatares;
-    }
-
-    public void setAvatares(List<Avatar> avatares) {
-        this.avatares = avatares;
-    }
-    
 }
