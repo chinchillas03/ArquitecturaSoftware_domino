@@ -20,13 +20,17 @@ import org.itson.Modelos.ModelSalaEspera;
  */
 public class FrmSalaEspera extends javax.swing.JFrame {
 
-    private final SalaEsperaListener listener = new PresentadorSalaEspera();
+    private SalaEsperaListener listener;
     
     /**
      * Creates new form FrmSalaEspera
      */
     public FrmSalaEspera() {
         initComponents();
+    }
+
+    public void setListener(SalaEsperaListener listener) {
+        this.listener = listener;
     }
 
     public void setLblNombreJugador1(String texto) {

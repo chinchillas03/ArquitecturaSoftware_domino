@@ -14,13 +14,17 @@ import java.util.ArrayList;
  */
 public class FrmPuntuaciones extends javax.swing.JFrame {
 
-    private final PuntuacionesListener listener = new PresentadorPuntuaciones();
+    private PuntuacionesListener listener;
     
     /**
      * Creates new form FrmPuntuaciones
      */
     public FrmPuntuaciones() {
         initComponents();
+    }
+
+    public void setListener(PuntuacionesListener listener) {
+        this.listener = listener;
     }
     
     public void setLblNombreJugador1(String texto) {

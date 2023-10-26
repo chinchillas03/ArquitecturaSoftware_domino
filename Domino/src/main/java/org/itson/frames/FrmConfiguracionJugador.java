@@ -15,13 +15,17 @@ import javax.swing.JOptionPane;
  */
 public class FrmConfiguracionJugador extends javax.swing.JFrame {
 
-    private final ConfigurarJugadorListener listener = new PresentadorConfigurarJugador();
+    private ConfigurarJugadorListener listener;
     
     /**
      * Creates new form FrmConfiguracionJugador
      */
     public FrmConfiguracionJugador() {
         initComponents();
+    }
+
+    public void setListener(ConfigurarJugadorListener listener) {
+        this.listener = listener;
     }
     
     private String obtenerNombreJugador(){

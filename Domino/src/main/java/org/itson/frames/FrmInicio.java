@@ -19,11 +19,14 @@ import java.util.ArrayList;
  */
 public class FrmInicio extends javax.swing.JFrame {
 
-    private final InicioListener listener = new PresentadorInicio();
+    private InicioListener listener;
     
-    /** Creates new form Inicio */
     public FrmInicio() {
         initComponents();
+    }
+
+    public void setListener(InicioListener listener) {
+        this.listener = listener;
     }
     
     public void mostrarPantallaInicio(){

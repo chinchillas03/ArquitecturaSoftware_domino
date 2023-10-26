@@ -18,6 +18,7 @@ public class PresentadorCrearPartida implements CrearPartidaListener{
     private final ModelCrearPartida modelo = new ModelCrearPartida();
     
     public PresentadorCrearPartida(){
+        this.setPresenter();
     }
     
     @Override
@@ -47,6 +48,10 @@ public class PresentadorCrearPartida implements CrearPartidaListener{
     
     public void mostrarPantallaSalaEspera(){
         new PresentadorSalaEspera().mostrarPantallaSalaEspera();
+    }
+    
+    private void setPresenter(){
+        this.view.setListener(this);
     }
     
     private void pasarPantallaInicio(){

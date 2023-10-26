@@ -14,13 +14,17 @@ import java.util.ArrayList;
  */
 public class FrmCrearPartida extends javax.swing.JFrame {
 
-    private final CrearPartidaListener listener = new PresentadorCrearPartida();
+    private CrearPartidaListener listener;
     
     /**
      * Creates new form FrmCrearPartida
      */
     public FrmCrearPartida() {
         initComponents();
+    }
+
+    public void setListener(CrearPartidaListener listener) {
+        this.listener = listener;
     }
     
     private Integer obtenerValorFicha(){

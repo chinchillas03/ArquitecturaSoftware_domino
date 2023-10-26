@@ -27,6 +27,7 @@ public class PresentadorSalaEspera implements SalaEsperaListener{
     public PresentadorSalaEspera() {
         this.model.setJugadores();
         this.mostrarJugadores();
+        this.setPresenter();
     }
 
     /**
@@ -64,6 +65,10 @@ public class PresentadorSalaEspera implements SalaEsperaListener{
         this.view.setLblNombreJugador3(jugadores.get(2).getNombre());
         this.view.setLblNombreJugador4(jugadores.get(3).getNombre());
     } 
+    
+    private void setPresenter(){
+        this.view.setListener(this);
+    }
     
     /**
      * Establece la cantidad de fichas en el juego.

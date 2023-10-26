@@ -18,6 +18,7 @@ public class PresentadorConfigurarJugador implements ConfigurarJugadorListener{
     private final ModelConfigurarJugador model = new ModelConfigurarJugador();
 
     public PresentadorConfigurarJugador() {
+        this.setPresenter();
     }
     
     @Override
@@ -34,6 +35,10 @@ public class PresentadorConfigurarJugador implements ConfigurarJugadorListener{
     public void clickBotonCancelar() {
         this.cerrarPantallaConfigurarJugador();
         new PresentadorInicio().mostrarPantallaInicio();
+    }
+    
+    private void setPresenter(){
+        this.view.setListener(this);
     }
     
     public void mostrarPantallaConfigurarJugador(){
