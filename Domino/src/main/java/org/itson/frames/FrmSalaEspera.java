@@ -6,6 +6,7 @@ package org.itson.frames;
 
 import com.itson.dominio.Jugador;
 import com.itson.listeners.SalaEsperaListener;
+import com.itson.presentadores.PresentadorSalaEspera;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -19,13 +20,12 @@ import org.itson.Modelos.ModelSalaEspera;
  */
 public class FrmSalaEspera extends javax.swing.JFrame {
 
-    private final ArrayList<SalaEsperaListener> listeners;
+    private final SalaEsperaListener listener = new PresentadorSalaEspera();
     
     /**
      * Creates new form FrmSalaEspera
      */
     public FrmSalaEspera() {
-        listeners = new ArrayList<SalaEsperaListener>();
         initComponents();
     }
 
@@ -44,21 +44,13 @@ public class FrmSalaEspera extends javax.swing.JFrame {
     public void setLblNombreJugador4(String texto) {
         this.lblNombreJugador4.setText(texto);
     }
-
-    public void addListener(final SalaEsperaListener listener) {
-        listeners.add(listener);
-    }
     
     private void notificarBotonPrecionadoIniciarPartida(){
-        for (final SalaEsperaListener listener : listeners) {
-            listener.clickBotonIniciarPartida();
-        }
+        listener.clickBotonIniciarPartida();      
     }
     
     private void notificarBotonPrecionadoSalir(){
-        for (final SalaEsperaListener listener : listeners) {
-            listener.clickBotonSalirPartida();
-        }
+        listener.clickBotonSalirPartida();
     }
     
     public void mostrarPantallaSalaEspera(){

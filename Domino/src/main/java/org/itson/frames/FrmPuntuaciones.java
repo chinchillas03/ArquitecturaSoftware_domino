@@ -5,6 +5,7 @@
 package org.itson.frames;
 
 import com.itson.listeners.PuntuacionesListener;
+import com.itson.presentadores.PresentadorPuntuaciones;
 import java.util.ArrayList;
 
 /**
@@ -13,13 +14,12 @@ import java.util.ArrayList;
  */
 public class FrmPuntuaciones extends javax.swing.JFrame {
 
-    private final ArrayList<PuntuacionesListener> listeners;
+    private final PuntuacionesListener listener = new PresentadorPuntuaciones();
     
     /**
      * Creates new form FrmPuntuaciones
      */
     public FrmPuntuaciones() {
-        this.listeners = new ArrayList<PuntuacionesListener>();
         initComponents();
     }
     
@@ -39,14 +39,8 @@ public class FrmPuntuaciones extends javax.swing.JFrame {
         this.lblNombreJugador4.setText(texto);
     }
     
-    public void addListener(final PuntuacionesListener listener) {
-        listeners.add(listener);
-    }
-    
     private void notificarBotonPrecionadoSalir(){
-        for (final PuntuacionesListener listener : listeners) {
-            listener.clickBotonSalir();
-        }
+        listener.clickBotonSalir();        
     }
     
     public void mostrarPantallaPuntuaciones(){

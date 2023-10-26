@@ -5,6 +5,7 @@
 package org.itson.frames;
 
 import com.itson.listeners.ConfigurarJugadorListener;
+import com.itson.presentadores.PresentadorConfigurarJugador;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -14,18 +15,13 @@ import javax.swing.JOptionPane;
  */
 public class FrmConfiguracionJugador extends javax.swing.JFrame {
 
-    private final ArrayList<ConfigurarJugadorListener> listeners;
+    private final ConfigurarJugadorListener listener = new PresentadorConfigurarJugador();
     
     /**
      * Creates new form FrmConfiguracionJugador
      */
     public FrmConfiguracionJugador() {
-        this.listeners = new ArrayList<ConfigurarJugadorListener>();
         initComponents();
-    }
-    
-    public void addListener(final ConfigurarJugadorListener listener) {
-        listeners.add(listener);
     }
     
     private String obtenerNombreJugador(){
@@ -58,16 +54,12 @@ public class FrmConfiguracionJugador extends javax.swing.JFrame {
     
     private void notificarBotonPrecionadoAplicar(){
         if (validarCampoNombre() == false) {
-            for (final ConfigurarJugadorListener listener : listeners) {
-                listener.clickBotonAplicar(this.obtenerNombreJugador());
-            }
+            listener.clickBotonAplicar(this.obtenerNombreJugador());
         }
     }
     
     private void notificarPrecionadoCancelar(){
-        for (final ConfigurarJugadorListener listener : listeners) {
-            listener.clickBotonCancelar();
-        }
+        listener.clickBotonCancelar();        
     }
 
     /**

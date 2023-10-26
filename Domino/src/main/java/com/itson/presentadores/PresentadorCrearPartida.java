@@ -18,7 +18,6 @@ public class PresentadorCrearPartida implements CrearPartidaListener{
     private final ModelCrearPartida modelo = new ModelCrearPartida();
     
     public PresentadorCrearPartida(){
-        this.suscribirseListener();
     }
     
     @Override
@@ -36,10 +35,6 @@ public class PresentadorCrearPartida implements CrearPartidaListener{
     @Override
     public void clickCancelar() {
         this.pasarPantallaInicio();
-    }
-    
-    private void suscribirseListener(){
-        this.view.addListener(this);
     }
     
     public void cerrarPantallaCrearPartida(){

@@ -25,7 +25,6 @@ public class PresentadorSalaEspera implements SalaEsperaListener{
      * Inicializa la clase, se suscribe a los eventos de la vista de sala de espera, configura a los jugadores y muestra la lista de jugadores.
      */
     public PresentadorSalaEspera() {
-        this.suscribirseListener();
         this.model.setJugadores();
         this.mostrarJugadores();
     }
@@ -73,13 +72,6 @@ public class PresentadorSalaEspera implements SalaEsperaListener{
      */
     public void setCantidadFicha(int cantidadFichas) {
         this.model.setCantidadFichas(cantidadFichas);
-    }
-    
-    /**
-     * Registra el presentador como listener de eventos en la vista de sala de espera.
-     */
-    private void suscribirseListener() {
-        this.view.addListener(this);
     }
     
     /**

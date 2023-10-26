@@ -44,7 +44,7 @@ public class Tablero extends javax.swing.JFrame {
         tablero = new PresentadorPartida();
         panel = new JPanel();
         this.partida=partida;
-        tablero.iniciarPartida(partida);
+       // tablero.iniciarPartida(partida);
         this.setTitle("Domino");
         this.setResizable(false);
         this.setLocationRelativeTo(null);
@@ -318,12 +318,12 @@ public class Tablero extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnJalarPozoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJalarPozoActionPerformed
-        if (tablero.jalarPozo(partida.getJugadores().get(0))) {
-            System.out.println(partida.getJugadores().get(0).getFichas().get(partida.getJugadores().get(0).getFichas().size()-1));
-        }else{
-            JOptionPane.showMessageDialog(null,"No hay fichas disponibles");
-            this.btnJalarPozo.setEnabled(false);
-        }
+//        if (tablero.jalarPozo(partida.getJugadores().get(0))) {
+//            System.out.println(partida.getJugadores().get(0).getFichas().get(partida.getJugadores().get(0).getFichas().size()-1));
+//        }else{
+//            JOptionPane.showMessageDialog(null,"No hay fichas disponibles");
+//            this.btnJalarPozo.setEnabled(false);
+//        }
         
     }//GEN-LAST:event_btnJalarPozoActionPerformed
 
@@ -391,24 +391,24 @@ public class Tablero extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void iniciarPartida() {
-        List<FichaJuego> listaJ = tablero.recuperaListaJugadores();
-        this.figuras = List.of(
-                new JugadorDibujo(0, 0, Color.DARK_GRAY)
-        );
-        List<JLabel> listaNombres=List.of(this.lblNombreJugador2,this.lblNombreJugador4,this.lblNombreJugador1,this.lblNombreJugador3);
-                List<JLabel> listaFichas=List.of(this.fichas2,this.fichas3,this.fichas4);
-                for (int i = 0; i < listaFichas.size(); i++) {
-                    listaFichas.get(i).setText(String.valueOf(partida.getJugadores().get(i).getFichas().size()));
-        }
-        for (int i = 0; i < listaNombres.size(); i++) {
-           listaNombres.get(i).setText(partida.getJugadores().get(i).getNombre());
-        }
-        
-        List<JPanel> listaPanelesJugadores=List.of(this.pnlJugador1,this.pnlJugador2,this.pnlJugador3,this.pnlJugador4);
-        pnlJugador1.getGraphics().setColor(Color.red);
-        pnlJugador1.getGraphics().fillOval(10, 540, 75, 75);
-        dibujante=new Dibujante(pnlJugador1);
-        dibujante.dibujarTodos(figuras);
+//        List<FichaJuego> listaJ = tablero.recuperaListaJugadores();
+//        this.figuras = List.of(
+//                new JugadorDibujo(0, 0, Color.DARK_GRAY)
+//        );
+//        List<JLabel> listaNombres=List.of(this.lblNombreJugador2,this.lblNombreJugador4,this.lblNombreJugador1,this.lblNombreJugador3);
+//                List<JLabel> listaFichas=List.of(this.fichas2,this.fichas3,this.fichas4);
+//                for (int i = 0; i < listaFichas.size(); i++) {
+//                    listaFichas.get(i).setText(String.valueOf(partida.getJugadores().get(i).getFichas().size()));
+//        }
+//        for (int i = 0; i < listaNombres.size(); i++) {
+//           listaNombres.get(i).setText(partida.getJugadores().get(i).getNombre());
+//        }
+//        
+//        List<JPanel> listaPanelesJugadores=List.of(this.pnlJugador1,this.pnlJugador2,this.pnlJugador3,this.pnlJugador4);
+//        pnlJugador1.getGraphics().setColor(Color.red);
+//        pnlJugador1.getGraphics().fillOval(10, 540, 75, 75);
+//        dibujante=new Dibujante(pnlJugador1);
+//        dibujante.dibujarTodos(figuras);
     }
     
 }

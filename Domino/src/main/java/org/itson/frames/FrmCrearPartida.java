@@ -5,6 +5,7 @@
 package org.itson.frames;
 
 import com.itson.listeners.CrearPartidaListener;
+import com.itson.presentadores.PresentadorCrearPartida;
 import java.util.ArrayList;
 
 /**
@@ -13,18 +14,13 @@ import java.util.ArrayList;
  */
 public class FrmCrearPartida extends javax.swing.JFrame {
 
-    private final ArrayList<CrearPartidaListener> listeners;
+    private final CrearPartidaListener listener = new PresentadorCrearPartida();
     
     /**
      * Creates new form FrmCrearPartida
      */
     public FrmCrearPartida() {
-        this.listeners = new ArrayList<CrearPartidaListener>();
         initComponents();
-    }
-    
-    public void addListener(final CrearPartidaListener listener) {
-        listeners.add(listener);
     }
     
     private Integer obtenerValorFicha(){
@@ -33,15 +29,11 @@ public class FrmCrearPartida extends javax.swing.JFrame {
     }
     
     private void notificarBotonPrecionadoAplicar(){
-        for (final CrearPartidaListener listener : listeners) {
-            listener.clickSeleccionarCantidadFichas(obtenerValorFicha());
-        }
+        listener.clickSeleccionarCantidadFichas(obtenerValorFicha());
     }
     
     private void notificarPrecionadoCancelar(){
-        for (final CrearPartidaListener listener : listeners) {
-            listener.clickCancelar();
-        }
+        listener.clickCancelar();
     }
     
     public void mostrarPantallaCrearPartida(){

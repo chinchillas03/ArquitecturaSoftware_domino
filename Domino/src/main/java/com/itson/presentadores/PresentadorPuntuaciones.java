@@ -24,7 +24,6 @@ public class PresentadorPuntuaciones implements PuntuacionesListener{
      * Inicializa la clase y se suscribe a los eventos de la vista de puntuaciones.
      */
     public PresentadorPuntuaciones() {
-        this.suscribirseListener();
     }
 
     /**
@@ -36,14 +35,6 @@ public class PresentadorPuntuaciones implements PuntuacionesListener{
         this.cerrarPantallaPuntuaciones();
         new PresentadorInicio().mostrarPantallaInicio();
     }
-
-    /**
-     * Registra el presentador como listener de eventos en la vista de puntuaciones.
-     */
-    private void suscribirseListener() {
-        this.view.addListener(this);
-    }
-
     /**
      * Muestra la pantalla de puntuaciones.
      */

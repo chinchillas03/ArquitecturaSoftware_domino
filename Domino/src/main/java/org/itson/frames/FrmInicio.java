@@ -9,6 +9,7 @@ package org.itson.frames;
 import com.itson.presentadores.PresentadorCrearPartida;
 import org.itson.Modelos.ModelCrearPartida;
 import com.itson.listeners.InicioListener;
+import com.itson.presentadores.PresentadorInicio;
 import java.util.ArrayList;
 
 /**
@@ -18,16 +19,11 @@ import java.util.ArrayList;
  */
 public class FrmInicio extends javax.swing.JFrame {
 
-    private final ArrayList<InicioListener> listeners;
+    private final InicioListener listener = new PresentadorInicio();
     
     /** Creates new form Inicio */
     public FrmInicio() {
-        this.listeners = new ArrayList<InicioListener>();
         initComponents();
-    }
-    
-    public void addListener(final InicioListener listener) {
-        listeners.add(listener);
     }
     
     public void mostrarPantallaInicio(){
@@ -39,21 +35,15 @@ public class FrmInicio extends javax.swing.JFrame {
     }
     
     private void notificarBotonPrecionadoEntrarPartida(){
-        for (final InicioListener listener : listeners) {
-            listener.clickEntrarPartida();
-        }
+        listener.clickEntrarPartida();       
     }
     
     private void notificarBotonPrecionadoCrearPartida(){
-        for (final InicioListener listener : listeners) {
-            listener.clickCrearPartida();
-        }
+        listener.clickCrearPartida();
     }
     
     private void notificarBotonPrecionadoConfigurar(){
-        for (final InicioListener listener : listeners) {
-            listener.clickConfigurarJugador();
-        }
+        listener.clickConfigurarJugador();
     }
 
     /** This method is called from within the constructor to

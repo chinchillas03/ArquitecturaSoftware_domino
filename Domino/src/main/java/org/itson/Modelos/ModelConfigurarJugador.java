@@ -20,7 +20,6 @@ public class ModelConfigurarJugador {
     public ModelConfigurarJugador(Jugador jugador) {
         this.jugador = jugador;
     }
-    
 
     public String getNombre() {
         return nombre;
