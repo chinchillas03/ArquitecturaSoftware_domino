@@ -4,8 +4,11 @@
  */
 package org.itson.frames;
 
+import com.itson.dominio.Partida;
 import com.itson.listeners.TableroJuegoListener;
-import java.util.ArrayList;
+import java.awt.Color;
+import java.awt.Graphics;
+import org.itson.dibujo.Dibujante;
 
 /**
  *
@@ -13,24 +16,24 @@ import java.util.ArrayList;
  */
 public class FrmPartida extends javax.swing.JFrame {
 
-    private final ArrayList<TableroJuegoListener> listeners;
-    
+    private TableroJuegoListener listener;
+    private Dibujante dibujante;
+    private Partida partida;
     /**
      * Creates new form FrmPartida
      */
     public FrmPartida() {
-        this.listeners = new ArrayList<TableroJuegoListener>();
         initComponents();
+        dibujante=new Dibujante();
+        
     }
     
-    public void addListener(final TableroJuegoListener listener) {
-        listeners.add(listener);
+    public void addListener( TableroJuegoListener listener) {
+             this.listener = listener;
     }
     
     private void notificarBotonPrecionadoAbandonarPartida(){
-        for (final TableroJuegoListener listener : listeners) {
-            listener.clickBotonAbandonarPartida();
-        }
+    listener.clickBotonAbandonarPartida();
     }
     
     public void setLblNombreJugador1(String texto) {
@@ -49,12 +52,20 @@ public class FrmPartida extends javax.swing.JFrame {
         this.lblJugador4.setText(texto);
     }
     
-    public void mostrarPantallaPartida() {
+    public void mostrarPantallaPartida(Partida partida) {
         this.setVisible(true);
+        this.partida=partida;
     }
 
     public void cerrarPantallaPartida() {
         this.setVisible(false);
+    }
+
+    @Override
+    public void paint(Graphics g) {
+        super.paint(g); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+        actualizarPantalla(partida,g);
+        System.out.println(partida.getJugadores().get(0).getFichas());
     }
 
     /**
@@ -66,21 +77,28 @@ public class FrmPartida extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panelJuego = new javax.swing.JScrollPane();
+        pnlPartida = new javax.swing.JPanel();
         btnAbandonarPartida = new javax.swing.JButton();
-        btnJalarPozo = new javax.swing.JButton();
+        lblJugador1 = new javax.swing.JLabel();
+        panelJuego = new javax.swing.JScrollPane();
         lblJugador2 = new javax.swing.JLabel();
         lblJugador3 = new javax.swing.JLabel();
         lblJugador4 = new javax.swing.JLabel();
-        lblJugador1 = new javax.swing.JLabel();
+        btnJalarPozo = new javax.swing.JButton();
+        btnPasarTurno = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setTitle("PARTIDA");
+        setTitle("Partida");
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
-        panelJuego.addMouseListener(new java.awt.event.MouseAdapter() {
+        pnlPartida.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                panelJuegoMouseClicked(evt);
+                pnlPartidaMouseClicked(evt);
             }
         });
 
@@ -91,10 +109,11 @@ public class FrmPartida extends javax.swing.JFrame {
             }
         });
 
-        btnJalarPozo.setText("Jalar Pozo");
-        btnJalarPozo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnJalarPozoActionPerformed(evt);
+        lblJugador1.setText("jugador");
+
+        panelJuego.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                panelJuegoMouseClicked(evt);
             }
         });
 
@@ -104,58 +123,78 @@ public class FrmPartida extends javax.swing.JFrame {
 
         lblJugador4.setText("jugador");
 
-        lblJugador1.setText("jugador");
+        btnJalarPozo.setText("Jalar Pozo");
+        btnJalarPozo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnJalarPozoActionPerformed(evt);
+            }
+        });
+
+        btnPasarTurno.setText("Pasar Turno");
+
+        javax.swing.GroupLayout pnlPartidaLayout = new javax.swing.GroupLayout(pnlPartida);
+        pnlPartida.setLayout(pnlPartidaLayout);
+        pnlPartidaLayout.setHorizontalGroup(
+            pnlPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlPartidaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblJugador2)
+                    .addGroup(pnlPartidaLayout.createSequentialGroup()
+                        .addComponent(lblJugador1)
+                        .addGap(34, 34, 34)
+                        .addComponent(panelJuego, javax.swing.GroupLayout.PREFERRED_SIZE, 900, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(pnlPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnPasarTurno, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnJalarPozo, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblJugador4)
+                    .addComponent(lblJugador3))
+                .addGap(0, 6, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlPartidaLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnAbandonarPartida)
+                .addGap(481, 481, 481))
+        );
+        pnlPartidaLayout.setVerticalGroup(
+            pnlPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlPartidaLayout.createSequentialGroup()
+                .addContainerGap(110, Short.MAX_VALUE)
+                .addGroup(pnlPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblJugador2)
+                    .addComponent(lblJugador3))
+                .addGap(4, 4, 4)
+                .addGroup(pnlPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlPartidaLayout.createSequentialGroup()
+                        .addComponent(btnJalarPozo)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnPasarTurno)
+                        .addGap(305, 305, 305))
+                    .addGroup(pnlPartidaLayout.createSequentialGroup()
+                        .addComponent(panelJuego, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(pnlPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblJugador1)
+                            .addComponent(lblJugador4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                        .addComponent(btnAbandonarPartida)
+                        .addGap(40, 40, 40))))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblJugador2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblJugador3))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblJugador1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblJugador4)))
-                .addGap(27, 27, 27))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(100, 100, 100)
-                        .addComponent(panelJuego, javax.swing.GroupLayout.PREFERRED_SIZE, 900, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnJalarPozo))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(493, 493, 493)
-                        .addComponent(btnAbandonarPartida)))
+                .addContainerGap()
+                .addComponent(pnlPartida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(125, 125, 125)
-                        .addComponent(panelJuego, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(99, 99, 99)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblJugador3)
-                            .addComponent(lblJugador2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnJalarPozo)
-                        .addGap(236, 236, 236)))
-                .addComponent(btnAbandonarPartida)
-                .addGap(1, 1, 1)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblJugador4)
-                    .addComponent(lblJugador1))
-                .addGap(33, 33, 33))
+                .addComponent(pnlPartida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -173,15 +212,43 @@ public class FrmPartida extends javax.swing.JFrame {
 
     private void panelJuegoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelJuegoMouseClicked
         // TODO add your handling code here:
+        listener.actualizarPantalla();
     }//GEN-LAST:event_panelJuegoMouseClicked
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formWindowClosed
+
+    private void pnlPartidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlPartidaMouseClicked
+            System.out.println(evt.getX());
+        if (partida.getJugadores().get(0).getFichas().get(0).contains(evt.getX(), evt.getY())) {
+           partida.getJugadores().get(0).getFichas().get(0).setX(150);
+           partida.getJugadores().get(0).getFichas().remove( partida.getJugadores().get(0).getFichas().get(0));
+           this.repaint();
+        }
+    }//GEN-LAST:event_pnlPartidaMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAbandonarPartida;
     private javax.swing.JButton btnJalarPozo;
+    private javax.swing.JButton btnPasarTurno;
     private javax.swing.JLabel lblJugador1;
     private javax.swing.JLabel lblJugador2;
     private javax.swing.JLabel lblJugador3;
     private javax.swing.JLabel lblJugador4;
     private javax.swing.JScrollPane panelJuego;
+    private javax.swing.JPanel pnlPartida;
     // End of variables declaration//GEN-END:variables
+
+    public void actualizarPantalla(Partida partida, Graphics g) {
+               dibujante.dibujarTodos(partida, g);
+    }
+
+    public void mostrarMsgError() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public void mostarFicha() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

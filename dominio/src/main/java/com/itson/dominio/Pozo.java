@@ -11,6 +11,7 @@ import java.util.List;
  * @author Usuario
  */
 public class Pozo {
+    private List<Ficha> fichas;
 
     public Pozo() {
     }
@@ -26,5 +27,18 @@ public class Pozo {
     public void setFichas(List<Ficha> fichas) {
         this.fichas = fichas;
     }
-    private List<Ficha> fichas;
+    
+    public boolean verificarFichas(){
+        return fichas.isEmpty();
+    }
+    
+    public void quitarFicha(Ficha ficha){
+        fichas.remove(ficha);
+    }
+
+    @Override
+    public String toString() {
+        return "Pozo{" + "fichas=" + fichas + '}';
+    }
+    
 }

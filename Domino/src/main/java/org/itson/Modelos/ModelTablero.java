@@ -8,7 +8,10 @@ package org.itson.Modelos;
 import com.itson.dominio.Ficha;
 import com.itson.dominio.FichaJuego;
 import com.itson.dominio.Jugador;
+import com.itson.dominio.Partida;
 import com.itson.dominio.Pozo;
+import com.itson.dominio.Tablero;
+import com.itson.presentadores.PresentadorPartida;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -24,6 +27,8 @@ public class ModelTablero {
     private List<Jugador> listaJugadores;
     private int cantidadFichas;
     private Pozo pozo;
+    private Tablero tablero;
+    private Partida partida;
     /**
      * Constructor por defecto de la clase ModelTablero.
      */
@@ -31,6 +36,7 @@ public class ModelTablero {
         listaFichas = new ArrayList<>();
         listaJugadores = new ArrayList<>();
         pozo = new Pozo();
+        this.partida= new Partida();
     }
 
     /**
@@ -89,16 +95,17 @@ public class ModelTablero {
        List<Ficha> fichas=generaFichasDomino();
         Collections.shuffle(fichas);
         Collections.shuffle(fichas);
-                pozo.setFichas(listaFichas);
         listaJugadores=jugadores;
         for (int i = 0; i < listaJugadores.size(); i++) {
             List<Ficha> mano = new ArrayList<>();
             for (int j = 0; j < fichasPorJugador; j++) {
                 mano.add(fichas.remove(0));
-                pozo.getFichas().remove(0);
             }
+            System.out.println(mano);
            listaJugadores.get(i).setFichas(converToFichaJuego(mano));
-        } 
+        }                
+        pozo.setFichas(listaFichas);
+        System.out.println(pozo);
         return listaJugadores;
     }
     
@@ -138,20 +145,30 @@ public class ModelTablero {
     }
 
     public void posicionarFicha() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (tablero.verificaFicha()) {
+            //Cambiar a jugador, solo es una prueba
+            listaJugadores.get(0).quitarFicha();
+            tablero.addFicha();
+            if (listaJugadores.get(0).verificarNumFichas()) {
+               partida.pasarTurno();
+            }else{
+               partida.terminarJuego();
+            }
+        }
     }
 
     public void pasarTurno() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+      
     }
-
-    public void iniciarPartida(List<Jugador> jugadores, int fichasPorJugador) {
-        List<Jugador> jugadoresS=repartirFichas(jugadores, fichasPorJugador);
+    
+    public void iniciarPartida(Partida partida) {
+        this.listaJugadores=repartirFichas(partida.getJugadores(), partida.getNumCantidadFichas());
         setearTurnos();
-       
+               System.out.println(listaJugadores);
+
     }
     private Jugador primerTurno(){
-        Jugador primerTurno= null;
+        Jugador primerTurno= listaJugadores.get(0);
         for (int i = 0; i < listaJugadores.size(); i++) {
             if (listaJugadores.get(i).getMulaMasAlta()!=null) {
                 primerTurno=listaJugadores.get(i);
@@ -183,4 +200,5 @@ public class ModelTablero {
     public List<FichaJuego> recuperaListaJugadores(){
         return listaJugadores.get(1).getFichas();
     }
+    
 }

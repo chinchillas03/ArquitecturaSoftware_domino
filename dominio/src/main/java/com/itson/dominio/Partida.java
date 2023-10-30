@@ -52,4 +52,11 @@ public class Partida {
         this.jugadores = jugadores;
     }
     
+    public void pasarTurno(){
+        
+    }
+    public void terminarJuego(){
+        
+    }
+    
 }

@@ -5,6 +5,7 @@
 package com.itson.presentadores;
 
 import com.itson.dominio.Jugador;
+import com.itson.dominio.Partida;
 import com.itson.listeners.SalaEsperaListener;
 import java.util.LinkedList;
 import java.util.List;
@@ -38,9 +39,7 @@ public class PresentadorSalaEspera implements SalaEsperaListener{
     public void clickBotonIniciarPartida() {
         this.cerrarPantallaSalaEspera();
         PresentadorPartida presentador = new PresentadorPartida();
-        presentador.setModelPartida(this.model.getJugadores());
-        presentador.setCantidadFichas(this.model.getCantidadFichas());
-        presentador.mostrarPantallaPartida();
+        presentador.setModelPartida(new Partida(this.model.getJugadores(),5));
     }
 
     /**

@@ -68,7 +68,15 @@ public class Jugador {
         return fichaAlta;
     }
     
-
+    public void quitarFicha(){
+        
+    }
+    public void verificarFicha(){
+        
+    }
+    public boolean verificarNumFichas(){
+        return fichas.isEmpty();
+    }
     @Override
     public String toString() {
         return "Jugador{" + "nombre=" + nombre + ", puntuacion=" + puntuacion + ", fichas=" + fichas;

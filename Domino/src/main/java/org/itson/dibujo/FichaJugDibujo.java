@@ -31,10 +31,10 @@ public class FichaJugDibujo extends Figuras {
     }
     
     @Override
-    public void dibujar(Graphics g, JPanel jpanel) {
+    public void dibujar(Graphics g) {
         for (int i = 0; i < fichasJugador.size(); i++) {
-            fichasJugador.get(i).setX(x);
-            fichasJugador.get(i).setX(y);
+            fichasJugador.get(i).setX(this.x);
+            fichasJugador.get(i).setY(this.y);
              g.setColor(Color.WHITE);
                 g.fillRect(x, y, 25, 50);
                 g.setColor(Color.BLACK);

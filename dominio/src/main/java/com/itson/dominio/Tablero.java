@@ -28,5 +28,12 @@ public class Tablero {
     public void setFichas(List<FichaTablero> fichas) {
         this.fichas = fichas;
     }
+    public boolean verificaFicha(){
+        return fichas.isEmpty();
+    }
+    public void addFicha(){
+        
+    }
+    
     
 }

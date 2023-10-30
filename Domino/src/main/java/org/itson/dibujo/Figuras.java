@@ -5,14 +5,14 @@
 
 package org.itson.dibujo;
 
+import com.itson.dominio.Partida;
 import java.awt.Graphics;
-import javax.swing.JPanel;
 
 /**
  *
  * 
  * @author Joel Antonio Lopez Cota ID:228926 
  */
-public abstract class Figuras extends JPanel{
-    public abstract void dibujar(Graphics g,JPanel panel);
+public abstract class Figuras {
+    public abstract void dibujar(Graphics g);
 }

@@ -23,7 +23,7 @@ public class FichaTabDibujo extends Figuras {
     }
 
     @Override
-    public void dibujar(Graphics g, JPanel jpanel) {
+    public void dibujar(Graphics g) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

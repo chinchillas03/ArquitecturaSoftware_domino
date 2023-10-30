@@ -5,13 +5,11 @@
 package com.itson.presentadores;
 
 import com.itson.dominio.Jugador;
+import com.itson.dominio.Partida;
 import com.itson.listeners.TableroJuegoListener;
 import java.util.List;
 import org.itson.Modelos.ModelTablero;
-import org.itson.dibujo.Dibujante;
-import org.itson.dibujo.Figuras;
 import org.itson.frames.FrmPartida;
-import org.itson.frames.FrmTablero;
 
 /**
  *
@@ -20,8 +18,8 @@ import org.itson.frames.FrmTablero;
  */
 public class PresentadorPartida implements TableroJuegoListener {
 
-    private final FrmPartida view = new FrmPartida();
-    private final ModelTablero model = new ModelTablero();
+    private  FrmPartida view = new FrmPartida();
+    private  ModelTablero model = new ModelTablero();
 
     /**
      * Constructor de la clase PresentadorPartida. Inicializa la clase y se
@@ -71,7 +69,7 @@ public class PresentadorPartida implements TableroJuegoListener {
      */
     @Override
     public void actualizarPantalla() {
-        // Actualiza la pantalla de partida con la información más reciente del juego.
+        this.view.actualizarPantalla();
     }
 
     /**
@@ -79,7 +77,7 @@ public class PresentadorPartida implements TableroJuegoListener {
      */
     @Override
     public void mostrarMsgError() {
-        // Muestra un mensaje de error en la pantalla de partida.
+    this.view.mostrarMsgError();
     }
 
     /**
@@ -87,7 +85,7 @@ public class PresentadorPartida implements TableroJuegoListener {
      */
     @Override
     public void mostrarFicha() {
-        // Muestra una ficha en la pantalla de partida.
+       this.view.mostarFicha();
     }
 
     /**
@@ -108,9 +106,10 @@ public class PresentadorPartida implements TableroJuegoListener {
 
     /**
      * Muestra la pantalla de partida.
+     * @param partida
      */
-    public void mostrarPantallaPartida() {
-        this.view.mostrarPantallaPartida();
+    public void mostrarPantallaPartida(Partida partida) {
+        this.view.mostrarPantallaPartida(partida);
     }
 
     /**
@@ -123,15 +122,17 @@ public class PresentadorPartida implements TableroJuegoListener {
     /**
      * Establece el modelo de partida con una lista de jugadores.
      *
-     * @param jugadores La lista de jugadores que participan en la partida.
+     * @param partida
      */
-    public void setModelPartida(List<Jugador> jugadores) {
-        this.model.setListaJugadores(jugadores);
-        jugadores = this.model.getListaJugadores();
+    public void setModelPartida(Partida partida) {
+        this.model.iniciarPartida(partida);
+       List<Jugador> jugadores = this.model.getListaJugadores();
         this.view.setLblNombreJugador1(jugadores.get(0).getNombre());
         this.view.setLblNombreJugador2(jugadores.get(1).getNombre());
         this.view.setLblNombreJugador3(jugadores.get(2).getNombre());
         this.view.setLblNombreJugador4(jugadores.get(3).getNombre());
+                this.mostrarPantallaPartida(partida);
+
     }
 
     /**

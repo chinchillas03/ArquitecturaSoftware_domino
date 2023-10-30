@@ -25,14 +25,10 @@ public class JugadorDibujo extends Figuras{
         this.color=color;
     }
 
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
-    }
+  
 
     @Override
-    public void dibujar(Graphics g, JPanel jpanel) {
-       super.paintComponent(g);
+    public void dibujar(Graphics g) {
         g.setColor(color);
         g.fillOval(x, y, width, height); }
 }

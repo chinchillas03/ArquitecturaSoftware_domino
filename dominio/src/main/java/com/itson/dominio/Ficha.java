@@ -57,9 +57,16 @@ public class Ficha {
     public boolean esMula(){
         return valorDerecho==valorIzquierdo;
     }
+    
+    public boolean contains(int x, int y){
+       return this.x >= x && this.x <= x + 25 && this.y >= y && this.y <= y + 50;
+    }
+
     @Override
     public String toString() {
-        return "Ficha{" + "valorIzquierdo=" + valorIzquierdo + ", valorDerecho=" + valorDerecho + '}';
+        return "Ficha{" + "valorIzquierdo=" + valorIzquierdo + ", valorDerecho=" + valorDerecho + ", x=" + x + ", y=" + y + '}';
     }
+   
+    
     
 }
