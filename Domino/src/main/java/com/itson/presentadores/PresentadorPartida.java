@@ -69,7 +69,7 @@ public class PresentadorPartida implements TableroJuegoListener {
      */
     @Override
     public void actualizarPantalla() {
-        this.view.actualizarPantalla();
+//        this.view.actualizarPantalla();
     }
 
     /**

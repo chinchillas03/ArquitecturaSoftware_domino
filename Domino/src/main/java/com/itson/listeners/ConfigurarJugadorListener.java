@@ -24,5 +24,7 @@ public interface ConfigurarJugadorListener {
      * jugador y revierte cualquier cambio realizado.
      */
     void clickBotonCancelar();
+    
+    boolean validarJugador(String nombre);
 
 }

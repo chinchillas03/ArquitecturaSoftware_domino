@@ -77,6 +77,15 @@ public class Jugador {
     public boolean verificarNumFichas(){
         return fichas.isEmpty();
     }
+    
+    public boolean validarNombre(String nombre){
+        int tamNombre = nombre.length();
+        if (nombre.isBlank() || nombre.isEmpty() || tamNombre > 15 || tamNombre > 3) {
+            return true;
+        }
+        return false;
+    }
+    
     @Override
     public String toString() {
         return "Jugador{" + "nombre=" + nombre + ", puntuacion=" + puntuacion + ", fichas=" + fichas;

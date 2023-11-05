@@ -5,6 +5,7 @@
 package com.itson.presentadores;
 
 import com.itson.listeners.ConfigurarJugadorListener;
+import javax.swing.JOptionPane;
 import org.itson.Modelos.ModelConfigurarJugador;
 import org.itson.frames.FrmConfiguracionJugador;
 
@@ -35,6 +36,15 @@ public class PresentadorConfigurarJugador implements ConfigurarJugadorListener{
     public void clickBotonCancelar() {
         this.cerrarPantallaConfigurarJugador();
         new PresentadorInicio().mostrarPantallaInicio();
+    }
+    
+    @Override
+    public boolean validarJugador(String nombre){
+        if (this.model.validarJugador(nombre) == true) {
+            JOptionPane.showMessageDialog(null, "El campo del nombre es incorrecto", "Campo nombre incorrecto", JOptionPane.ERROR_MESSAGE);
+            return true;
+        }
+        return false;
     }
     
     private void setPresenter(){

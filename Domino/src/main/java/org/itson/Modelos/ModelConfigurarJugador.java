@@ -29,4 +29,11 @@ public class ModelConfigurarJugador {
         this.nombre = nombre;
     }
     
+    public boolean validarJugador(String nombre){
+        if (this.jugador.validarNombre(nombre) == true) {
+            return true;
+        }
+        return false;
+    }
+    
 }
