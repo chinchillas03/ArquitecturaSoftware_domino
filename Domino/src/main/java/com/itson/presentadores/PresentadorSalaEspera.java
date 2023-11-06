@@ -5,7 +5,7 @@
 package com.itson.presentadores;
 
 import com.itson.dominio.Avatar;
-import com.itson.interfacesJugador.JugadorSala;
+import com.itson.interfaces.JugadorSala;
 import com.itson.listeners.SalaEsperaListener;
 import java.util.LinkedList;
 import java.util.List;
@@ -59,10 +59,10 @@ public class PresentadorSalaEspera implements SalaEsperaListener{
     public void mostrarJugadores() {
         List<JugadorSala> jugadores = new LinkedList<>();
         jugadores = this.model.getJugadores();
-        this.view.setLblNombreJugador1(jugadores.get(0).nombre());
-        this.view.setLblNombreJugador2(jugadores.get(1).nombre());
-        this.view.setLblNombreJugador3(jugadores.get(2).nombre());
-        this.view.setLblNombreJugador4(jugadores.get(3).nombre());
+        this.view.setLblNombreJugador1(jugadores.get(0).getNombre());
+        this.view.setLblNombreJugador2(jugadores.get(1).getNombre());
+        this.view.setLblNombreJugador3(jugadores.get(2).getNombre());
+        this.view.setLblNombreJugador4(jugadores.get(3).getNombre());
         this.cargarCombosAvatares();
     } 
     

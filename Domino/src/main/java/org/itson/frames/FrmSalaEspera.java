@@ -6,7 +6,7 @@ package org.itson.frames;
 
 import com.itson.dominio.Avatar;
 import com.itson.dominio.Jugador;
-import com.itson.interfacesJugador.JugadorSala;
+import com.itson.interfaces.JugadorSala;
 import com.itson.listeners.SalaEsperaListener;
 import com.itson.presentadores.PresentadorSalaEspera;
 import java.awt.Color;

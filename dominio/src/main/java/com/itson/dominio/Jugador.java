@@ -4,15 +4,17 @@
  */
 package com.itson.dominio;
 
+import com.itson.interfaces.JugadorSala;
 import java.util.List;
 
 /**
  *
  * @author Usuario
  */
-public class Jugador {
+public class Jugador implements JugadorSala{
     
     private String nombre;
+    private Avatar avatar;
     private int puntuacion;
     private List<FichaJuego> fichas;
 
@@ -27,6 +29,14 @@ public class Jugador {
 
     public Jugador(String nombre) {
         this.nombre = nombre;
+    }
+
+    public Avatar getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(Avatar avatar) {
+        this.avatar = avatar;
     }
     
     public String getNombre() {

@@ -5,8 +5,8 @@
 package org.itson.Modelos;
 
 import com.itson.dominio.Avatar;
-import com.itson.implementacionesInterfaces.JugadorS;
-import com.itson.interfacesJugador.JugadorSala;
+import com.itson.dominio.Jugador;
+import com.itson.interfaces.JugadorSala;
 import java.util.LinkedList;
 import java.util.List;
 import javax.swing.ImageIcon;
@@ -42,10 +42,10 @@ public class ModelSalaEspera {
      */
     public void setModel() {
         this.jugadores = new LinkedList<>();
-        jugadores.add(new JugadorS("Diego"));
-        jugadores.add(new JugadorS("Joel"));
-        jugadores.add(new JugadorS("Pepe"));
-        jugadores.add(new JugadorS("Paco"));       
+        jugadores.add(new Jugador("Diego"));
+        jugadores.add(new Jugador("Joel"));
+        jugadores.add(new Jugador("Pepe"));
+        jugadores.add(new Jugador("Paco"));       
         
         this.avatares = new LinkedList<>();
         avatares.add(new Avatar(new ImageIcon("/avatares/chemFuerte.png")));
