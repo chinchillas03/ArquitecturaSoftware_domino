@@ -29,7 +29,7 @@ public class Pozo {
     }
     
     public boolean verificarFichas(){
-        return fichas.isEmpty();
+        return fichas==null;
     }
     
     public void quitarFicha(Ficha ficha){

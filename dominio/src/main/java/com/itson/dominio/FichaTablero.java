@@ -9,5 +9,5 @@ package com.itson.dominio;
  * @author Usuario
  */
 public class FichaTablero extends Ficha{
-    
+
 }

@@ -19,25 +19,20 @@ public class PresentadorConfigurarJugador implements ConfigurarJugadorListener{
     private final ModelConfigurarJugador model = new ModelConfigurarJugador();
 
     public PresentadorConfigurarJugador() {
-        this.setPresenter();
+       this.view.setListener(this);
     }
     
     @Override
     public void clickBotonAplicar(String nombre) {
         this.model.setNombre(nombre);
-        System.out.println(model.getNombre());
-        
         this.cerrarPantallaConfigurarJugador();
-        
         new PresentadorInicio().mostrarPantallaInicio();
     }
-
     @Override
     public void clickBotonCancelar() {
         this.cerrarPantallaConfigurarJugador();
         new PresentadorInicio().mostrarPantallaInicio();
     }
-    
     @Override
     public boolean validarJugador(String nombre){
         if (this.model.validarJugador(nombre) == true) {
@@ -47,10 +42,7 @@ public class PresentadorConfigurarJugador implements ConfigurarJugadorListener{
         return false;
     }
     
-    private void setPresenter(){
-        this.view.setListener(this);
-    }
-    
+
     public void mostrarPantallaConfigurarJugador(){
         this.view.mostrarPantallaConfigurarJugador();
     }

@@ -4,6 +4,7 @@
  */
 package com.itson.dominio;
 
+import com.itson.interfaces.IJugadorPartida;
 import com.itson.interfaces.JugadorSala;
 import java.util.List;
 
@@ -11,7 +12,7 @@ import java.util.List;
  *
  * @author Usuario
  */
-public class Jugador implements JugadorSala{
+public class Jugador implements JugadorSala,IJugadorPartida{
     
     private String nombre;
     private Avatar avatar;
@@ -31,6 +32,7 @@ public class Jugador implements JugadorSala{
         this.nombre = nombre;
     }
 
+    @Override
     public Avatar getAvatar() {
         return avatar;
     }
@@ -39,6 +41,7 @@ public class Jugador implements JugadorSala{
         this.avatar = avatar;
     }
     
+    @Override
     public String getNombre() {
         return nombre;
     }
@@ -55,13 +58,15 @@ public class Jugador implements JugadorSala{
         this.puntuacion = puntuacion;
     }
 
-    public List<FichaJuego> getFichas() {
+    @Override
+    public List<FichaJuego> getFichasJuego() {
         return fichas;
     }
 
     public void setFichas(List<FichaJuego> fichas) {
         this.fichas = fichas;
     }
+    @Override
     public FichaJuego getMulaMasAlta(){
         FichaJuego fichaAlta=null;
         for (FichaJuego ficha : fichas) {
@@ -78,14 +83,20 @@ public class Jugador implements JugadorSala{
         return fichaAlta;
     }
     
-    public void quitarFicha(){
-        
+    @Override
+    public boolean quitarFicha(Ficha ficha){
+        for (FichaJuego ficha1 : fichas) {
+            if (ficha1.equals(ficha)) {
+                fichas.remove(ficha);
+                return true;
+            }
+        }
+        return false;
     }
-    public void verificarFicha(){
-        
-    }
-    public boolean verificarNumFichas(){
-        return fichas.isEmpty();
+    
+    @Override
+    public int verificarNumFichas(){
+        return fichas.size();
     }
     
     public boolean validarNombre(String nombre){
@@ -100,5 +111,7 @@ public class Jugador implements JugadorSala{
     public String toString() {
         return "Jugador{" + "nombre=" + nombre + ", puntuacion=" + puntuacion + ", fichas=" + fichas;
     }
+
+ 
     
 }

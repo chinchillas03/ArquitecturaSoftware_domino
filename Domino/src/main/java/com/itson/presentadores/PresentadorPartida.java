@@ -4,8 +4,10 @@
  */
 package com.itson.presentadores;
 
+import com.itson.dominio.Ficha;
 import com.itson.dominio.Jugador;
 import com.itson.dominio.Partida;
+import com.itson.interfaces.IPartidaJuego;
 import com.itson.listeners.TableroJuegoListener;
 import java.util.List;
 import org.itson.Modelos.ModelTablero;
@@ -48,8 +50,13 @@ public class PresentadorPartida implements TableroJuegoListener {
      * lógica para posicionar una ficha en el tablero de juego.
      */
     @Override
-    public void posicionarFicha() {
-        this.model.posicionarFicha();
+    public void posicionarFicha(java.awt.event.MouseEvent evt) {
+        for (int i = 0; i < (this.model.getListaJugadores().get(0).getFichasJuego().size()); i++) {
+         if (this.model.getListaJugadores().get(0).getFichasJuego().get(i).contains(evt.getX(), evt.getY())) {
+             Ficha fichaJuego=this.model.getListaJugadores().get(0).getFichasJuego().get(i);
+             this.model.posicionarFicha(fichaJuego);
+    }
+        }
     }
 
     /**
@@ -69,7 +76,6 @@ public class PresentadorPartida implements TableroJuegoListener {
      */
     @Override
     public void actualizarPantalla() {
-//        this.view.actualizarPantalla();
     }
 
     /**
@@ -108,8 +114,8 @@ public class PresentadorPartida implements TableroJuegoListener {
      * Muestra la pantalla de partida.
      * @param partida
      */
-    public void mostrarPantallaPartida(Partida partida) {
-        this.view.mostrarPantallaPartida(partida);
+    public void mostrarPantallaPartida() {
+        this.view.mostrarPantallaPartida();
     }
 
     /**
@@ -124,14 +130,14 @@ public class PresentadorPartida implements TableroJuegoListener {
      *
      * @param partida
      */
-    public void setModelPartida(Partida partida) {
-        this.model.iniciarPartida(partida);
-       List<Jugador> jugadores = this.model.getListaJugadores();
-        this.view.setLblNombreJugador1(jugadores.get(0).getNombre());
-        this.view.setLblNombreJugador2(jugadores.get(1).getNombre());
-        this.view.setLblNombreJugador3(jugadores.get(2).getNombre());
-        this.view.setLblNombreJugador4(jugadores.get(3).getNombre());
-                this.mostrarPantallaPartida(partida);
+    public void setModelPartida(List<Jugador> jugadores, int cantidadFichas) {
+        this.model.iniciarPartida(jugadores, cantidadFichas);
+       List<Jugador> jugadoresPartida = this.model.getListaJugadores();
+        this.view.setLblNombreJugador1(jugadoresPartida.get(0).getNombre());
+        this.view.setLblNombreJugador2(jugadoresPartida.get(1).getNombre());
+        this.view.setLblNombreJugador3(jugadoresPartida.get(2).getNombre());
+        this.view.setLblNombreJugador4(jugadoresPartida.get(3).getNombre());
+                this.mostrarPantallaPartida();
 
     }
 

@@ -61,7 +61,18 @@ public class Ficha {
     public boolean contains(int x, int y){
        return this.x >= x && this.x <= x + 25 && this.y >= y && this.y <= y + 50;
     }
-
+    public FichaJuego convertirFichaJuego(){
+         FichaJuego fichaJ = new FichaJuego();
+            fichaJ.setValorDerecho(this.getValorDerecho());
+            fichaJ.setValorIzquierdo(this.getValorIzquierdo());
+            return fichaJ;
+    }
+     public FichaTablero convertirFichaTab(){
+        FichaTablero fichaJ = new FichaTablero();
+        fichaJ.setValorDerecho(this.getValorDerecho());
+        fichaJ.setValorIzquierdo(this.getValorIzquierdo());
+        return fichaJ;
+    }
     @Override
     public String toString() {
         return "Ficha{" + "valorIzquierdo=" + valorIzquierdo + ", valorDerecho=" + valorDerecho + ", x=" + x + ", y=" + y + '}';

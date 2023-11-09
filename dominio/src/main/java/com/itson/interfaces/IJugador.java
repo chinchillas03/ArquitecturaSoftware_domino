@@ -4,16 +4,10 @@
  */
 package com.itson.interfaces;
 
-import com.itson.dominio.Avatar;
-
 /**
  *
- * @author Usuario
+ * @author aroco
  */
-public interface JugadorSala extends IJugador {
-    
-    String getNombre();
-    
-    Avatar getAvatar();
+public interface IJugador {
     
 }

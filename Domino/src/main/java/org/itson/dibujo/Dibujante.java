@@ -5,13 +5,12 @@
 
 package org.itson.dibujo;
 
-import com.itson.dominio.FichaJuego;
-import com.itson.dominio.Partida;
+import com.itson.interfaces.IPartidaJuego;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
-
+import org.itson.dibujo.FichaTabDibujo;
 /**
  *
  * 
@@ -19,25 +18,29 @@ import java.util.List;
  */
 public class Dibujante  {
     private List<Figuras> listaFiguras;
+    private FichaTabDibujo fichasTab;
     /**
      * 
      */
     public Dibujante(){
         listaFiguras=new ArrayList<>();
+       fichasTab= new FichaTabDibujo(512,340,null);
+       
     }
 
-   private void crearLista(Partida partida){
+   public void crearLista(IPartidaJuego partida){
        listaFiguras.removeAll(listaFiguras);
        listaFiguras.add(new JugadorDibujo(15,705,Color.RED));
        listaFiguras.add(new JugadorDibujo(15,45,Color.BLUE));
-       listaFiguras.add(new JugadorDibujo(1000,45,Color.RED));
-       listaFiguras.add(new JugadorDibujo(1000,705,Color.RED));
-       listaFiguras.add(new FichaJugDibujo(100,715,partida.getJugadores().get(0).getFichas()));
-       System.out.println(partida.getJugadores().get(0).getFichas());
+       listaFiguras.add(new JugadorDibujo(1000,45,Color.YELLOW));
+       listaFiguras.add(new JugadorDibujo(1000,705,Color.GREEN));
+       listaFiguras.add(new FichaJugDibujo(100,715,partida.getJugadores().get(0).getFichasJuego()));
+       if (!partida.getTablero().verificaCantidadFichas()) {
+                    fichasTab.setFichasTablero(partida.getTablero().getFichas());
+                  listaFiguras.add(fichasTab);
+       }
    }
-    
-    public void dibujarTodos(Partida partida, Graphics g){
-        crearLista(partida);
+    public void dibujarTodos(Graphics g){
         for (Figuras listaFigura : listaFiguras) {
             listaFigura.dibujar(g);
         }

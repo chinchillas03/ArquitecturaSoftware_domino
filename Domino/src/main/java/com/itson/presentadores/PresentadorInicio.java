@@ -16,7 +16,7 @@ public class PresentadorInicio implements InicioListener{
     private final FrmInicio view = new FrmInicio();
     
     public PresentadorInicio(){
-        this.setPresenter();
+        this.view.setListener(this);
     }
 
     @Override
@@ -36,11 +36,7 @@ public class PresentadorInicio implements InicioListener{
         this.cerrarPantallaInicio();
         new PresentadorConfigurarJugador().mostrarPantallaConfigurarJugador();
     }
-    
-    private void setPresenter(){
-        this.view.setListener(this);
-    }
-    
+   
     public void mostrarPantallaInicio(){
         this.view.mostrarPantallaInicio();
     }

@@ -47,7 +47,8 @@ public class ModelCrearPartida {
      * Esta función no devuelve la partida creada; solo la instancia de la clase ModelCrearPartida se utiliza para configurar la cantidad de fichas.
      */
     public void crearPartida() {
-        Partida partida = new Partida();
+        Partida partida = Partida.instancia();
+        partida.setNumCantidadFichas(this.getCantidadFichas());
     }
     
 }

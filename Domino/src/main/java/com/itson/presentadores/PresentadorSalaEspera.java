@@ -5,9 +5,9 @@
 package com.itson.presentadores;
 
 import com.itson.dominio.Avatar;
-import com.itson.interfaces.JugadorSala;
+import com.itson.dominio.Jugador;
+import com.itson.dominio.Partida;
 import com.itson.listeners.SalaEsperaListener;
-import java.util.LinkedList;
 import java.util.List;
 import org.itson.Modelos.ModelSalaEspera;
 import org.itson.frames.FrmSalaEspera;
@@ -39,7 +39,8 @@ public class PresentadorSalaEspera implements SalaEsperaListener{
     public void clickBotonIniciarPartida() {
         this.cerrarPantallaSalaEspera();
         PresentadorPartida presentador = new PresentadorPartida();
-        //presentador.setModelPartida(new Partida(this.model.getJugadores(),5));
+      
+        presentador.setModelPartida(this.model.getJugadores(),5);
     }
 
     /**
@@ -57,8 +58,7 @@ public class PresentadorSalaEspera implements SalaEsperaListener{
      */
     @Override
     public void mostrarJugadores() {
-        List<JugadorSala> jugadores = new LinkedList<>();
-        jugadores = this.model.getJugadores();
+        List<Jugador> jugadores = this.model.getJugadores();
         this.view.setLblNombreJugador1(jugadores.get(0).getNombre());
         this.view.setLblNombreJugador2(jugadores.get(1).getNombre());
         this.view.setLblNombreJugador3(jugadores.get(2).getNombre());
@@ -67,8 +67,7 @@ public class PresentadorSalaEspera implements SalaEsperaListener{
     } 
     
     public void cargarCombosAvatares(){
-        List<Avatar> avatares = new LinkedList<>();
-        avatares = this.model.getAvatares();
+        List<Avatar> avatares = this.model.getAvatares();
         this.view.setCmbAvatarJugador1(avatares);
         this.view.setCmbAvatarJugador2(avatares);
         this.view.setCmbAvatarJugador3(avatares);

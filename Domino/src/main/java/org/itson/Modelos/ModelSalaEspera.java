@@ -6,7 +6,7 @@ package org.itson.Modelos;
 
 import com.itson.dominio.Avatar;
 import com.itson.dominio.Jugador;
-import com.itson.interfaces.JugadorSala;
+import com.itson.dominio.Partida;
 import java.util.LinkedList;
 import java.util.List;
 import javax.swing.ImageIcon;
@@ -17,14 +17,14 @@ import javax.swing.ImageIcon;
  */
 public class ModelSalaEspera {
     
-    private List<JugadorSala> jugadores;
+    private List<Jugador> jugadores;
     private List<Avatar> avatares;
     
     /**
      * Obtiene la lista de jugadores que están en la sala de espera.
      * @return 
      */
-    public List<JugadorSala> getJugadores() {
+    public List<Jugador> getJugadores() {
         return jugadores;
     }
 
@@ -45,8 +45,8 @@ public class ModelSalaEspera {
         jugadores.add(new Jugador("Diego"));
         jugadores.add(new Jugador("Joel"));
         jugadores.add(new Jugador("Pepe"));
-        jugadores.add(new Jugador("Paco"));       
-        
+        jugadores.add(new Jugador("Paco"));    
+       
         this.avatares = new LinkedList<>();
         avatares.add(new Avatar(new ImageIcon("/avatares/chemFuerte.png")));
         avatares.add(new Avatar(new ImageIcon("/avatares/doge.png")));
@@ -54,6 +54,7 @@ public class ModelSalaEspera {
         avatares.add(new Avatar(new ImageIcon("/avatares/hormiga.png")));
         avatares.add(new Avatar(new ImageIcon("/avatares/messiChiquito.png")));
         avatares.add(new Avatar(new ImageIcon("/avatares/pepe.png")));
+        
     }
 
 }

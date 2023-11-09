@@ -5,6 +5,8 @@
 package com.itson.listeners;
 
 import com.itson.dominio.Jugador;
+import com.itson.dominio.Partida;
+import com.itson.interfaces.IPartidaJuego;
 
 /**
  *
@@ -19,10 +21,10 @@ public interface TableroJuegoListener {
     void clickBotonAbandonarPartida();
     
     /**
-     * Este método se llama cuando el usuario intenta posicionar una ficha en el tablero de juego.
-     * Gestiona la acción de colocar una ficha en una posición específica del tablero.
+     * Este método se llama cuando el usuario intenta posicionar una ficha en el tablero de juego.Gestiona la acción de colocar una ficha en una posición específica del tablero.
+     * @param evt
      */
-    void posicionarFicha();
+    void posicionarFicha(java.awt.event.MouseEvent evt);
 
     /**
      * Este método se llama cuando el usuario decide jalar una ficha del pozo en el tablero de juego.
@@ -33,6 +35,7 @@ public interface TableroJuegoListener {
    
     /**
      * Actualiza la pantalla del tablero de juego para reflejar cambios recientes en la partida.
+     * @param partida
      */
     void actualizarPantalla(); 
 

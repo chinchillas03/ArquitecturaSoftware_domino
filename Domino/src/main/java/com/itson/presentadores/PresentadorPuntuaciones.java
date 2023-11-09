@@ -24,7 +24,7 @@ public class PresentadorPuntuaciones implements PuntuacionesListener{
      * Inicializa la clase y se suscribe a los eventos de la vista de puntuaciones.
      */
     public PresentadorPuntuaciones() {
-        this.setPresenter();
+         this.view.setListener(this);
     }
 
     /**
@@ -50,9 +50,6 @@ public class PresentadorPuntuaciones implements PuntuacionesListener{
         this.view.cerrarPantallaPuntuaciones();
     }
     
-    private void setPresenter(){
-        this.view.setListener(this);
-    }
 
     /**
      * Establece el modelo de puntuaciones con una lista de jugadores.

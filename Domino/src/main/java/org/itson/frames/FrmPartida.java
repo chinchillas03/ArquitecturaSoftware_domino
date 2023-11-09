@@ -5,9 +5,10 @@
 package org.itson.frames;
 
 import com.itson.dominio.Partida;
+import com.itson.interfaces.IPartidaJuego;
 import com.itson.listeners.TableroJuegoListener;
-import java.awt.Color;
 import java.awt.Graphics;
+import javax.swing.JOptionPane;
 import org.itson.dibujo.Dibujante;
 
 /**
@@ -18,24 +19,24 @@ public class FrmPartida extends javax.swing.JFrame {
 
     private TableroJuegoListener listener;
     private Dibujante dibujante;
-    private Partida partida;
+    private IPartidaJuego partida= Partida.instancia();
     /**
      * Creates new form FrmPartida
      */
     public FrmPartida() {
         initComponents();
-        dibujante=new Dibujante();
-        
+        this.btnPasarTurno.setVisible(false);
+        dibujante = new Dibujante();
     }
-    
-    public void addListener( TableroJuegoListener listener) {
-             this.listener = listener;
+
+    public void addListener(TableroJuegoListener listener) {
+        this.listener = listener;
     }
-    
-    private void notificarBotonPrecionadoAbandonarPartida(){
-    listener.clickBotonAbandonarPartida();
+
+    private void notificarBotonPrecionadoAbandonarPartida() {
+        listener.clickBotonAbandonarPartida();
     }
-    
+
     public void setLblNombreJugador1(String texto) {
         this.lblJugador1.setText(texto);
     }
@@ -51,10 +52,10 @@ public class FrmPartida extends javax.swing.JFrame {
     public void setLblNombreJugador4(String texto) {
         this.lblJugador4.setText(texto);
     }
-    
-    public void mostrarPantallaPartida(Partida partida) {
+  
+
+    public void mostrarPantallaPartida() {
         this.setVisible(true);
-        this.partida=partida;
     }
 
     public void cerrarPantallaPartida() {
@@ -64,8 +65,7 @@ public class FrmPartida extends javax.swing.JFrame {
     @Override
     public void paint(Graphics g) {
         super.paint(g); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
-        actualizarPantalla(partida,g);
-        System.out.println(partida.getJugadores().get(0).getFichas());
+        actualizarPantalla(Partida.instancia(), g ,this.pnlTablero.getGraphics());
     }
 
     /**
@@ -81,13 +81,14 @@ public class FrmPartida extends javax.swing.JFrame {
         btnAbandonarPartida = new javax.swing.JButton();
         lblJugador1 = new javax.swing.JLabel();
         panelJuego = new javax.swing.JScrollPane();
+        pnlTablero = new javax.swing.JPanel();
         lblJugador2 = new javax.swing.JLabel();
         lblJugador3 = new javax.swing.JLabel();
         lblJugador4 = new javax.swing.JLabel();
         btnJalarPozo = new javax.swing.JButton();
         btnPasarTurno = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Partida");
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -116,6 +117,21 @@ public class FrmPartida extends javax.swing.JFrame {
                 panelJuegoMouseClicked(evt);
             }
         });
+
+        pnlTablero.setBackground(new java.awt.Color(51, 102, 0));
+
+        javax.swing.GroupLayout pnlTableroLayout = new javax.swing.GroupLayout(pnlTablero);
+        pnlTablero.setLayout(pnlTableroLayout);
+        pnlTableroLayout.setHorizontalGroup(
+            pnlTableroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 898, Short.MAX_VALUE)
+        );
+        pnlTableroLayout.setVerticalGroup(
+            pnlTableroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 498, Short.MAX_VALUE)
+        );
+
+        panelJuego.setViewportView(pnlTablero);
 
         lblJugador2.setText("jugador");
 
@@ -202,7 +218,14 @@ public class FrmPartida extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnJalarPozoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJalarPozoActionPerformed
-        // TODO add your handling code here:
+        if (partida.getPozo().getFichas() != null) {
+            listener.jalarPozo(partida.getJugadores().get(0));
+        } else {
+            JOptionPane.showMessageDialog(null, "Hola se acabaron las fichas del pozo");
+            this.btnJalarPozo.setEnabled(false);
+        }
+
+        this.repaint();
     }//GEN-LAST:event_btnJalarPozoActionPerformed
 
     private void btnAbandonarPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbandonarPartidaActionPerformed
@@ -220,12 +243,7 @@ public class FrmPartida extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosed
 
     private void pnlPartidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlPartidaMouseClicked
-            System.out.println(evt.getX());
-        if (partida.getJugadores().get(0).getFichas().get(0).contains(evt.getX(), evt.getY())) {
-           partida.getJugadores().get(0).getFichas().get(0).setX(150);
-           partida.getJugadores().get(0).getFichas().remove( partida.getJugadores().get(0).getFichas().get(0));
-           this.repaint();
-        }
+        this.posicionarFicha(evt);
     }//GEN-LAST:event_pnlPartidaMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -238,10 +256,16 @@ public class FrmPartida extends javax.swing.JFrame {
     private javax.swing.JLabel lblJugador4;
     private javax.swing.JScrollPane panelJuego;
     private javax.swing.JPanel pnlPartida;
+    private javax.swing.JPanel pnlTablero;
     // End of variables declaration//GEN-END:variables
-
-    public void actualizarPantalla(Partida partida, Graphics g) {
-               dibujante.dibujarTodos(partida, g);
+    public void posicionarFicha(java.awt.event.MouseEvent evt) {
+        listener.posicionarFicha(evt);
+        this.repaint();
+    }
+ 
+    public void actualizarPantalla(IPartidaJuego partida, Graphics g, Graphics g2) {
+        dibujante.crearLista(partida);
+        dibujante.dibujarTodos(g);
     }
 
     public void mostrarMsgError() {
