@@ -101,7 +101,7 @@ public class Jugador implements JugadorSala,IJugadorPartida{
     
     public boolean validarNombre(String nombre){
         int tamNombre = nombre.length();
-        if (nombre.isBlank() || nombre.isEmpty() || tamNombre > 15 || tamNombre > 3) {
+        if (nombre.isBlank() || nombre.isEmpty() || tamNombre > 15 || tamNombre < 3) {
             return true;
         }
         return false;

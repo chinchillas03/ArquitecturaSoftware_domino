@@ -5,19 +5,10 @@
 package org.itson.frames;
 
 import com.itson.dominio.Avatar;
-import com.itson.dominio.Jugador;
 import com.itson.interfaces.JugadorSala;
 import com.itson.listeners.SalaEsperaListener;
-import com.itson.presentadores.PresentadorSalaEspera;
-import java.awt.Color;
-import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import javax.swing.ImageIcon;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import org.itson.Modelos.ModelSalaEspera;
-
 /**
  *
  * @author Usuario
