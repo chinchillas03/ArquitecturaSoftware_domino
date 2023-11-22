@@ -6,7 +6,6 @@ package com.itson.presentadores;
 
 import com.itson.dominio.Avatar;
 import com.itson.dominio.Jugador;
-import com.itson.dominio.Partida;
 import com.itson.listeners.SalaEsperaListener;
 import java.util.List;
 import org.itson.Modelos.ModelSalaEspera;

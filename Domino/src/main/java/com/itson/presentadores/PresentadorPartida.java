@@ -6,8 +6,6 @@ package com.itson.presentadores;
 
 import com.itson.dominio.Ficha;
 import com.itson.dominio.Jugador;
-import com.itson.dominio.Partida;
-import com.itson.interfaces.IPartidaJuego;
 import com.itson.listeners.TableroJuegoListener;
 import java.util.List;
 import org.itson.Modelos.ModelTablero;
