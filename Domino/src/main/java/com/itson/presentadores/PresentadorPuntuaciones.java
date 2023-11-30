@@ -63,6 +63,7 @@ public class PresentadorPuntuaciones implements PuntuacionesListener{
         this.view.setLblNombreJugador2(jugadores.get(1).getNombre());
         this.view.setLblNombreJugador3(jugadores.get(2).getNombre());
         this.view.setLblNombreJugador4(jugadores.get(3).getNombre());
+        System.out.println(this.model.getJugadores());
     }
     
 }

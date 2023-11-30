@@ -46,15 +46,15 @@ public class FichaTabDibujo extends Figuras {
     }
 
     public void setFichasTablero(List<FichaTablero> fichasTablero) {
-        if (fichasTablero.equals(this.fichasTablero)) {
+        if (!fichasTablero.equals(this.fichasTablero)) {
                   this.fichasTablero = fichasTablero;
-                              x-=20;
-
-        }
+    }
     }
     
     @Override
     public void dibujar(Graphics g) {
+        y=180;
+        x=370;
         for (int i = 0; i < fichasTablero.size(); i++) {
             if (fichasTablero.get(i).esMula()) {
                 x += 24;
@@ -65,9 +65,9 @@ public class FichaTabDibujo extends Figuras {
                 g.drawLine(x, y + 25, x + 25, y + 25);
                 drawVerticalDots(g, fichasTablero.get(i).getValorIzquierdo(), x + 3, y + 3);
                 drawVerticalDots(g, fichasTablero.get(i).getValorDerecho(), x + 3, y + 25);
-                x += 28;
-
+                x+=10;
             } else {
+                x += 24;
                 g.setColor(Color.WHITE);
                 g.fillRect(x, y + 15, 50, 25);
                 g.setColor(Color.BLACK);

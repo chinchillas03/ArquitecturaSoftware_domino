@@ -13,7 +13,7 @@ import javax.swing.ImageIcon;
 public class Avatar {
     private String text;
     private ImageIcon icon;
-
+    
     public Avatar(ImageIcon icon) {
         this.icon = icon;
     }

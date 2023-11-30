@@ -111,7 +111,6 @@ public class Jugador implements JugadorSala,IJugadorPartida{
     public String toString() {
         return "Jugador{" + "nombre=" + nombre + ", puntuacion=" + puntuacion + ", fichas=" + fichas;
     }
-
  
     
 }

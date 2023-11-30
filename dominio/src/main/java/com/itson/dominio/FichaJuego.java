@@ -10,5 +10,5 @@ package com.itson.dominio;
  */
 public class FichaJuego extends Ficha{
     
-   
+ 
 }

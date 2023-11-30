@@ -41,4 +41,5 @@ public class Pozo {
         return "Pozo{" + "fichas=" + fichas + '}';
     }
     
+     
 }

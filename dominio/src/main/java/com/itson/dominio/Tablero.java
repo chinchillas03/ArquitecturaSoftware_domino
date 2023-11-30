@@ -39,17 +39,18 @@ public class Tablero {
         if (!this.verificaCantidadFichas()) {
             int ladoIzquierdoTablero = fichas.get(0).getValorIzquierdo();
             int ladoDerechoTablero = fichas.get(fichas.size() - 1).getValorDerecho();
-            System.out.println(ladoIzquierdoTablero);
-            System.out.println(ladoDerechoTablero);
             int valorIzquierdo = ficha.getValorIzquierdo();
             int valorDerecho = ficha.getValorDerecho();
-            if (ladoIzquierdoTablero == ficha.getValorIzquierdo()) {
+            System.out.println(ficha.getLado());
+            if (ficha.getLado()==0) {
+                 if (ladoIzquierdoTablero == ficha.getValorIzquierdo()) {
                 ficha.setValorDerecho(valorIzquierdo);
                 ficha.setValorIzquierdo(valorDerecho);
                 return true;
             } else if (ladoIzquierdoTablero == ficha.getValorDerecho()) {
                 return true;
-            } else if (ladoDerechoTablero == ficha.getValorIzquierdo()) {
+            }}else{
+               if (ladoDerechoTablero == ficha.getValorIzquierdo()) {
                 return true;
             } else if (ladoDerechoTablero == ficha.getValorDerecho()) {
                 ficha.setValorDerecho(valorIzquierdo);
@@ -57,17 +58,23 @@ public class Tablero {
                 return true;
             }
             return false;
+            }
+       return true;
+    }else if (this.verificaCantidadFichas()) {
+            return true;
         }
-        return true;
+        return false;
     }
-
+ 
     public void addFicha(FichaTablero ficha) {
+       
         if (fichas.isEmpty()) {
+            if (ficha.esMula()) {
             fichas.add(ficha);
             return;
         }
-        int ladoIzquierdoTablero = fichas.get(0).getValorIzquierdo();
-        if (ladoIzquierdoTablero == ficha.getValorDerecho()) {
+        }
+        if (ficha.getLado()==0) {
             fichas.add(0, ficha);
         } else {
             fichas.add(ficha);

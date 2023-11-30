@@ -14,7 +14,7 @@ public interface InicioListener {
     
     public void clickCrearPartida();
     
-    public void clickEntrarPartida();
+    public boolean clickEntrarPartida();
     
     public void clickConfigurarJugador();
     

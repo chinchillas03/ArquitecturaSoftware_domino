@@ -158,4 +158,8 @@ public class FrmConfiguracionJugador extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField txtNombreJugador;
     // End of variables declaration//GEN-END:variables
+
+    public void mostrarMensaje(String mensaje) {
+        JOptionPane.showMessageDialog(null, mensaje);
+    }
 }

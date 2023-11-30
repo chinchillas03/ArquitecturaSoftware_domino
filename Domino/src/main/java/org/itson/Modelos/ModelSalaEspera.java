@@ -6,6 +6,7 @@ package org.itson.Modelos;
 
 import com.itson.dominio.Avatar;
 import com.itson.dominio.Jugador;
+import com.itson.dominio.Partida;
 import java.util.LinkedList;
 import java.util.List;
 import javax.swing.ImageIcon;
@@ -18,7 +19,7 @@ public class ModelSalaEspera {
     
     private List<Jugador> jugadores;
     private List<Avatar> avatares;
-    
+    private Partida partida= Partida.instancia();
     /**
      * Obtiene la lista de jugadores que están en la sala de espera.
      * @return 
@@ -33,6 +34,9 @@ public class ModelSalaEspera {
 
     public void setAvatares(List<Avatar> avatares) {
         this.avatares = avatares;
+    }
+    public int getCantidadFichas(){
+        return partida.getNumCantidadFichas();
     }
 
     /**

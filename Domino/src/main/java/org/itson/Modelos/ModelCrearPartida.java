@@ -15,7 +15,7 @@ import java.util.List;
 public class ModelCrearPartida {
     
     private Integer cantidadFichas;
-    
+    private Partida partida=Partida.instancia();
     /**
      * Constructor por defecto de la clase ModelCrearPartida.
      * Crea una instancia de la clase sin inicializar la cantidad de fichas.
@@ -46,9 +46,10 @@ public class ModelCrearPartida {
      * Crea una nueva partida utilizando la cantidad de fichas configurada.
      * Esta función no devuelve la partida creada; solo la instancia de la clase ModelCrearPartida se utiliza para configurar la cantidad de fichas.
      */
-    public void crearPartida() {
+    public void crearPartida(int cantidadFichas) {
         Partida partida = Partida.instancia();
-        partida.setNumCantidadFichas(this.getCantidadFichas());
+        partida.setNumCantidadFichas(cantidadFichas);
+        
     }
     
 }

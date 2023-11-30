@@ -23,4 +23,6 @@ public interface IPartidaJuego {
 
     List<Jugador> getJugadores();
 
+    int getTurno();
+
 }

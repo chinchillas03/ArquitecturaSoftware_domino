@@ -9,7 +9,7 @@ package com.itson.dominio;
  * @author Usuario
  */
 public class Ficha {
-    
+   
     private int valorIzquierdo;
     private int valorDerecho;
     private int x;

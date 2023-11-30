@@ -22,9 +22,9 @@ public class PresentadorCrearPartida implements CrearPartidaListener{
     }
     
     @Override
-    public void clickSeleccionarCantidadFichas(Integer cantidadFichas) {
+    public void clickCrearPartida(Integer cantidadFichas) {
         // Seteo valor de fichas del modelo
-        this.modelo.setCantidadFichas(cantidadFichas);   
+        this.modelo.crearPartida(cantidadFichas);   
         
         //Cierro mi vista
         this.cerrarPantallaCrearPartida();

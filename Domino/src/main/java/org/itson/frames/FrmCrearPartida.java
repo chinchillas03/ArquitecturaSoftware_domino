@@ -33,7 +33,7 @@ public class FrmCrearPartida extends javax.swing.JFrame {
     }
     
     private void notificarBotonPrecionadoAplicar(){
-        listener.clickSeleccionarCantidadFichas(obtenerValorFicha());
+        listener.clickCrearPartida(obtenerValorFicha());
     }
     
     private void notificarPrecionadoCancelar(){

@@ -15,7 +15,7 @@ public interface CrearPartidaListener {
      *
      * @param cantidadFichas La cantidad de fichas seleccionada por el usuario para la partida.
      */
-    void clickSeleccionarCantidadFichas(Integer cantidadFichas);
+    void clickCrearPartida(Integer cantidadFichas);
     
     /**
      * Este método se llama cuando el usuario hace clic en el botón "Cancelar" durante la configuración de la partida.

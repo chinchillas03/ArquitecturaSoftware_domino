@@ -34,14 +34,17 @@ public class PresentadorConfigurarJugador implements ConfigurarJugadorListener{
         new PresentadorInicio().mostrarPantallaInicio();
     }
     @Override
+    //Modificar
     public boolean validarJugador(String nombre){
-        if (this.model.validarJugador(nombre) == true) {
-            JOptionPane.showMessageDialog(null, "El campo del nombre es incorrecto", "Campo nombre incorrecto", JOptionPane.ERROR_MESSAGE);
-            return true;
+        if (!this.model.validarJugador(nombre) == true) {
+          this.mostrarMensaje(nombre);
         }
-        return false;
+        return true;
     }
     
+    public void mostrarMensaje(String mensaje){
+        this.view.mostrarMensaje(mensaje);
+    }
 
     public void mostrarPantallaConfigurarJugador(){
         this.view.mostrarPantallaConfigurarJugador();

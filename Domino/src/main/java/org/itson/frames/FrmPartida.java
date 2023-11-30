@@ -4,6 +4,7 @@
  */
 package org.itson.frames;
 
+import com.itson.dominio.Ficha;
 import com.itson.dominio.Partida;
 import com.itson.interfaces.IPartidaJuego;
 import com.itson.listeners.TableroJuegoListener;
@@ -19,13 +20,13 @@ public class FrmPartida extends javax.swing.JFrame {
 
     private TableroJuegoListener listener;
     private Dibujante dibujante;
-    private IPartidaJuego partida= Partida.instancia();
+    private IPartidaJuego partida;
+    private Ficha fichaJuego;
     /**
      * Creates new form FrmPartida
      */
     public FrmPartida() {
         initComponents();
-        this.btnPasarTurno.setVisible(false);
         dibujante = new Dibujante();
     }
 
@@ -52,6 +53,10 @@ public class FrmPartida extends javax.swing.JFrame {
     public void setLblNombreJugador4(String texto) {
         this.lblJugador4.setText(texto);
     }
+
+    public void setPartida(IPartidaJuego partida) {
+        this.partida = partida;
+    }
   
 
     public void mostrarPantallaPartida() {
@@ -65,7 +70,7 @@ public class FrmPartida extends javax.swing.JFrame {
     @Override
     public void paint(Graphics g) {
         super.paint(g); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
-        actualizarPantalla(Partida.instancia(), g ,this.pnlTablero.getGraphics());
+        actualizarPantalla(Partida.instancia(), g);
     }
 
     /**
@@ -87,6 +92,8 @@ public class FrmPartida extends javax.swing.JFrame {
         lblJugador4 = new javax.swing.JLabel();
         btnJalarPozo = new javax.swing.JButton();
         btnPasarTurno = new javax.swing.JButton();
+        btnIzquierdo = new javax.swing.JButton();
+        btnDerecho = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Partida");
@@ -112,23 +119,17 @@ public class FrmPartida extends javax.swing.JFrame {
 
         lblJugador1.setText("jugador");
 
-        panelJuego.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                panelJuegoMouseClicked(evt);
-            }
-        });
-
         pnlTablero.setBackground(new java.awt.Color(51, 102, 0));
 
         javax.swing.GroupLayout pnlTableroLayout = new javax.swing.GroupLayout(pnlTablero);
         pnlTablero.setLayout(pnlTableroLayout);
         pnlTableroLayout.setHorizontalGroup(
             pnlTableroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 898, Short.MAX_VALUE)
+            .addGap(0, 1274, Short.MAX_VALUE)
         );
         pnlTableroLayout.setVerticalGroup(
             pnlTableroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 498, Short.MAX_VALUE)
+            .addGap(0, 540, Short.MAX_VALUE)
         );
 
         panelJuego.setViewportView(pnlTablero);
@@ -147,30 +148,55 @@ public class FrmPartida extends javax.swing.JFrame {
         });
 
         btnPasarTurno.setText("Pasar Turno");
+        btnPasarTurno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPasarTurnoActionPerformed(evt);
+            }
+        });
+
+        btnIzquierdo.setText("Poner Lado Izquierdo");
+        btnIzquierdo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIzquierdoActionPerformed(evt);
+            }
+        });
+
+        btnDerecho.setText("Poner Lado Derecho");
+        btnDerecho.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDerechoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlPartidaLayout = new javax.swing.GroupLayout(pnlPartida);
         pnlPartida.setLayout(pnlPartidaLayout);
         pnlPartidaLayout.setHorizontalGroup(
             pnlPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlPartidaLayout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(pnlPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblJugador2)
                     .addGroup(pnlPartidaLayout.createSequentialGroup()
-                        .addComponent(lblJugador1)
-                        .addGap(34, 34, 34)
-                        .addComponent(panelJuego, javax.swing.GroupLayout.PREFERRED_SIZE, 900, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addGroup(pnlPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnPasarTurno, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnJalarPozo, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblJugador4)
-                    .addComponent(lblJugador3))
+                        .addContainerGap()
+                        .addGroup(pnlPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblJugador2)
+                            .addGroup(pnlPartidaLayout.createSequentialGroup()
+                                .addComponent(lblJugador1)
+                                .addGap(34, 34, 34)
+                                .addGroup(pnlPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(panelJuego, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE)
+                                    .addGroup(pnlPartidaLayout.createSequentialGroup()
+                                        .addComponent(btnIzquierdo)
+                                        .addGap(10, 10, 10)
+                                        .addComponent(btnDerecho)))))
+                        .addGap(18, 18, 18)
+                        .addGroup(pnlPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnPasarTurno, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnJalarPozo, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblJugador4)
+                            .addComponent(lblJugador3)))
+                    .addGroup(pnlPartidaLayout.createSequentialGroup()
+                        .addGap(480, 480, 480)
+                        .addComponent(btnAbandonarPartida)))
                 .addGap(0, 6, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlPartidaLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnAbandonarPartida)
-                .addGap(481, 481, 481))
         );
         pnlPartidaLayout.setVerticalGroup(
             pnlPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -191,10 +217,13 @@ public class FrmPartida extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(pnlPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblJugador1)
-                            .addComponent(lblJugador4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                            .addComponent(lblJugador4)
+                            .addGroup(pnlPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(btnIzquierdo)
+                                .addComponent(btnDerecho)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
                         .addComponent(btnAbandonarPartida)
-                        .addGap(40, 40, 40))))
+                        .addContainerGap())))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -218,13 +247,7 @@ public class FrmPartida extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnJalarPozoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJalarPozoActionPerformed
-        if (partida.getPozo().getFichas() != null) {
-            listener.jalarPozo(partida.getJugadores().get(0));
-        } else {
-            JOptionPane.showMessageDialog(null, "Hola se acabaron las fichas del pozo");
-            this.btnJalarPozo.setEnabled(false);
-        }
-
+        listener.jalarPozo(partida.getJugadores().get(partida.getTurno()));
         this.repaint();
     }//GEN-LAST:event_btnJalarPozoActionPerformed
 
@@ -233,21 +256,37 @@ public class FrmPartida extends javax.swing.JFrame {
         this.notificarBotonPrecionadoAbandonarPartida();
     }//GEN-LAST:event_btnAbandonarPartidaActionPerformed
 
-    private void panelJuegoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelJuegoMouseClicked
-        // TODO add your handling code here:
-        listener.actualizarPantalla();
-    }//GEN-LAST:event_panelJuegoMouseClicked
-
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         // TODO add your handling code here:
     }//GEN-LAST:event_formWindowClosed
 
     private void pnlPartidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlPartidaMouseClicked
-        this.posicionarFicha(evt);
+      this.buscarFicha(evt);
+        System.out.println(fichaJuego);
     }//GEN-LAST:event_pnlPartidaMouseClicked
+
+    private void btnIzquierdoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIzquierdoActionPerformed
+        if (fichaJuego==null) {
+            this.mostrarMsgError("Seleccione una ficha correctamente");
+        }else{
+                    this.posicionarFicha(fichaJuego,0);
+        }
+    }//GEN-LAST:event_btnIzquierdoActionPerformed
+
+    private void btnDerechoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDerechoActionPerformed
+      this.posicionarFicha(fichaJuego,1);
+    }//GEN-LAST:event_btnDerechoActionPerformed
+
+    private void btnPasarTurnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPasarTurnoActionPerformed
+        this.listener.pasarTurno();
+                this.repaint();
+
+    }//GEN-LAST:event_btnPasarTurnoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAbandonarPartida;
+    private javax.swing.JButton btnDerecho;
+    private javax.swing.JButton btnIzquierdo;
     private javax.swing.JButton btnJalarPozo;
     private javax.swing.JButton btnPasarTurno;
     private javax.swing.JLabel lblJugador1;
@@ -258,21 +297,27 @@ public class FrmPartida extends javax.swing.JFrame {
     private javax.swing.JPanel pnlPartida;
     private javax.swing.JPanel pnlTablero;
     // End of variables declaration//GEN-END:variables
-    public void posicionarFicha(java.awt.event.MouseEvent evt) {
-        listener.posicionarFicha(evt);
+    public void posicionarFicha(Ficha ficha, int lado) {
+        listener.posicionarFicha(ficha,lado);
+        fichaJuego=null;
         this.repaint();
     }
  
-    public void actualizarPantalla(IPartidaJuego partida, Graphics g, Graphics g2) {
+    public void actualizarPantalla(IPartidaJuego partida, Graphics g) {
         dibujante.crearLista(partida);
-        dibujante.dibujarTodos(g);
+        dibujante.dibujarTodos(g,this.panelJuego.getGraphics());
     }
 
-    public void mostrarMsgError() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void mostrarMsgError(String mensaje) {
+        JOptionPane.showMessageDialog(null, mensaje);
+    }
+    
+    public void buscarFicha(java.awt.event.MouseEvent evt){
+        for (int i = 0; i < (this.partida.getJugadores().get(partida.getTurno()).getFichasJuego().size()); i++) {
+         if (this.partida.getJugadores().get(partida.getTurno()).getFichasJuego().get(i).contains(evt.getX(), evt.getY())) {
+              fichaJuego=this.partida.getJugadores().get(partida.getTurno()).getFichasJuego().get(i);
+         }
+        }
     }
 
-    public void mostarFicha() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 }

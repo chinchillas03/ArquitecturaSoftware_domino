@@ -11,6 +11,7 @@ import org.itson.Modelos.ModelCrearPartida;
 import com.itson.listeners.InicioListener;
 import com.itson.presentadores.PresentadorInicio;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  * Descripción de la clase: 
@@ -145,5 +146,10 @@ public class FrmInicio extends javax.swing.JFrame {
     private javax.swing.JButton btnCrearPartida;
     private javax.swing.JButton btnEntrar;
     // End of variables declaration//GEN-END:variables
+
+    public void mostrarMensajeError(String mensaje) {
+    JOptionPane.showMessageDialog(null,mensaje);
+    
+    }
 
 }

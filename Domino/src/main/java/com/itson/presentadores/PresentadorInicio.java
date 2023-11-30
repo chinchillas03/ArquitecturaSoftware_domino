@@ -24,11 +24,14 @@ public class PresentadorInicio implements InicioListener{
         this.cerrarPantallaInicio();
         new PresentadorCrearPartida().mostrarPantallaCrearPartida();
     }
-
+    //Activar cuando ya haya una partida
     @Override
-    public void clickEntrarPartida() {
-        this.cerrarPantallaInicio();
-        new PresentadorSalaEspera().mostrarPantallaSalaEspera();
+    public boolean clickEntrarPartida() {
+//        this.cerrarPantallaInicio();
+//        new PresentadorSalaEspera().mostrarPantallaSalaEspera();
+        this.view.mostrarMensajeError("No existe ninguna partida");
+        return false;
+        
     }
     
     @Override
