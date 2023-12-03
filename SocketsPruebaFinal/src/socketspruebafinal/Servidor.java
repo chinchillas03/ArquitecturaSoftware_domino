@@ -4,19 +4,38 @@
  */
 package socketspruebafinal;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.List;
 
 /**
  *
  * @author Usuario
  */
-public class Servidor {
-    
-    private int puerto;
-    private ServerSocket server;
-    private Partida partida;
+public class Servidor implements Runnable, Serializable{
 
-    public Servidor() {
+    private ServerSocket server;
+    private Cliente cliente;
+    private Partida partida;
+    private SocketServidorDTO nodo;
+
+    public Servidor(int puerto) throws IOException {
+        this.server = new ServerSocket(puerto);
+        this.nodo = new SocketServidorDTO(server.getInetAddress().toString(), server.getLocalPort());
+        Thread hilo = new Thread(this);
+        hilo.start();
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     public Servidor(ServerSocket server) {
@@ -37,6 +56,81 @@ public class Servidor {
 
     public void setPartida(Partida partida) {
         this.partida = partida;
+    }
+
+    public void enviarNuevoNodoACliente(SocketServidorDTO nuevoNodo){
+        cliente.agregarNodo(nuevoNodo);
+    }
+    
+    public void regresarInformacionANodo(SocketServidorDTO nuevoNodo) {
+        List<SocketServidorDTO> nodos = cliente.getServidoresNodos();
+        boolean entrada = true;
+        try {
+            for (SocketServidorDTO nodo : nodos) {
+                if (nodo.getPuerto() == nuevoNodo.getPuerto() && nodo.getIp() == nuevoNodo.getIp()) {
+                    entrada = false;
+                }
+            }
+
+            while (entrada == true) {
+                Socket nuevo = new Socket("localhost", nuevoNodo.getPuerto());
+
+                SocketServidorDTO nodo
+                        = new SocketServidorDTO(server.getInetAddress().toString(),
+                                server.getLocalPort());
+
+                ObjectOutputStream out = new ObjectOutputStream(nuevo.getOutputStream());
+                out.writeObject(nodo);
+                out.close();
+            }
+        } catch (IOException e) {
+        }
+    }
+
+    @Override
+    public void run() {
+        try {
+            while (true) {  
+                System.out.println("--------------------------------------------");
+                System.out.println("Esperando conexión de cliente...");
+
+                Socket socketConectado = this.server.accept();
+
+                System.out.println("Cliente conectado");
+
+                ObjectInputStream in = new ObjectInputStream(socketConectado.getInputStream());
+
+                Object entrada = (Object) in.readObject();
+
+                if (entrada instanceof SocketServidorDTO) {
+                    SocketServidorDTO nodoNuevo = (SocketServidorDTO) entrada;
+                    System.out.println("Nodo con puerto servidor de: " + nodoNuevo.getPuerto() + " IP: " + nodoNuevo.getIp());
+
+                    System.out.println("--------------------------------------------");
+                    System.out.println("");
+                    
+                    ObjectOutputStream out = new ObjectOutputStream(socketConectado.getOutputStream());
+                    
+                    List<SocketServidorDTO> nodos = cliente.getServidoresNodos();
+                    
+                    if (nodos.size() <= 0) {
+                        cliente.agregarNodo(this.nodo);
+                    }
+                
+                    nodos.add(nodoNuevo);
+                    
+                    out.writeObject(nodos);
+                    
+                    out.close();
+                    
+                } 
+                
+                in.close();
+                socketConectado.close();
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
     }
     
 }

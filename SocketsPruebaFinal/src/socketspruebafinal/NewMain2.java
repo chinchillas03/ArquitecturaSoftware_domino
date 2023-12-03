@@ -7,7 +7,6 @@ package socketspruebafinal;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.List;
 
@@ -15,7 +14,7 @@ import java.util.List;
  *
  * @author Usuario
  */
-public class NewMain1 {
+public class NewMain2 {
 
     /**
      * @param args the command line arguments
@@ -24,7 +23,7 @@ public class NewMain1 {
         // TODO code application logic here
         try {
             
-            int puerto1 = 9998;
+            int puerto1 = 9996;
             Servidor servidor = new Servidor(puerto1);
             Cliente cliente = new Cliente();
             servidor.setCliente(cliente);
