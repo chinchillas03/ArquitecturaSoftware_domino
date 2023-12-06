@@ -114,13 +114,10 @@ public class Servidor implements Runnable, Serializable{
                     List<SocketServidorDTO> nodos = cliente.getServidoresNodos();
                     
                     if (nodos.size() <= 0) {
-                        cliente.agregarNodo(this.nodo);
-                    }
-                
-                    nodos.add(nodoNuevo);
-                    
-                    out.writeObject(nodos);
-                    
+                        nodos.add(this.nodo);
+                    }               
+                    cliente.agregarNodo(nodoNuevo);                                     
+                    out.writeObject(nodos);                   
                     out.close();
                     
                 } 

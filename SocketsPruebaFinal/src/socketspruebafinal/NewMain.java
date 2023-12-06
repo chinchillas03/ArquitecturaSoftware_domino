@@ -24,14 +24,14 @@ public class NewMain {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        try {    
+        try {
             int puerto1 = 9999;
             Servidor servidor = new Servidor(puerto1);
             Cliente cliente = new Cliente();
             servidor.setCliente(cliente);
-            cliente.setMiServer(servidor);    
+            cliente.setMiServer(servidor);
         } catch (Exception e) {
         }
     }
-    
+
 }

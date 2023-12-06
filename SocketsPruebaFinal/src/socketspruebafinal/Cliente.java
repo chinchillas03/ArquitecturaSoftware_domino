@@ -40,23 +40,20 @@ public class Cliente implements Serializable, Runnable{
 
     public void agregarNodo(SocketServidorDTO nuevoNodo){
         this.servidoresNodos.add(nuevoNodo);
-        this.broadcast(nuevoNodo);
+//        this.broadcast(nuevoNodo);
     }    
     
-    public void broadcast(SocketServidorDTO nuevoNodo){
+    public void broadcast(SocketServidorDTO nuevoNodo) {
         try {
             for (SocketServidorDTO servidoresNodo : servidoresNodos) {
-                if (miServer.getServer().getInetAddress().toString().equals(servidoresNodo.getIp()) && miServer.getServer().getLocalPort() == servidoresNodo.getPuerto()) {                    
-                }else{
-                    this.socket = new Socket(servidoresNodo.getIp(), servidoresNodo.getPuerto());
-                    
-                    ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
-                    
-                    out.writeObject(nuevoNodo);
-                    
-                    out.close();
-                    
-                    this.socket.close();
+                if (miServer.getServer().getInetAddress().toString().equals(servidoresNodo.getIp()) && miServer.getServer().getLocalPort() == servidoresNodo.getPuerto()) {
+                } else {
+                    String ip = servidoresNodo.getIp();
+                    int puerto = servidoresNodo.getPuerto();
+                    try (Socket socket = new Socket(servidoresNodo.getIp(), servidoresNodo.getPuerto()); ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream())) {
+
+                        out.writeObject(nuevoNodo);
+                    }
                 }
             }
         } catch (IOException e) {

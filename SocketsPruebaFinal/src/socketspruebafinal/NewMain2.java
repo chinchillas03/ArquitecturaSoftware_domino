@@ -28,8 +28,10 @@ public class NewMain2 {
             Cliente cliente = new Cliente();
             servidor.setCliente(cliente);
             
+            String ip = "192.168.1.66";
+            int puerto = 9999;
             cliente.setMiServer(servidor);
-            Socket socket = new Socket("192.168.1.66", 9999);
+            Socket socket = new Socket(ip, puerto);
             cliente.setSocket(socket);
             ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
             SocketServidorDTO nodo = new SocketServidorDTO(servidor.getServer().getInetAddress().toString(), puerto1);
@@ -42,10 +44,24 @@ public class NewMain2 {
                 System.out.println("Nodos con puerto: " + nodo1.getPuerto() + "IP: " + nodo1.getIp());
             }
             
+            for (SocketServidorDTO nodo1 : nodos) {
+                if (!(nodo1.getIp() == ip) && nodo1.getPuerto() == puerto) {
+                } else if ((!(nodo1.getIp() == "localhost") && nodo1.getPuerto() == puerto1)) {
+
+                } else {
+                    socket = new Socket("localhost", nodo1.getPuerto());
+
+                    out.writeObject(nodo);
+
+                    out.close();
+                }
+            }
+            
             in.close();
             out.close();
 
         } catch (IOException e) {
+            System.out.println("Error: " + e.getMessage());
         }
     }
     
