@@ -48,7 +48,7 @@ public class ModelCrearPartida {
      */
     public void crearPartida(int cantidadFichas) {
         Partida partida = Partida.instancia();
-        partida.setNumCantidadFichas(cantidadFichas);
+        partida.crearPartida(cantidadFichas);
         
     }
     

@@ -5,17 +5,11 @@
 package org.itson.Modelos;
 
 import com.itson.dominio.Ficha;
-import com.itson.dominio.FichaJuego;
-import com.itson.dominio.FichaTablero;
 import com.itson.dominio.Jugador;
 import com.itson.dominio.Partida;
-import com.itson.dominio.Pozo;
-import com.itson.dominio.Tablero;
+import com.itson.dominio.PosicionFicha;
 import com.itson.interfaces.IPartidaJuego;
-import com.itson.presentadores.PresentadorPartida;
-import com.itson.presentadores.PresentadorPuntuaciones;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -81,7 +75,7 @@ public class ModelPartida {
       
     }
 
-    public boolean posicionarFicha(Ficha ficha, int lado) {
+    public boolean posicionarFicha(Ficha ficha, PosicionFicha lado) {
      return partida.posicionarFicha(ficha,lado);
     }
 
@@ -89,9 +83,9 @@ public class ModelPartida {
         partida.pasarTurno();
     }
 
-    public IPartidaJuego iniciarPartida(List<Jugador> jugadores, int cantidadFichas) {
+    public IPartidaJuego iniciarPartida(List<Jugador> jugadores) {
         this.partida = Partida.instancia();
-        partida.iniciarPartida(jugadores, cantidadFichas);
+        partida.iniciarPartida(jugadores);
         return partida;
     }
 

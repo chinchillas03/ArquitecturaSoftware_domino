@@ -6,6 +6,7 @@ package com.itson.presentadores;
 
 import com.itson.dominio.Ficha;
 import com.itson.dominio.Jugador;
+import com.itson.dominio.PosicionFicha;
 import com.itson.listeners.TableroJuegoListener;
 import java.util.List;
 import org.itson.Modelos.ModelPartida;
@@ -49,11 +50,13 @@ public class PresentadorPartida implements TableroJuegoListener {
      * lógica para posicionar una ficha en el tablero de juego.
      */
     @Override
-    public void posicionarFicha(Ficha fichaJuego,int lado) {
-        if (fichaJuego==null) {
-            this.view.mostrarMsgError("Seleccione una ficha correcta");
-        }
+    public void posicionarFicha(Ficha fichaJuego,PosicionFicha lado) {
+//        if (fichaJuego==null) {
+//            this.view.mostrarMsgError("Seleccione una ficha correcta");
+//        }
+//Mostrar mensaje error ficha
         if (this.model.posicionarFicha(fichaJuego,lado)) {
+            //actualizar el modelo de la partida IPartidaJuego
             this.actualizarPantalla();
         }
     }
@@ -128,8 +131,8 @@ public class PresentadorPartida implements TableroJuegoListener {
      *
      * @param partida
      */
-    public void setModelPartida(List<Jugador> jugadores, int cantidadFichas) {
-        this.view.setPartida(this.model.iniciarPartida(jugadores, cantidadFichas));
+    public void setModelPartida(List<Jugador> jugadores) {
+        this.view.setPartida(this.model.iniciarPartida(jugadores));
         this.view.setLblNombreJugador1(jugadores.get(0).getNombre());
         this.view.setLblNombreJugador2(jugadores.get(1).getNombre());
         this.view.setLblNombreJugador3(jugadores.get(2).getNombre());

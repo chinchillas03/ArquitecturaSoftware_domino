@@ -7,6 +7,7 @@ package com.itson.listeners;
 import com.itson.dominio.Ficha;
 import com.itson.dominio.Jugador;
 import com.itson.dominio.Partida;
+import com.itson.dominio.PosicionFicha;
 import com.itson.interfaces.IPartidaJuego;
 
 /**
@@ -24,7 +25,7 @@ public interface TableroJuegoListener {
     /**
      * Este método se llama cuando el usuario intenta posicionar una ficha en el tablero de juego.Gestiona la acción de colocar una ficha en una posición específica del tablero.
      */
-    void posicionarFicha(Ficha ficha, int lado);
+    void posicionarFicha(Ficha ficha, PosicionFicha lado);
 
     /**
      * Este método se llama cuando el usuario decide jalar una ficha del pozo en el tablero de juego.

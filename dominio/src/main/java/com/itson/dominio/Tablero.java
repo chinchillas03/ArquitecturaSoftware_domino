@@ -36,45 +36,25 @@ public class Tablero {
     }
 
     public boolean verificaFicha(FichaTablero ficha) {
-        if (!this.verificaCantidadFichas()) {
-            int ladoIzquierdoTablero = fichas.get(0).getValorIzquierdo();
-            int ladoDerechoTablero = fichas.get(fichas.size() - 1).getValorDerecho();
-            int valorIzquierdo = ficha.getValorIzquierdo();
-            int valorDerecho = ficha.getValorDerecho();
-            System.out.println(ficha.getLado());
-            if (ficha.getLado()==0) {
-                 if (ladoIzquierdoTablero == ficha.getValorIzquierdo()) {
-                ficha.setValorDerecho(valorIzquierdo);
-                ficha.setValorIzquierdo(valorDerecho);
-                return true;
-            } else if (ladoIzquierdoTablero == ficha.getValorDerecho()) {
-                return true;
-            }}else{
-               if (ladoDerechoTablero == ficha.getValorIzquierdo()) {
-                return true;
-            } else if (ladoDerechoTablero == ficha.getValorDerecho()) {
-                ficha.setValorDerecho(valorIzquierdo);
-                ficha.setValorIzquierdo(valorDerecho);
-                return true;
-            }
-            return false;
-            }
-       return true;
-    }else if (this.verificaCantidadFichas()) {
-            return true;
+        //Poner metodo para cada uno de los extremos
+        //Separa por metodos distintos
+        if (ficha.getLado() == PosicionFicha.DERECHO) {
+            return verificarLadoDerecho(ficha);
+        } else {
+            return verificarLadoIzquierdo(ficha);
         }
-        return false;
+
     }
- 
-    public void addFicha(FichaTablero ficha) {
-       
+
+    public void agregarFicha(FichaTablero ficha) {
+
         if (fichas.isEmpty()) {
             if (ficha.esMula()) {
-            fichas.add(ficha);
-            return;
+                fichas.add(ficha);
+                return;
+            }
         }
-        }
-        if (ficha.getLado()==0) {
+        if (ficha.getLado() == PosicionFicha.DERECHO) {
             fichas.add(0, ficha);
         } else {
             fichas.add(ficha);
@@ -84,6 +64,30 @@ public class Tablero {
     @Override
     public String toString() {
         return "Tablero{" + "fichas=" + fichas + '}';
+    }
+
+    private boolean verificarLadoDerecho(FichaTablero ficha) {
+        int ladoDerechoTablero = fichas.get(fichas.size() - 1).getValorDerecho();
+        int valorIzquierdo = ficha.getValorIzquierdo();
+        int valorDerecho = ficha.getValorDerecho();
+        if (ladoDerechoTablero == ficha.getValorIzquierdo()) {
+            return true;
+        } else if (ladoDerechoTablero == ficha.getValorDerecho()) {
+            ficha.setValorDerecho(valorIzquierdo);
+            ficha.setValorIzquierdo(valorDerecho);
+            return true;
+        }
+        return false;
+    }
+    // Modificar el dibujo para validar que sean correctos
+    private boolean verificarLadoIzquierdo(FichaTablero ficha) {
+        int ladoIzquierdoTablero = fichas.get(0).getValorIzquierdo();
+        if (ladoIzquierdoTablero == ficha.getValorIzquierdo()) {
+            return true;
+        } else if (ladoIzquierdoTablero == ficha.getValorDerecho()) {
+            return true;
+        }
+        return false;
     }
 
 }

@@ -6,6 +6,7 @@ package org.itson.frames;
 
 import com.itson.dominio.Ficha;
 import com.itson.dominio.Partida;
+import com.itson.dominio.PosicionFicha;
 import com.itson.interfaces.IPartidaJuego;
 import com.itson.listeners.TableroJuegoListener;
 import java.awt.Graphics;
@@ -22,6 +23,7 @@ public class FrmPartida extends javax.swing.JFrame {
     private Dibujante dibujante;
     private IPartidaJuego partida;
     private Ficha fichaJuego;
+
     /**
      * Creates new form FrmPartida
      */
@@ -57,7 +59,6 @@ public class FrmPartida extends javax.swing.JFrame {
     public void setPartida(IPartidaJuego partida) {
         this.partida = partida;
     }
-  
 
     public void mostrarPantallaPartida() {
         this.setVisible(true);
@@ -261,25 +262,29 @@ public class FrmPartida extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosed
 
     private void pnlPartidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlPartidaMouseClicked
-      this.buscarFicha(evt);
+        this.buscarFicha(evt);
         System.out.println(fichaJuego);
     }//GEN-LAST:event_pnlPartidaMouseClicked
 
     private void btnIzquierdoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIzquierdoActionPerformed
-        if (fichaJuego==null) {
+        if (fichaJuego == null) {
             this.mostrarMsgError("Seleccione una ficha correctamente");
-        }else{
-                    this.posicionarFicha(fichaJuego,0);
+        } else {
+            this.posicionarFicha(fichaJuego, PosicionFicha.DERECHO);
         }
     }//GEN-LAST:event_btnIzquierdoActionPerformed
 
     private void btnDerechoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDerechoActionPerformed
-      this.posicionarFicha(fichaJuego,1);
+        if (fichaJuego == null) {
+            this.mostrarMsgError("Seleccione una ficha correctamente");
+        } else {
+            this.posicionarFicha(fichaJuego, PosicionFicha.IZQUIERDO);
+        }
     }//GEN-LAST:event_btnDerechoActionPerformed
 
     private void btnPasarTurnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPasarTurnoActionPerformed
         this.listener.pasarTurno();
-                this.repaint();
+        this.repaint();
 
     }//GEN-LAST:event_btnPasarTurnoActionPerformed
 
@@ -297,26 +302,26 @@ public class FrmPartida extends javax.swing.JFrame {
     private javax.swing.JPanel pnlPartida;
     private javax.swing.JPanel pnlTablero;
     // End of variables declaration//GEN-END:variables
-    public void posicionarFicha(Ficha ficha, int lado) {
-        listener.posicionarFicha(ficha,lado);
-        fichaJuego=null;
+    public void posicionarFicha(Ficha ficha, PosicionFicha lado) {
+        listener.posicionarFicha(ficha, lado);
+        fichaJuego = null;
         this.repaint();
     }
- 
+
     public void actualizarPantalla(IPartidaJuego partida, Graphics g) {
         dibujante.crearLista(partida);
-        dibujante.dibujarTodos(g,this.panelJuego.getGraphics());
+        dibujante.dibujarTodos(g, this.panelJuego.getGraphics());
     }
 
     public void mostrarMsgError(String mensaje) {
         JOptionPane.showMessageDialog(null, mensaje);
     }
-    
-    public void buscarFicha(java.awt.event.MouseEvent evt){
+
+    public void buscarFicha(java.awt.event.MouseEvent evt) {
         for (int i = 0; i < (this.partida.getJugadores().get(partida.getTurno()).getFichasJuego().size()); i++) {
-         if (this.partida.getJugadores().get(partida.getTurno()).getFichasJuego().get(i).contains(evt.getX(), evt.getY())) {
-              fichaJuego=this.partida.getJugadores().get(partida.getTurno()).getFichasJuego().get(i);
-         }
+            if (this.partida.getJugadores().get(partida.getTurno()).getFichasJuego().get(i).contains(evt.getX(), evt.getY())) {
+                fichaJuego = this.partida.getJugadores().get(partida.getTurno()).getFichasJuego().get(i);
+            }
         }
     }
 

@@ -4,7 +4,6 @@
  */
 package com.itson.dominio;
 
-import com.itson.interfaces.IJugadorPartida;
 import com.itson.interfaces.JugadorSala;
 import java.util.List;
 
@@ -12,7 +11,7 @@ import java.util.List;
  *
  * @author Usuario
  */
-public class Jugador implements JugadorSala,IJugadorPartida{
+public class Jugador implements JugadorSala{
     
     private String nombre;
     private Avatar avatar;
@@ -58,7 +57,6 @@ public class Jugador implements JugadorSala,IJugadorPartida{
         this.puntuacion = puntuacion;
     }
 
-    @Override
     public List<FichaJuego> getFichasJuego() {
         return fichas;
     }
@@ -66,7 +64,6 @@ public class Jugador implements JugadorSala,IJugadorPartida{
     public void setFichas(List<FichaJuego> fichas) {
         this.fichas = fichas;
     }
-    @Override
     public FichaJuego getMulaMasAlta(){
         FichaJuego fichaAlta=null;
         for (FichaJuego ficha : fichas) {
@@ -74,7 +71,7 @@ public class Jugador implements JugadorSala,IJugadorPartida{
                 if (fichaAlta==null) {
                     fichaAlta=ficha;
                 }else{
-                    if (fichaAlta.getValorDerecho()<ficha.getValorDerecho()) {
+                    if (fichaAlta.getValorFicha()<ficha.getValorFicha()) {
                         fichaAlta=ficha;
                     }
                 }
@@ -83,7 +80,6 @@ public class Jugador implements JugadorSala,IJugadorPartida{
         return fichaAlta;
     }
     
-    @Override
     public boolean quitarFicha(Ficha ficha){
         for (FichaJuego ficha1 : fichas) {
             if (ficha1.equals(ficha)) {
@@ -94,7 +90,13 @@ public class Jugador implements JugadorSala,IJugadorPartida{
         return false;
     }
     
-    @Override
+    public int calcularPuntos(){
+        int cont=0;
+        for (FichaJuego ficha : fichas) {
+            cont+= ficha.getValorFicha();
+        }
+        return cont;
+    }
     public int verificarNumFichas(){
         return fichas.size();
     }
@@ -107,10 +109,10 @@ public class Jugador implements JugadorSala,IJugadorPartida{
         return false;
     }
     
-    @Override
     public String toString() {
         return "Jugador{" + "nombre=" + nombre + ", puntuacion=" + puntuacion + ", fichas=" + fichas;
     }
- 
+
+  
     
 }

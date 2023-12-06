@@ -73,6 +73,9 @@ public class Ficha {
         fichaJ.setValorIzquierdo(this.getValorIzquierdo());
         return fichaJ;
     }
+     public int getValorFicha(){
+         return getValorDerecho()+getValorIzquierdo();
+     }
     @Override
     public String toString() {
         return "Ficha{" + "valorIzquierdo=" + valorIzquierdo + ", valorDerecho=" + valorDerecho + ", x=" + x + ", y=" + y + '}';

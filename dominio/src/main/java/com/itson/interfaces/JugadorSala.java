@@ -10,7 +10,7 @@ import com.itson.dominio.Avatar;
  *
  * @author Usuario
  */
-public interface JugadorSala extends IJugador {
+public interface JugadorSala {
     
     String getNombre();
     

@@ -9,13 +9,13 @@ package com.itson.dominio;
  * @author Usuario
  */
 public class FichaTablero extends Ficha{
-    public int lado;
+    public PosicionFicha lado;
 
-    public int getLado() {
+    public PosicionFicha getLado() {
         return lado;
     }
 
-    public void setLado(int lado) {
+    public void setLado(PosicionFicha lado) {
         this.lado = lado;
     }
     

@@ -38,7 +38,7 @@ public class PresentadorSalaEspera implements SalaEsperaListener{
     public void clickBotonIniciarPartida() {
         this.cerrarPantallaSalaEspera();
         PresentadorPartida presentador = new PresentadorPartida();
-        presentador.setModelPartida(this.model.getJugadores(),this.model.getCantidadFichas());
+        presentador.setModelPartida(this.model.getJugadores());
     }
 
     /**
