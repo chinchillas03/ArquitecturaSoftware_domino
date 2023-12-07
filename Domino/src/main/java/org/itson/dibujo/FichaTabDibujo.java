@@ -5,6 +5,7 @@
 package org.itson.dibujo;
 
 import com.itson.dominio.FichaTablero;
+import com.itson.dominio.PosicionFicha;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.List;
@@ -18,13 +19,31 @@ public class FichaTabDibujo extends Figuras {
 
     private int x, y;
     private List<FichaTablero> fichasTablero;
-
+    private int ladoDerecho;
+    private int ladoIzquierdo;
+    
     public FichaTabDibujo(int x, int y, List<FichaTablero> fichasTablero) {
         this.x = x;
         this.y = y;
         this.fichasTablero = fichasTablero;
     }
 
+    public int getLadoDerecho() {
+        return ladoDerecho;
+    }
+
+    public void setLadoDerecho(int ladoDerecho) {
+        this.ladoDerecho = ladoDerecho;
+    }
+
+    public int getLadoIzquierdo() {
+        return ladoIzquierdo;
+    }
+
+    public void setLadoIzquierdo(int ladoIzquierdo) {
+        this.ladoIzquierdo = ladoIzquierdo;
+    }
+    
     public int getX() {
         return x;
     }
@@ -56,6 +75,9 @@ public class FichaTabDibujo extends Figuras {
         y=180;
         x=370;
         for (int i = 0; i < fichasTablero.size(); i++) {
+            if (fichasTablero.get(i).getLado()!=null) {
+                ordenarFichas(fichasTablero,i);
+            }
             if (fichasTablero.get(i).esMula()) {
                 x += 24;
                 g.setColor(Color.WHITE);
@@ -73,12 +95,22 @@ public class FichaTabDibujo extends Figuras {
                 g.setColor(Color.BLACK);
                 g.drawRect(x, y + 15, 50, 25);
                 g.drawLine(x + 25, y + 15, x + 25, y + 40);
-                drawDots(g, fichasTablero.get(i).getValorIzquierdo(), x + 3, y + 18); // Ajusta las coordenadas de los puntos según la posición y
-                drawDots(g, fichasTablero.get(i).getValorDerecho(), x + 25, y + 18); // Ajusta las coordenadas de los puntos según la posición y
+                drawDots(g, this.getLadoIzquierdo(), x + 3, y + 18); // Ajusta las coordenadas de los puntos según la posición y
+                drawDots(g, this.getLadoDerecho(), x + 25, y + 18); // Ajusta las coordenadas de los puntos según la posición y
                 x += 28;
 
             }
 
+        }
+    }
+
+    private void ordenarFichas(List<FichaTablero> fichasTablero,int i) {
+        if (fichasTablero.get(i).getValorDerecho()!=fichasTablero.get(i).getValorIzquierdo()) {
+            this.setLadoDerecho(fichasTablero.get(i).getValorIzquierdo());
+            this.setLadoIzquierdo(fichasTablero.get(i).getValorDerecho());
+        }else{
+            this.setLadoDerecho(fichasTablero.get(i).getValorDerecho());
+            this.setLadoIzquierdo(fichasTablero.get(i).getValorIzquierdo());
         }
         
     }

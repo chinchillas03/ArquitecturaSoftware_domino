@@ -40,6 +40,7 @@ public class Partida implements IPartidaJuego {
     
     public void guardarPartida(List<Jugador> jugadores) {
         this.listaJugadores = jugadores;
+        System.out.println(listaJugadores);
         this.listaFichas = new ArrayList<>();
         turno = 0;
     }
@@ -88,8 +89,6 @@ public class Partida implements IPartidaJuego {
     }
     
     public void terminarJuego() {
-        //Jugador podra regresar su puntaje
-        //Ficha tmbn debe de regresar cuantos puntos
         for (int i = 0; i < listaJugadores.size(); i++) {
             listaJugadores.get(i).calcularPuntos();
         }
@@ -118,16 +117,15 @@ public class Partida implements IPartidaJuego {
     
     public boolean posicionarFicha(Ficha fichaNva, PosicionFicha lado) {
         FichaTablero fichaTab = fichaNva.convertirFichaTab();
+        if (tablero == null) {
+            this.setTablero(new Tablero());
+        }
         if (lado == null) {
             tablero.agregarFicha(fichaTab);
             return true;
         }
         fichaTab.setLado(lado);
-        
-        if (tablero == null) {
-            this.setTablero(new Tablero());
-        }
-        //Modificar para que se ponga la primera
+
         if (tablero.verificaFicha(fichaTab)) {
             tablero.agregarFicha(fichaTab);
             //Jugador en turno
@@ -136,18 +134,18 @@ public class Partida implements IPartidaJuego {
                 pasarTurno();
             } else {
                 terminarJuego();
-                return true;
             }
         }
-        return false;
+        return true;
     }
     
     public void iniciarPartida(List<Jugador> jugadores) {
         guardarPartida(jugadores);
         repartirFichas();
         setearTurnos();
-         posicionarFicha(jugadores.get(0).getMulaMasAlta(), null);
-        jugadores.get(0).quitarFicha(jugadores.get(0).getMulaMasAlta());
+         posicionarFicha(jugadores.get(turno).getMulaMasAlta(), null);
+        jugadores.get(turno).quitarFicha(jugadores.get(0).getMulaMasAlta());
+        this.pasarTurno();
     }
     
     private Jugador primerTurno() {
@@ -196,7 +194,7 @@ public class Partida implements IPartidaJuego {
         Collections.shuffle(fichas);
         Collections.shuffle(fichas);
         for (int i = 0; i < this.listaJugadores.size(); i++) {
-            List<FichaJuego> mano =  listaJugadores.get(i).getFichasJuego();
+            List<FichaJuego> mano = listaJugadores.get(i).getFichasJuego();
             for (int j = 0; j < this.numCantidadFichas; j++) {
                 mano.add(new FichaJuego(fichas.get(0).getValorIzquierdo(),fichas.get(0).getValorDerecho()));
                 fichas.remove(0);
@@ -208,15 +206,8 @@ public class Partida implements IPartidaJuego {
     }
     
     public boolean jalarPozo(Jugador jugador) {
-        List<Ficha> listaPozo = this.getPozo().getFichas();
-        if (!getPozo().getFichas().isEmpty()) {
-            List<FichaJuego> listaNueva = jugador.getFichasJuego();
-            listaNueva.add(listaPozo.get(0).convertirFichaJuego());
-            jugador.setFichas(listaNueva);
-            getPozo().getFichas().remove(listaPozo.get(0));
-            return true;
-        }
-        return false;
+        return pozo.jalarPozo(jugador);
+
     }
     
 }

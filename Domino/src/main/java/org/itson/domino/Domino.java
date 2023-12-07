@@ -5,7 +5,7 @@
 
 package org.itson.domino;
 
-import com.itson.presentadores.PresentadorInicio;
+import org.itson.presentadores.PresentadorInicio;
 import javax.swing.SwingUtilities;
 
 /**

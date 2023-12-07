@@ -5,6 +5,7 @@
 package com.itson.dominio;
 
 import com.itson.interfaces.JugadorSala;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,7 +17,7 @@ public class Jugador implements JugadorSala{
     private String nombre;
     private Avatar avatar;
     private int puntuacion;
-    private List<FichaJuego> fichas;
+    private List<FichaJuego> fichas = new ArrayList<>();
 
     public Jugador() {
     }

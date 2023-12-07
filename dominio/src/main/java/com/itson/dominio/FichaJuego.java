@@ -9,6 +9,13 @@ package com.itson.dominio;
  * @author Usuario
  */
 public class FichaJuego extends Ficha{
+
+    public FichaJuego(int valorIzquierdo, int valorDerecho) {
+        super(valorIzquierdo, valorDerecho);
+    }
+
+    public FichaJuego() {
+    }
     
  
 }
