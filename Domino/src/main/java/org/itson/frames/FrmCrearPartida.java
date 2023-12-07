@@ -4,8 +4,8 @@
  */
 package org.itson.frames;
 
-import com.itson.listeners.CrearPartidaListener;
-import com.itson.presentadores.PresentadorCrearPartida;
+import org.itson.listeners.CrearPartidaListener;
+import org.itson.presentadores.PresentadorCrearPartida;
 import java.util.ArrayList;
 
 /**

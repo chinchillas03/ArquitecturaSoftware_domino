@@ -6,7 +6,7 @@ package org.itson.frames;
 
 import com.itson.dominio.Avatar;
 import com.itson.interfaces.JugadorSala;
-import com.itson.listeners.SalaEsperaListener;
+import org.itson.listeners.SalaEsperaListener;
 import java.util.List;
 import javax.swing.ImageIcon;
 /**

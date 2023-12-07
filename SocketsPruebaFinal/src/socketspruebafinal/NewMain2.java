@@ -23,7 +23,7 @@ public class NewMain2 {
         // TODO code application logic here
         try {
             
-            int puerto1 = 9996;
+            int puerto1 = 9997;
             Servidor servidor = new Servidor(puerto1);
             Cliente cliente = new Cliente();
             servidor.setCliente(cliente);

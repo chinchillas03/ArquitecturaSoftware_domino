@@ -4,8 +4,8 @@
  */
 package org.itson.frames;
 
-import com.itson.listeners.ConfigurarJugadorListener;
-import com.itson.presentadores.PresentadorConfigurarJugador;
+import org.itson.listeners.ConfigurarJugadorListener;
+import org.itson.presentadores.PresentadorConfigurarJugador;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 

@@ -6,10 +6,10 @@
 
 package org.itson.frames;
 
-import com.itson.presentadores.PresentadorCrearPartida;
+import org.itson.presentadores.PresentadorCrearPartida;
 import org.itson.Modelos.ModelCrearPartida;
-import com.itson.listeners.InicioListener;
-import com.itson.presentadores.PresentadorInicio;
+import org.itson.listeners.InicioListener;
+import org.itson.presentadores.PresentadorInicio;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 

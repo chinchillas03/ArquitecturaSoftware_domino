@@ -8,7 +8,7 @@ import com.itson.dominio.Ficha;
 import com.itson.dominio.Partida;
 import com.itson.dominio.PosicionFicha;
 import com.itson.interfaces.IPartidaJuego;
-import com.itson.listeners.TableroJuegoListener;
+import org.itson.listeners.TableroJuegoListener;
 import java.awt.Graphics;
 import javax.swing.JOptionPane;
 import org.itson.dibujo.Dibujante;
@@ -71,7 +71,7 @@ public class FrmPartida extends javax.swing.JFrame {
     @Override
     public void paint(Graphics g) {
         super.paint(g); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
-        actualizarPantalla(Partida.instancia(), g);
+        actualizarPantalla();
     }
 
     /**
@@ -270,7 +270,7 @@ public class FrmPartida extends javax.swing.JFrame {
         if (fichaJuego == null) {
             this.mostrarMsgError("Seleccione una ficha correctamente");
         } else {
-            this.posicionarFicha(fichaJuego, PosicionFicha.DERECHO);
+            this.posicionarFicha(fichaJuego, PosicionFicha.IZQUIERDO);
         }
     }//GEN-LAST:event_btnIzquierdoActionPerformed
 
@@ -278,7 +278,7 @@ public class FrmPartida extends javax.swing.JFrame {
         if (fichaJuego == null) {
             this.mostrarMsgError("Seleccione una ficha correctamente");
         } else {
-            this.posicionarFicha(fichaJuego, PosicionFicha.IZQUIERDO);
+            this.posicionarFicha(fichaJuego, PosicionFicha.DERECHO);
         }
     }//GEN-LAST:event_btnDerechoActionPerformed
 
@@ -308,9 +308,9 @@ public class FrmPartida extends javax.swing.JFrame {
         this.repaint();
     }
 
-    public void actualizarPantalla(IPartidaJuego partida, Graphics g) {
+    public void actualizarPantalla() {
         dibujante.crearLista(partida);
-        dibujante.dibujarTodos(g, this.panelJuego.getGraphics());
+        dibujante.dibujarTodos(this.getGraphics(), this.panelJuego.getGraphics());
     }
 
     public void mostrarMsgError(String mensaje) {

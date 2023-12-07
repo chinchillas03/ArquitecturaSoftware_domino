@@ -4,8 +4,8 @@
  */
 package org.itson.frames;
 
-import com.itson.listeners.PuntuacionesListener;
-import com.itson.presentadores.PresentadorPuntuaciones;
+import org.itson.listeners.PuntuacionesListener;
+import org.itson.presentadores.PresentadorPuntuaciones;
 import java.util.ArrayList;
 
 /**
