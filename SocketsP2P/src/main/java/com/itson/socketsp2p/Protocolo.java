@@ -5,7 +5,7 @@
 package com.itson.socketsp2p;
 
 import java.util.List;
-import org.itson.observador.protocoloObservable;
+import org.itson.observador.*;
 
 /**
  *
@@ -13,60 +13,72 @@ import org.itson.observador.protocoloObservable;
  */
 public class Protocolo{
     
-    private List<protocoloObservable> presentadorConexion;
-    private List<protocoloObservable> agregarFicha;
-    private List<protocoloObservable> salir;
-    private List<protocoloObservable> mostrarMarcador;
-    private List<protocoloObservable> cambiarAvatar;
+    private List<observarConexion> presentadorConexion;
+    private List<observarFicha> agregarFicha;
+    private List<observarSalir> salir;
+    private List<observarSalirTodos> salirTodos;
+    private List<observarCambiarAvatar> cambiarAvatar;
+    private List<observarFinPartida> finPartida;
 
-    public void setPresentadorConexion(protocoloObservable presentadorConexion) {
+    public void setPresentadorConexion(observarConexion presentadorConexion) {
         this.presentadorConexion.add(presentadorConexion);
     }
 
-    public void setAgregarFicha(protocoloObservable agregarFicha) {
+    public void setAgregarFicha(observarFicha agregarFicha) {
         this.agregarFicha.add(agregarFicha);
     }
 
-    public void setSalir(protocoloObservable salir) {
+    public void setSalir(observarSalir salir) {
         this.salir.add(salir);
     }
-
-    public void setMostrarMarcador(protocoloObservable mostrarMarcador) {
-        this.mostrarMarcador.add(mostrarMarcador);
-    }
-
-    public void setCambiarAvatar(protocoloObservable cambiarAvatar) {
-        this.cambiarAvatar.add(cambiarAvatar);
-    }
     
-    public void unirsePartida(){
-        for (protocoloObservable observable : presentadorConexion) {
-            observable.unirsePartida();
-        }
+    public void setSalirTodos(observarSalirTodos salirTodos) {
+        this.salirTodos.add(salirTodos);
+    }
+
+    public void setFinPartida(observarFinPartida finPartida) {
+        this.finPartida.add(finPartida);
+    }
+
+    public void setCambiarAvatar(observarCambiarAvatar cambiarAvatar) {
+        this.cambiarAvatar.add(cambiarAvatar);
+    } 
+    
+    public void nuevaConexion(){
+//        for (protocoloObservable observable : presentadorConexion) {
+//            observable.nuevaConexion();
+//        }
     }
     
     public void agregarFicha(){
-        for (protocoloObservable observable : presentadorConexion) {
+        for (observarFicha observable : agregarFicha) {
             observable.agregarFicha();
         }
     }
     
     public void cambiarAvatar(){
-        for (protocoloObservable observable : presentadorConexion) {
+        for (observarCambiarAvatar observable : cambiarAvatar) {
             observable.cambiarAvatar();
         }
     }
     
     public void salir(){
-        for (protocoloObservable observable : presentadorConexion) {
+        for (observarSalir observable : salir) {
             observable.salir();
         }
     }
     
     public void mostrarMarcador(){
-        for (protocoloObservable observable : presentadorConexion) {
-            observable.mostrarMarcador();
+        for (observarFinPartida observable : finPartida) {
+            observable.finPartida();
         }
     }
+    
+    public void salirTodos(){
+        for (observarSalirTodos observable : salirTodos) {
+            observable.salirTodos();
+        }
+    }
+    
 }
 

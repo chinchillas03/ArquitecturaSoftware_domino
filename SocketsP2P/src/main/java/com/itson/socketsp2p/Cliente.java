@@ -17,7 +17,7 @@ import java.util.List;
  *
  * @author Usuario
  */
-public class Cliente implements Serializable, Runnable {
+public class Cliente implements Runnable {
 
     private Socket socket;
     private Jugador jugador;
@@ -53,15 +53,25 @@ public class Cliente implements Serializable, Runnable {
         try {
             this.socket = new Socket(ip, puerto);
             setSocket(socket);
-            
+
             SocketServidorDTO nodo = new SocketServidorDTO(miServer.getServer().getInetAddress().toString(), miServer.getServer().getLocalPort());
-            
+
             ObjectOutputStream out = new ObjectOutputStream(this.socket.getOutputStream());
-            
+
             out.writeObject(nodo);
-            
-            out.close();           
-        } catch (IOException e) {
+            out.flush(); 
+
+            ObjectInputStream in = new ObjectInputStream(this.socket.getInputStream());
+            List<SocketServidorDTO> nodosConocidos = (List<SocketServidorDTO>) in.readObject();
+
+            for (SocketServidorDTO nodoConocido : nodosConocidos) {
+                System.out.println("IP: " + nodoConocido.getIp() + ", Puerto: " + nodoConocido.getPuerto());
+            }
+            this.setServidoresNodos(nodosConocidos);
+
+            in.close();
+            out.close();
+        } catch (IOException | ClassNotFoundException e) {
             System.out.println("Error: " + e.getMessage());
         }
     }
@@ -115,24 +125,28 @@ public class Cliente implements Serializable, Runnable {
                 ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
                 SocketServidorDTO nodo = new SocketServidorDTO(miServer.getServer().getInetAddress().toString(), socket.getLocalPort());
                 out.writeObject(nodo);
-                ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
+                out.flush(); // Agrega un flush después de escribir en el flujo
 
+                ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
                 List<SocketServidorDTO> nodos = (List<SocketServidorDTO>) in.readObject();
 
                 for (SocketServidorDTO nodo1 : nodos) {
-                    System.out.println("Nodos con puerto: " + nodo1.getPuerto() + "IP: " + nodo1.getIp());
+                    System.out.println("Nodos con puerto: " + nodo1.getPuerto() + " IP: " + nodo1.getIp());
                 }
 
                 for (SocketServidorDTO nodo1 : nodos) {
-                    if (!(nodo1.getIp() == socket.getInetAddress().toString()) && nodo1.getPuerto() == socket.getLocalPort()) {
-                    } else if ((!(nodo1.getIp() == "localhost") && nodo1.getPuerto() == socket.getLocalPort())) {
+                    if (!nodo1.getIp().equals(socket.getInetAddress().toString()) && nodo1.getPuerto() == socket.getLocalPort()) {
+
+                    } else if (!"localhost".equals(nodo1.getIp()) && nodo1.getPuerto() == socket.getLocalPort()) {
 
                     } else {
-                        socket = new Socket("localhost", nodo1.getPuerto());
+                        Socket newSocket = new Socket("localhost", nodo1.getPuerto());
+                        ObjectOutputStream newOut = new ObjectOutputStream(newSocket.getOutputStream());
+                        newOut.writeObject(nodo);
+                        newOut.flush();
+                        newOut.close(); 
 
-                        out.writeObject(nodo);
-
-                        out.close();
+                        newSocket.close();
                     }
                 }
 
@@ -143,5 +157,6 @@ public class Cliente implements Serializable, Runnable {
             System.out.println(e.getMessage());
         }
     }
+
 
 }

@@ -7,6 +7,7 @@ package org.itson.domino;
 
 import com.itson.socketsp2p.Cliente;
 import com.itson.socketsp2p.Servidor;
+import java.io.IOException;
 import org.itson.presentadores.PresentadorInicio;
 import javax.swing.SwingUtilities;
 
@@ -30,7 +31,8 @@ public class Domino {
                     Cliente cliente = new Cliente();
                     servidor.setCliente(cliente);
                     cliente.setMiServer(servidor);
-                } catch (Exception e) {
+                } catch (IOException e) {
+                    System.out.println("Error: " + e.getMessage());
                 }
                 new Domino();
             }

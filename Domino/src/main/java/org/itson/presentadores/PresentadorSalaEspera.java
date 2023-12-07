@@ -10,12 +10,14 @@ import org.itson.listeners.SalaEsperaListener;
 import java.util.List;
 import org.itson.Modelos.ModelSalaEspera;
 import org.itson.frames.FrmSalaEspera;
+import org.itson.observador.observarCambiarAvatar;
+import org.itson.observador.observarConexion;
 
 /**
  *
  * @author Usuario
  */
-public class PresentadorSalaEspera implements SalaEsperaListener{
+public class PresentadorSalaEspera implements SalaEsperaListener, observarCambiarAvatar, observarConexion{
 
     private final FrmSalaEspera view = new FrmSalaEspera();
     private final ModelSalaEspera model = new ModelSalaEspera();
@@ -88,6 +90,16 @@ public class PresentadorSalaEspera implements SalaEsperaListener{
      */
     public void mostrarPantallaSalaEspera() {
         this.view.mostrarPantallaSalaEspera();
+    }
+
+    @Override
+    public void cambiarAvatar() {
+        
+    }
+
+    @Override
+    public void conexion() {
+        
     }
 
 }

@@ -22,8 +22,10 @@ public class Servidor implements Runnable, Serializable{
     private Cliente cliente;
     private Partida partida;
     private SocketServidorDTO nodo;
-
+    private Protocolo protocolo;
+    
     public Servidor(int puerto) throws IOException {
+        this.protocolo = new Protocolo();
         this.server = new ServerSocket(puerto);
         this.nodo = new SocketServidorDTO(server.getInetAddress().toString(), server.getLocalPort());
         Thread hilo = new Thread(this);
@@ -58,10 +60,10 @@ public class Servidor implements Runnable, Serializable{
         this.partida = partida;
     }
 
-    public void enviarNuevoNodoACliente(SocketServidorDTO nuevoNodo){
+    public void enviarNuevoNodoACliente(SocketServidorDTO nuevoNodo) {
         cliente.agregarNodo(nuevoNodo);
     }
-    
+
     public void regresarInformacionANodo(SocketServidorDTO nuevoNodo) {
         List<SocketServidorDTO> nodos = cliente.getServidoresNodos();
         boolean entrada = true;
@@ -90,47 +92,45 @@ public class Servidor implements Runnable, Serializable{
     @Override
     public void run() {
         try {
-            while (true) {  
+            while (true) {
                 System.out.println("--------------------------------------------");
                 System.out.println("Esperando conexión de cliente...");
 
                 Socket socketConectado = this.server.accept();
 
                 System.out.println("Cliente conectado");
-
                 ObjectInputStream in = new ObjectInputStream(socketConectado.getInputStream());
 
-                Object entrada = (Object) in.readObject();
-
-                if (entrada instanceof SocketServidorDTO) {
-                    SocketServidorDTO nodoNuevo = (SocketServidorDTO) entrada;
-                    System.out.println("Nodo con puerto servidor de: " + nodoNuevo.getPuerto() + " IP: " + nodoNuevo.getIp());
-                    
-                    System.out.println("--------------------------------------------");
-                    System.out.println("");
-                    
+                try {
                     ObjectOutputStream out = new ObjectOutputStream(socketConectado.getOutputStream());
-                    
-                    
-                    
-                    List<SocketServidorDTO> nodos = cliente.getServidoresNodos();
-                    
-                    if (nodos.size() <= 0) {
-                        nodos.add(this.nodo);
-                    }               
-                    cliente.agregarNodo(nodoNuevo);                                     
-                    out.writeObject(nodos);                   
-                    out.close();
-                    
-                } 
-                
-                in.close();
+                    Object entrada = in.readObject();
+
+                    if (entrada instanceof SocketServidorDTO) {
+                        SocketServidorDTO nodoNuevo = (SocketServidorDTO) entrada;
+                        System.out.println("Nodo con puerto servidor de: " + nodoNuevo.getPuerto() + " IP: " + nodoNuevo.getIp());
+
+                        System.out.println("--------------------------------------------");
+                        System.out.println("");
+
+                        List<SocketServidorDTO> nodos = cliente.getServidoresNodos();
+
+                        if (nodos.size() <= 0) {
+                            nodos.add(this.nodo);
+                        }
+                        cliente.agregarNodo(nodoNuevo);
+                        out.writeObject(nodos);
+
+                        this.protocolo.nuevaConexion();
+
+                    }
+                } catch (IOException | ClassNotFoundException e) {
+                    System.out.println("Error: " + e.getMessage());
+                }
+
                 socketConectado.close();
             }
-        } catch (IOException | ClassNotFoundException e) {
+        } catch (IOException e) {
             System.out.println("Error: " + e.getMessage());
         }
     }
-    
 }
-

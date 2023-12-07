@@ -24,8 +24,7 @@ public class PresentadorSetIP implements SetIPListener {
 
     @Override
     public void clickBotonUnirse(String ip, int puerto) {
-//        this.model.setIp(ip);
-//        this.model.setPuerto(puerto);
+        model.setModel(ip, puerto);
         new PresentadorSalaEspera().mostrarPantallaSalaEspera();
     }
 

@@ -8,10 +8,6 @@ package org.itson.observador;
  *
  * @author Usuario
  */
-public interface protocoloObservable {
-    public void unirsePartida();
+public interface observarFicha {
     public void agregarFicha();
-    public void cambiarAvatar();
-    public void salir();
-    public void mostrarMarcador();   
 }

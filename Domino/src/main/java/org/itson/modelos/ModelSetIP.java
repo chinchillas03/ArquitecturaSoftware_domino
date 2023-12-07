@@ -4,6 +4,8 @@
  */
 package org.itson.modelos;
 
+import com.itson.socketsp2p.Cliente;
+
 /**
  *
  * @author aroco
@@ -26,6 +28,11 @@ public class ModelSetIP {
 
     public void setIp(String ip) {
         this.ip = ip;
+    }
+    
+    public void setModel(String ip, int puerto){
+        Cliente cliente = new Cliente();
+        cliente.conectar(ip, puerto);
     }
     
 }
