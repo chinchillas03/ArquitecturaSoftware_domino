@@ -2,36 +2,42 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
-package socketspruebafinal;
+package com.itson.socketsp2p;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.ObjectOutput;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
-import javax.net.ssl.SSLServerSocket;
+import java.util.List;
 
 /**
  *
  * @author Usuario
  */
-public class NewMain {
+public class NewMain1 {
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ClassNotFoundException {
         // TODO code application logic here
         try {
-            int puerto1 = 9999;
+            
+            int puerto1 = 9998;
+            
             Servidor servidor = new Servidor(puerto1);
             Cliente cliente = new Cliente();
             servidor.setCliente(cliente);
+            
             cliente.setMiServer(servidor);
-        } catch (Exception e) {
+            String ip = "192.168.1.66";
+            int puerto = 9999;
+            
+            cliente.conectar(ip, puerto);
+            
+        } catch (IOException e) {
         }
     }
-
+    
 }

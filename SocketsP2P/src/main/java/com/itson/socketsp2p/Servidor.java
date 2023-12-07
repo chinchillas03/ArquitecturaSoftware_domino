@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package socketspruebafinal;
+package com.itson.socketsp2p;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -105,11 +105,13 @@ public class Servidor implements Runnable, Serializable{
                 if (entrada instanceof SocketServidorDTO) {
                     SocketServidorDTO nodoNuevo = (SocketServidorDTO) entrada;
                     System.out.println("Nodo con puerto servidor de: " + nodoNuevo.getPuerto() + " IP: " + nodoNuevo.getIp());
-
+                    
                     System.out.println("--------------------------------------------");
                     System.out.println("");
                     
                     ObjectOutputStream out = new ObjectOutputStream(socketConectado.getOutputStream());
+                    
+                    
                     
                     List<SocketServidorDTO> nodos = cliente.getServidoresNodos();
                     
@@ -131,3 +133,4 @@ public class Servidor implements Runnable, Serializable{
     }
     
 }
+

@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package socketspruebafinal;
+package com.itson.socketsp2p;
 
 import java.io.Serializable;
 
@@ -40,3 +40,4 @@ public class SocketServidorDTO implements Serializable {
     }
     
 }
+

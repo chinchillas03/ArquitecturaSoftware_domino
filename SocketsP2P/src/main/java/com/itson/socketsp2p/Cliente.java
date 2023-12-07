@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package socketspruebafinal;
+package com.itson.socketsp2p;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -17,8 +17,8 @@ import java.util.List;
  *
  * @author Usuario
  */
-public class Cliente implements Serializable, Runnable{
-    
+public class Cliente implements Serializable, Runnable {
+
     private Socket socket;
     private Jugador jugador;
     private Servidor miServer;
@@ -34,15 +34,38 @@ public class Cliente implements Serializable, Runnable{
         return servidoresNodos;
     }
 
+    public void validarSocket(){
+        if (this.socket == null) {
+            this.socket = new Socket();
+        }
+    }
+    
     public void setServidoresNodos(List<SocketServidorDTO> servidoresNodos) {
         this.servidoresNodos = servidoresNodos;
     }
 
-    public void agregarNodo(SocketServidorDTO nuevoNodo){
+    public void agregarNodo(SocketServidorDTO nuevoNodo) {
         this.servidoresNodos.add(nuevoNodo);
 //        this.broadcast(nuevoNodo);
-    }    
-    
+    }
+
+    public void conectar(String ip, int puerto) {
+        try {
+            this.socket = new Socket(ip, puerto);
+            setSocket(socket);
+            
+            SocketServidorDTO nodo = new SocketServidorDTO(miServer.getServer().getInetAddress().toString(), miServer.getServer().getLocalPort());
+            
+            ObjectOutputStream out = new ObjectOutputStream(this.socket.getOutputStream());
+            
+            out.writeObject(nodo);
+            
+            out.close();           
+        } catch (IOException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+
     public void broadcast(SocketServidorDTO nuevoNodo) {
         try {
             for (SocketServidorDTO servidoresNodo : servidoresNodos) {
@@ -60,7 +83,7 @@ public class Cliente implements Serializable, Runnable{
             System.out.println("Error: " + e.getMessage());
         }
     }
-    
+
     public Servidor getMiServer() {
         return miServer;
     }
@@ -88,20 +111,37 @@ public class Cliente implements Serializable, Runnable{
     @Override
     public void run() {
         try {
-            this.socket = getSocket();
-
             if (socket != null) {
+                ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
+                SocketServidorDTO nodo = new SocketServidorDTO(miServer.getServer().getInetAddress().toString(), socket.getLocalPort());
+                out.writeObject(nodo);
                 ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
 
                 List<SocketServidorDTO> nodos = (List<SocketServidorDTO>) in.readObject();
 
-                this.setServidoresNodos(nodos);
+                for (SocketServidorDTO nodo1 : nodos) {
+                    System.out.println("Nodos con puerto: " + nodo1.getPuerto() + "IP: " + nodo1.getIp());
+                }
+
+                for (SocketServidorDTO nodo1 : nodos) {
+                    if (!(nodo1.getIp() == socket.getInetAddress().toString()) && nodo1.getPuerto() == socket.getLocalPort()) {
+                    } else if ((!(nodo1.getIp() == "localhost") && nodo1.getPuerto() == socket.getLocalPort())) {
+
+                    } else {
+                        socket = new Socket("localhost", nodo1.getPuerto());
+
+                        out.writeObject(nodo);
+
+                        out.close();
+                    }
+                }
 
                 in.close();
+                out.close();
             }
         } catch (IOException | ClassNotFoundException e) {
             System.out.println(e.getMessage());
         }
     }
-    
+
 }

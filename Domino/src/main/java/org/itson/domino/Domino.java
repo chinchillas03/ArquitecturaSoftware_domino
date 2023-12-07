@@ -5,6 +5,8 @@
 
 package org.itson.domino;
 
+import com.itson.socketsp2p.Cliente;
+import com.itson.socketsp2p.Servidor;
 import org.itson.presentadores.PresentadorInicio;
 import javax.swing.SwingUtilities;
 
@@ -19,9 +21,17 @@ public class Domino {
     }
     
     public static void main(String[] args) {
-      SwingUtilities.invokeLater(new Runnable() {
+        SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
+                try {
+                    int puerto1 = 9999;
+                    Servidor servidor = new Servidor(puerto1);
+                    Cliente cliente = new Cliente();
+                    servidor.setCliente(cliente);
+                    cliente.setMiServer(servidor);
+                } catch (Exception e) {
+                }
                 new Domino();
             }
         });
