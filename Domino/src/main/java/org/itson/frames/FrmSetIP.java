@@ -13,16 +13,24 @@ import org.itson.presentadores.PresentadorSetIP;
  * @author aroco
  */
 public class FrmSetIP extends javax.swing.JFrame {
+
     public SetIPListener listener;
+
     /**
      * Creates new form FrmSetIP
      */
     public FrmSetIP() {
         initComponents();
     }
-    
-      public void setListener(SetIPListener listener) {
+
+    public void setListener(SetIPListener listener) {
         this.listener = listener;
+    }
+
+    public void clickBotonUnirse() {
+        String ip = this.txtIP.getText();
+        int puerto = Integer.valueOf(this.txtPuerto.getText());
+        listener.clickBotonUnirse(ip, puerto);
     }
 
     /**
@@ -109,9 +117,7 @@ public class FrmSetIP extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnUnirseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUnirseActionPerformed
-      String ip= this.txtIP.getText();
-      int puerto= Integer.valueOf(this.txtPuerto.getText());
-        listener.clickBotonUnirse(ip, puerto);
+        this.clickBotonUnirse();
     }//GEN-LAST:event_btnUnirseActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
