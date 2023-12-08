@@ -47,10 +47,14 @@
                           <Component id="lblNombreJugador2" min="-2" max="-2" attributes="0"/>
                           <Component id="lblNombreJugador3" min="-2" max="-2" attributes="0"/>
                           <Component id="lblNombreJugador4" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtPuntuacion3" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtPuntuacion" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtPuntuacion1" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtPuntuacion2" alignment="1" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="117" max="32767" attributes="0"/>
+              <EmptySpace pref="110" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -69,22 +73,30 @@
                   <Component id="lblPrimerLugar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblNombreJugador1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="118" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="txtPuntuacion" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblSegundoLugar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblNombreJugador2" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="125" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="txtPuntuacion1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="103" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblTercerLugar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblNombreJugador3" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="116" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="txtPuntuacion2" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="94" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblCuartoLugar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblNombreJugador4" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="73" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="txtPuntuacion3" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="51" max="32767" attributes="0"/>
               <Component id="btnSalir" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
           </Group>
@@ -162,6 +174,26 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSalirActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="txtPuntuacion">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="puntuacion"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="txtPuntuacion1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="puntuacion"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="txtPuntuacion2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="puntuacion"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="txtPuntuacion3">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="puntuacion"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

@@ -96,6 +96,7 @@ public class Jugador implements JugadorSala{
         for (FichaJuego ficha : fichas) {
             cont+= ficha.getValorFicha();
         }
+       this.setPuntuacion(cont);
         return cont;
     }
     public int verificarNumFichas(){

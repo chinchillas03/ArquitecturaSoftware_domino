@@ -38,8 +38,6 @@ public class Tablero {
     }
 
     public boolean verificaFicha(FichaTablero ficha) {
-        //Poner metodo para cada uno de los extremos
-        //Separa por metodos distintos
         if (ficha.getLado() == PosicionFicha.DERECHO) {
             return verificarLadoDerecho(ficha);
         } else {
@@ -65,7 +63,6 @@ public class Tablero {
     }
 
     public void agregarFicha(FichaTablero ficha) {
-
         if (fichas.isEmpty()) {
             if (ficha.esMula()) {
                 fichas.add(ficha);
@@ -80,10 +77,10 @@ public class Tablero {
             fichas.add(ficha);
 
         }
-                    actualizarExtremos(ficha);
-
-        System.out.println(this.getExtremoDerecho());
-        System.out.println(this.getExtremoIzquierdo());
+        actualizarExtremos(ficha);
+        
+        System.out.println(extremoDerecho);
+        System.out.println(extremoIzquierdo);
     }
 
     @Override
@@ -93,18 +90,25 @@ public class Tablero {
 
     private boolean verificarLadoDerecho(FichaTablero ficha) {
         int ladoDerechoTablero = this.getExtremoDerecho();
+        int valorIzq=ficha.getValorIzquierdo();
+        int valorDer=ficha.getValorDerecho();
         if (ladoDerechoTablero == ficha.getValorIzquierdo()) {
             return true;
         } else if (ladoDerechoTablero == ficha.getValorDerecho()) {
-            return true;
+           ficha.setValorDerecho(valorIzq);
+          ficha.setValorIzquierdo(valorDer);
+          return true;
         }
         return false;
     }
 
-    // Modificar el dibujo para validar que sean correctos
     private boolean verificarLadoIzquierdo(FichaTablero ficha) {
-        int ladoIzquierdoTablero = this.getExtremoDerecho();
+        int ladoIzquierdoTablero = this.getExtremoIzquierdo();
+        int valorIzq=ficha.getValorIzquierdo();
+        int valorDer=ficha.getValorDerecho();
         if (ladoIzquierdoTablero == ficha.getValorIzquierdo()) {
+          ficha.setValorDerecho(valorIzq);
+          ficha.setValorIzquierdo(valorDer);
             return true;
         } else if (ladoIzquierdoTablero == ficha.getValorDerecho()) {
             return true;

@@ -21,7 +21,7 @@ import org.itson.observador.observarSalirTodos;
  *
  * @author Joel Antonio Lopez Cota ID:228926
  */
-public class PresentadorPartida implements TableroJuegoListener, observarSalir, observarSalirTodos, observarFicha, observarFinPartida{
+public class PresentadorPartida implements TableroJuegoListener, observarSalir, observarSalirTodos, observarFicha, observarFinPartida {
 
     private FrmPartida view = new FrmPartida();
     private ModelPartida model = new ModelPartida();
@@ -43,21 +43,31 @@ public class PresentadorPartida implements TableroJuegoListener, observarSalir, 
     @Override
     public void clickBotonAbandonarPartida() {
         this.cerrarPantallaPartida();
+        this.model.terminarPartida();
+        terminarPartida();
+    }
+
+    @Override
+    public void terminarPartida() {
         PresentadorPuntuaciones presenter = new PresentadorPuntuaciones();
         presenter.mostrarPantallaPuntuaciones();
-        this.model.terminarPartida();
         presenter.setModelPuntuaciones(this.model.getListaJugadores());
     }
 
     /**
-     * Maneja el evento de posicionar una ficha en el juego. Lleva a cabo la
+     * Maneja el evento de posicionar una ficha en el juego.Lleva a cabo la
      * lógica para posicionar una ficha en el tablero de juego.
+     * @param fichaJuego
+     * @param lado
      */
     @Override
-    public void posicionarFicha(Ficha fichaJuego,PosicionFicha lado) {
-        if (this.model.posicionarFicha(fichaJuego,lado)) {
-            this.actualizarPantalla();
-        }       
+    public void posicionarFicha(Ficha fichaJuego, PosicionFicha lado) {
+        if (this.model.posicionarFicha(fichaJuego, lado)) {
+            if (this.model.isPartidaTerminada()) {
+                this.terminarPartida();
+            }
+        }
+
     }
 
     /**
@@ -71,7 +81,7 @@ public class PresentadorPartida implements TableroJuegoListener, observarSalir, 
         if (!this.model.jalarPozo(jugador)) {
             this.view.mostrarMsgError("Pozo Vacio");
         }
-        
+
     }
 
     /**
@@ -80,7 +90,7 @@ public class PresentadorPartida implements TableroJuegoListener, observarSalir, 
      */
     @Override
     public void actualizarPantalla() {
-         this.view.actualizarPantalla();
+        this.view.actualizarPantalla();
     }
 
     /**
@@ -124,8 +134,7 @@ public class PresentadorPartida implements TableroJuegoListener, observarSalir, 
     public void cerrarPantallaPartida() {
         this.view.cerrarPantallaPartida();
     }
-    
-     
+
     /**
      * Establece el modelo de partida con una lista de jugadores.
      *
@@ -151,21 +160,21 @@ public class PresentadorPartida implements TableroJuegoListener, observarSalir, 
 
     @Override
     public void salir() {
-        
+
     }
 
     @Override
     public void salirTodos() {
-        
+
     }
 
     @Override
     public void agregarFicha() {
-        
+
     }
 
     @Override
     public void finPartida() {
-        
+
     }
 }

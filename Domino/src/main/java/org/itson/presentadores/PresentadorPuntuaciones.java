@@ -14,28 +14,30 @@ import org.itson.frames.FrmPuntuaciones;
  *
  * @author Usuario
  */
-public class PresentadorPuntuaciones implements PuntuacionesListener{
+public class PresentadorPuntuaciones implements PuntuacionesListener {
 
     private final FrmPuntuaciones view = new FrmPuntuaciones();
     private final ModelPuntuaciones model = new ModelPuntuaciones();
 
     /**
-     * Constructor de la clase PresentadorPuntuaciones.
-     * Inicializa la clase y se suscribe a los eventos de la vista de puntuaciones.
+     * Constructor de la clase PresentadorPuntuaciones. Inicializa la clase y se
+     * suscribe a los eventos de la vista de puntuaciones.
      */
     public PresentadorPuntuaciones() {
-         this.view.setListener(this);
+        this.view.setListener(this);
     }
 
     /**
-     * Maneja el evento de hacer clic en el botón "Salir" en la pantalla de puntuaciones.
-     * Cierra la pantalla de puntuaciones y muestra la pantalla de inicio.
+     * Maneja el evento de hacer clic en el botón "Salir" en la pantalla de
+     * puntuaciones. Cierra la pantalla de puntuaciones y muestra la pantalla de
+     * inicio.
      */
     @Override
     public void clickBotonSalir() {
         this.cerrarPantallaPuntuaciones();
         new PresentadorInicio().mostrarPantallaInicio();
     }
+
     /**
      * Muestra la pantalla de puntuaciones.
      */
@@ -49,12 +51,12 @@ public class PresentadorPuntuaciones implements PuntuacionesListener{
     public void cerrarPantallaPuntuaciones() {
         this.view.cerrarPantallaPuntuaciones();
     }
-    
 
     /**
      * Establece el modelo de puntuaciones con una lista de jugadores.
      *
-     * @param jugadores La lista de jugadores cuyas puntuaciones se mostrarán en la pantalla de puntuaciones.
+     * @param jugadores La lista de jugadores cuyas puntuaciones se mostrarán en
+     * la pantalla de puntuaciones.
      */
     public void setModelPuntuaciones(List<Jugador> jugadores) {
         this.model.setJugadores(jugadores);
@@ -63,7 +65,10 @@ public class PresentadorPuntuaciones implements PuntuacionesListener{
         this.view.setLblNombreJugador2(jugadores.get(1).getNombre());
         this.view.setLblNombreJugador3(jugadores.get(2).getNombre());
         this.view.setLblNombreJugador4(jugadores.get(3).getNombre());
-        System.out.println(this.model.getJugadores());
+        this.view.setTxtPuntuacion(String.valueOf(jugadores.get(0).getPuntuacion()));
+        this.view.setTxtPuntuacion1(String.valueOf(jugadores.get(1).getPuntuacion()));
+        this.view.setTxtPuntuacion2(String.valueOf(jugadores.get(2).getPuntuacion()));
+        this.view.setTxtPuntuacion3(String.valueOf(jugadores.get(3).getPuntuacion()));
     }
-    
+
 }

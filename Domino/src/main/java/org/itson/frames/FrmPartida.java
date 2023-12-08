@@ -95,6 +95,10 @@ public class FrmPartida extends javax.swing.JFrame {
         btnPasarTurno = new javax.swing.JButton();
         btnIzquierdo = new javax.swing.JButton();
         btnDerecho = new javax.swing.JButton();
+        lblNickugador = new javax.swing.JLabel();
+        lblNickugador1 = new javax.swing.JLabel();
+        lblNickugador2 = new javax.swing.JLabel();
+        lblNickugador3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Partida");
@@ -119,6 +123,17 @@ public class FrmPartida extends javax.swing.JFrame {
         });
 
         lblJugador1.setText("jugador");
+
+        panelJuego.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                panelJuegoMouseClicked(evt);
+            }
+        });
+        panelJuego.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentMoved(java.awt.event.ComponentEvent evt) {
+                panelJuegoComponentMoved(evt);
+            }
+        });
 
         pnlTablero.setBackground(new java.awt.Color(51, 102, 0));
 
@@ -169,6 +184,14 @@ public class FrmPartida extends javax.swing.JFrame {
             }
         });
 
+        lblNickugador.setText("foto");
+
+        lblNickugador1.setText("foto");
+
+        lblNickugador2.setText("foto");
+
+        lblNickugador3.setText("foto");
+
         javax.swing.GroupLayout pnlPartidaLayout = new javax.swing.GroupLayout(pnlPartida);
         pnlPartida.setLayout(pnlPartidaLayout);
         pnlPartidaLayout.setHorizontalGroup(
@@ -176,9 +199,11 @@ public class FrmPartida extends javax.swing.JFrame {
             .addGroup(pnlPartidaLayout.createSequentialGroup()
                 .addGroup(pnlPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlPartidaLayout.createSequentialGroup()
+                        .addGap(480, 480, 480)
+                        .addComponent(btnAbandonarPartida))
+                    .addGroup(pnlPartidaLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(pnlPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblJugador2)
                             .addGroup(pnlPartidaLayout.createSequentialGroup()
                                 .addComponent(lblJugador1)
                                 .addGap(34, 34, 34)
@@ -187,32 +212,45 @@ public class FrmPartida extends javax.swing.JFrame {
                                     .addGroup(pnlPartidaLayout.createSequentialGroup()
                                         .addComponent(btnIzquierdo)
                                         .addGap(10, 10, 10)
-                                        .addComponent(btnDerecho)))))
+                                        .addComponent(btnDerecho))))
+                            .addGroup(pnlPartidaLayout.createSequentialGroup()
+                                .addGroup(pnlPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblJugador2)
+                                    .addComponent(lblNickugador3))
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(18, 18, 18)
                         .addGroup(pnlPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnPasarTurno, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnJalarPozo, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblJugador4)
-                            .addComponent(lblJugador3)))
-                    .addGroup(pnlPartidaLayout.createSequentialGroup()
-                        .addGap(480, 480, 480)
-                        .addComponent(btnAbandonarPartida)))
+                            .addComponent(lblJugador3)
+                            .addComponent(lblNickugador1)
+                            .addComponent(lblNickugador2))))
                 .addGap(0, 6, Short.MAX_VALUE))
+            .addGroup(pnlPartidaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblNickugador)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlPartidaLayout.setVerticalGroup(
             pnlPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlPartidaLayout.createSequentialGroup()
-                .addContainerGap(110, Short.MAX_VALUE)
+                .addGap(30, 30, 30)
+                .addGroup(pnlPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblNickugador2)
+                    .addComponent(lblNickugador3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
                 .addGroup(pnlPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblJugador2)
                     .addComponent(lblJugador3))
                 .addGap(4, 4, 4)
                 .addGroup(pnlPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlPartidaLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnJalarPozo)
                         .addGap(18, 18, 18)
                         .addComponent(btnPasarTurno)
-                        .addGap(305, 305, 305))
+                        .addGap(316, 316, 316))
                     .addGroup(pnlPartidaLayout.createSequentialGroup()
                         .addComponent(panelJuego, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -222,7 +260,11 @@ public class FrmPartida extends javax.swing.JFrame {
                             .addGroup(pnlPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(btnIzquierdo)
                                 .addComponent(btnDerecho)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addGroup(pnlPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblNickugador)
+                            .addComponent(lblNickugador1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                         .addComponent(btnAbandonarPartida)
                         .addContainerGap())))
         );
@@ -288,6 +330,13 @@ public class FrmPartida extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnPasarTurnoActionPerformed
 
+    private void panelJuegoComponentMoved(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_panelJuegoComponentMoved
+    }//GEN-LAST:event_panelJuegoComponentMoved
+
+    private void panelJuegoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelJuegoMouseClicked
+        this.repaint();
+    }//GEN-LAST:event_panelJuegoMouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAbandonarPartida;
     private javax.swing.JButton btnDerecho;
@@ -298,6 +347,10 @@ public class FrmPartida extends javax.swing.JFrame {
     private javax.swing.JLabel lblJugador2;
     private javax.swing.JLabel lblJugador3;
     private javax.swing.JLabel lblJugador4;
+    private javax.swing.JLabel lblNickugador;
+    private javax.swing.JLabel lblNickugador1;
+    private javax.swing.JLabel lblNickugador2;
+    private javax.swing.JLabel lblNickugador3;
     private javax.swing.JScrollPane panelJuego;
     private javax.swing.JPanel pnlPartida;
     private javax.swing.JPanel pnlTablero;

@@ -21,7 +21,7 @@ public class FichaTabDibujo extends Figuras {
     private List<FichaTablero> fichasTablero;
     private int ladoDerecho;
     private int ladoIzquierdo;
-    
+
     public FichaTabDibujo(int x, int y, List<FichaTablero> fichasTablero) {
         this.x = x;
         this.y = y;
@@ -43,7 +43,7 @@ public class FichaTabDibujo extends Figuras {
     public void setLadoIzquierdo(int ladoIzquierdo) {
         this.ladoIzquierdo = ladoIzquierdo;
     }
-    
+
     public int getX() {
         return x;
     }
@@ -66,18 +66,15 @@ public class FichaTabDibujo extends Figuras {
 
     public void setFichasTablero(List<FichaTablero> fichasTablero) {
         if (!fichasTablero.equals(this.fichasTablero)) {
-                  this.fichasTablero = fichasTablero;
+            this.fichasTablero = fichasTablero;
+        }
     }
-    }
-    
+
     @Override
     public void dibujar(Graphics g) {
-        y=180;
-        x=370;
+        y = 180;
+        x = 120;
         for (int i = 0; i < fichasTablero.size(); i++) {
-            if (fichasTablero.get(i).getLado()!=null) {
-                ordenarFichas(fichasTablero,i);
-            }
             if (fichasTablero.get(i).esMula()) {
                 x += 24;
                 g.setColor(Color.WHITE);
@@ -87,7 +84,7 @@ public class FichaTabDibujo extends Figuras {
                 g.drawLine(x, y + 25, x + 25, y + 25);
                 drawVerticalDots(g, fichasTablero.get(i).getValorIzquierdo(), x + 3, y + 3);
                 drawVerticalDots(g, fichasTablero.get(i).getValorDerecho(), x + 3, y + 25);
-                x+=10;
+                x += 10;
             } else {
                 x += 24;
                 g.setColor(Color.WHITE);
@@ -95,24 +92,13 @@ public class FichaTabDibujo extends Figuras {
                 g.setColor(Color.BLACK);
                 g.drawRect(x, y + 15, 50, 25);
                 g.drawLine(x + 25, y + 15, x + 25, y + 40);
-                drawDots(g, this.getLadoIzquierdo(), x + 3, y + 18); // Ajusta las coordenadas de los puntos según la posición y
-                drawDots(g, this.getLadoDerecho(), x + 25, y + 18); // Ajusta las coordenadas de los puntos según la posición y
+                drawDots(g, fichasTablero.get(i).getValorIzquierdo(), x + 3, y + 18); // Ajusta las coordenadas de los puntos según la posición y
+                drawDots(g, fichasTablero.get(i).getValorDerecho(), x + 25, y + 18); // Ajusta las coordenadas de los puntos según la posición y
                 x += 28;
 
             }
 
         }
-    }
-
-    private void ordenarFichas(List<FichaTablero> fichasTablero,int i) {
-        if (fichasTablero.get(i).getValorDerecho()!=fichasTablero.get(i).getValorIzquierdo()) {
-            this.setLadoDerecho(fichasTablero.get(i).getValorIzquierdo());
-            this.setLadoIzquierdo(fichasTablero.get(i).getValorDerecho());
-        }else{
-            this.setLadoDerecho(fichasTablero.get(i).getValorDerecho());
-            this.setLadoIzquierdo(fichasTablero.get(i).getValorIzquierdo());
-        }
-        
     }
 
     private void drawVerticalDots(Graphics g, int dots, int x, int y) {

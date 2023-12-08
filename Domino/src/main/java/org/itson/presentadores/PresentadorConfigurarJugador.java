@@ -38,6 +38,7 @@ public class PresentadorConfigurarJugador implements ConfigurarJugadorListener{
     public boolean validarJugador(String nombre){
         if (!this.model.validarJugador(nombre) == true) {
           this.mostrarMensaje(nombre);
+          this.clickBotonAplicar(nombre);
         }
         return true;
     }

@@ -7,6 +7,7 @@ package org.itson.frames;
 import org.itson.listeners.PuntuacionesListener;
 import org.itson.presentadores.PresentadorPuntuaciones;
 import java.util.ArrayList;
+import javax.swing.JLabel;
 
 /**
  *
@@ -42,6 +43,24 @@ public class FrmPuntuaciones extends javax.swing.JFrame {
     public void setLblNombreJugador4(String texto) {
         this.lblNombreJugador4.setText(texto);
     }
+
+    public void setTxtPuntuacion(String txtPuntuacion) {
+        this.txtPuntuacion.setText(txtPuntuacion);
+    }
+
+    public void setTxtPuntuacion1(String txtPuntuacion1) {
+        this.txtPuntuacion1.setText(txtPuntuacion1);
+    }
+
+    public void setTxtPuntuacion2(String txtPuntuacion2) {
+        this.txtPuntuacion2.setText(txtPuntuacion2);
+    }
+
+    public void setTxtPuntuacion3(String txtPuntuacion3) {
+        this.txtPuntuacion3.setText(txtPuntuacion3);
+    }
+
+    
     
     private void notificarBotonPrecionadoSalir(){
         listener.clickBotonSalir();        
@@ -74,6 +93,10 @@ public class FrmPuntuaciones extends javax.swing.JFrame {
         lblNombreJugador3 = new javax.swing.JLabel();
         lblNombreJugador4 = new javax.swing.JLabel();
         btnSalir = new javax.swing.JButton();
+        txtPuntuacion = new javax.swing.JLabel();
+        txtPuntuacion1 = new javax.swing.JLabel();
+        txtPuntuacion2 = new javax.swing.JLabel();
+        txtPuntuacion3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(229, 239, 226));
@@ -110,6 +133,14 @@ public class FrmPuntuaciones extends javax.swing.JFrame {
             }
         });
 
+        txtPuntuacion.setText("puntuacion");
+
+        txtPuntuacion1.setText("puntuacion");
+
+        txtPuntuacion2.setText("puntuacion");
+
+        txtPuntuacion3.setText("puntuacion");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -131,8 +162,12 @@ public class FrmPuntuaciones extends javax.swing.JFrame {
                             .addComponent(lblNombreJugador1)
                             .addComponent(lblNombreJugador2)
                             .addComponent(lblNombreJugador3)
-                            .addComponent(lblNombreJugador4))))
-                .addContainerGap(117, Short.MAX_VALUE))
+                            .addComponent(lblNombreJugador4)
+                            .addComponent(txtPuntuacion3)
+                            .addComponent(txtPuntuacion)
+                            .addComponent(txtPuntuacion1)
+                            .addComponent(txtPuntuacion2))))
+                .addContainerGap(110, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(btnSalir)
@@ -147,19 +182,27 @@ public class FrmPuntuaciones extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPrimerLugar)
                     .addComponent(lblNombreJugador1))
-                .addGap(118, 118, 118)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtPuntuacion)
+                .addGap(96, 96, 96)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblSegundoLugar)
                     .addComponent(lblNombreJugador2))
-                .addGap(125, 125, 125)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtPuntuacion1)
+                .addGap(103, 103, 103)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTercerLugar)
                     .addComponent(lblNombreJugador3))
-                .addGap(116, 116, 116)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtPuntuacion2)
+                .addGap(94, 94, 94)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCuartoLugar)
                     .addComponent(lblNombreJugador4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtPuntuacion3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addComponent(btnSalir)
                 .addGap(54, 54, 54))
         );
@@ -184,5 +227,9 @@ public class FrmPuntuaciones extends javax.swing.JFrame {
     private javax.swing.JLabel lblPrimerLugar;
     private javax.swing.JLabel lblSegundoLugar;
     private javax.swing.JLabel lblTercerLugar;
+    private javax.swing.JLabel txtPuntuacion;
+    private javax.swing.JLabel txtPuntuacion1;
+    private javax.swing.JLabel txtPuntuacion2;
+    private javax.swing.JLabel txtPuntuacion3;
     // End of variables declaration//GEN-END:variables
 }

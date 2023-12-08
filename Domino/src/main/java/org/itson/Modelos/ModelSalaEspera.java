@@ -51,7 +51,7 @@ public class ModelSalaEspera {
         jugadores.add(new Jugador("Paco"));    
        
         this.avatares = new LinkedList<>();
-        avatares.add(new Avatar(new ImageIcon("/avatares/chemFuerte.png")));
+        avatares.add(new Avatar(new ImageIcon("*/avatares/chemFuerte.png")));
         avatares.add(new Avatar(new ImageIcon("/avatares/doge.png")));
         avatares.add(new Avatar(new ImageIcon("/avatares/gato.png")));
         avatares.add(new Avatar(new ImageIcon("/avatares/hormiga.png")));

@@ -30,6 +30,9 @@ public class ModelConfigurarJugador {
     }
     
     public boolean validarJugador(String nombre){
+        if (jugador==null) {
+            jugador=new Jugador();
+        }
         if (this.jugador.validarNombre(nombre) == true) {
             return true;
         }

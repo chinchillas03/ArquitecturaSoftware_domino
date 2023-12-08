@@ -18,13 +18,13 @@ public class PresentadorInicio implements InicioListener{
     public PresentadorInicio(){
         this.view.setListener(this);
     }
-
+    
     @Override
     public void clickCrearPartida() {
         this.cerrarPantallaInicio();
         new PresentadorCrearPartida().mostrarPantallaCrearPartida();
     }
-    //Activar cuando ya haya una partida
+
     @Override
     public void clickEntrarPartida() {
         this.cerrarPantallaInicio();

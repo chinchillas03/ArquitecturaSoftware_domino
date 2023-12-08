@@ -22,15 +22,24 @@ public class ModelPartida {
     private List<Jugador> listaJugadores;
     private int cantidadFichas;
     private Partida partida;
+    private boolean PartidaTerminada=false;
 
     /**
      * Constructor por defecto de la clase ModelTablero.
      */
     public ModelPartida() {
-        listaJugadores = new ArrayList<>();
         this.partida = Partida.instancia();
+                listaJugadores = partida.getJugadores();
     }
 
+    public boolean isPartidaTerminada() {
+        return PartidaTerminada;
+    }
+
+    public void setPartidaTerminada(boolean PartidaTerminada) {
+        this.PartidaTerminada = PartidaTerminada;
+    }
+    
     /**
      * Obtiene la cantidad de fichas en el tablero.
      *
@@ -69,14 +78,23 @@ public class ModelPartida {
         this.listaJugadores = listaJugadores;
     }
 
-
     public boolean jalarPozo(Jugador jugador) {
-      return partida.jalarPozo(jugador);
-      
+        return partida.jalarPozo(jugador);
+
     }
 
     public boolean posicionarFicha(Ficha ficha, PosicionFicha lado) {
-     return partida.posicionarFicha(ficha,lado);
+     
+        if (partida.posicionarFicha(ficha, lado)) {
+            if (partida.getJugadorTurno().verificarNumFichas()!=0) {
+                pasarTurno();
+            } else {
+                terminarPartida();
+                PartidaTerminada=true;
+        }
+            return true;
+    }
+        return false;
     }
 
     public void pasarTurno() {
@@ -90,10 +108,7 @@ public class ModelPartida {
     }
 
     public void terminarPartida() {
-    partida.terminarJuego();
+        partida.terminarJuego();
     }
-
-   
-
 
 }

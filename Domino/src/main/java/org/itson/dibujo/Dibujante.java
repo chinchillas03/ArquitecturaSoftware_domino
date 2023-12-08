@@ -32,10 +32,6 @@ public class Dibujante {
 
     public void crearLista(IPartidaJuego partida) {
         listaFiguras.removeAll(listaFiguras);
-        listaFiguras.add(new JugadorDibujo(15, 705, Color.RED));
-        listaFiguras.add(new JugadorDibujo(15, 45, Color.BLUE));
-        listaFiguras.add(new JugadorDibujo(1000, 45, Color.YELLOW));
-        listaFiguras.add(new JugadorDibujo(1000, 705, Color.GREEN));
         listaFiguras.add(new FichaJugDibujo(100, 715, partida.getJugadores().get(partida.getTurno()).getFichasJuego()));
         if (!partida.getTablero().verificaCantidadFichas()) {
             fichasTab.setFichasTablero(partida.getTablero().getFichas());

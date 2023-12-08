@@ -40,7 +40,6 @@ public class Partida implements IPartidaJuego {
     
     public void guardarPartida(List<Jugador> jugadores) {
         this.listaJugadores = jugadores;
-        System.out.println(listaJugadores);
         this.listaFichas = new ArrayList<>();
         turno = 0;
     }
@@ -92,13 +91,21 @@ public class Partida implements IPartidaJuego {
         for (int i = 0; i < listaJugadores.size(); i++) {
             listaJugadores.get(i).calcularPuntos();
         }
-        this.ordenarListaPorPuntos();
+        ordenarListaPorPuntos();
+        instanciaPartida=null;
     }
     
     private void ordenarListaPorPuntos() {
-        for (Jugador listaJugadore : listaJugadores) {
-            listaJugadore.calcularPuntos();
-        }
+        System.out.println(listaJugadores);
+           Collections.sort(listaJugadores, new Comparator<Jugador>() {
+            @Override
+            public int compare(Jugador jugador1, Jugador jugador2) {
+                // Comparar los jugadores por su atributo de puntuación
+                return Integer.compare(jugador2.getPuntuacion(), jugador1.getPuntuacion());
+            }
+        });  
+               System.out.println(listaJugadores);
+
     }
     
     @Override
@@ -125,34 +132,33 @@ public class Partida implements IPartidaJuego {
             return true;
         }
         fichaTab.setLado(lado);
-
+        System.out.println(fichaNva);
         if (tablero.verificaFicha(fichaTab)) {
             tablero.agregarFicha(fichaTab);
             //Jugador en turno
-            listaJugadores.get(this.getTurno()).quitarFicha(fichaNva);
-            if (listaJugadores.get(turno).verificarNumFichas() != 0) {
-                pasarTurno();
-            } else {
-                terminarJuego();
-            }
+            listaJugadores.get(getTurno()).quitarFicha(fichaNva);
+            return true;
+         
         }
-        return true;
+        return false;
     }
     
     public void iniciarPartida(List<Jugador> jugadores) {
         guardarPartida(jugadores);
         repartirFichas();
         setearTurnos();
-         posicionarFicha(jugadores.get(turno).getMulaMasAlta(), null);
-        jugadores.get(turno).quitarFicha(jugadores.get(0).getMulaMasAlta());
+         posicionarFicha(getJugadorTurno().getMulaMasAlta(), null);
+        jugadores.get(0).quitarFicha(getJugadorTurno().getMulaMasAlta());
         this.pasarTurno();
     }
     
+     public Jugador getJugadorTurno(){
+        return listaJugadores.get(turno);
+    }
     private Jugador primerTurno() {
         Jugador primerTurno = listaJugadores.get(0);
         for (int i = 0; i < listaJugadores.size(); i++) {
-            if (listaJugadores.get(i).getMulaMasAlta() != null) {
-                primerTurno = listaJugadores.get(i);
+            if (primerTurno.getMulaMasAlta() != null && listaJugadores.get(i).getMulaMasAlta()!=null) {
                 if (listaJugadores.get(i).getMulaMasAlta().getValorFicha() > primerTurno.getMulaMasAlta().getValorFicha()) {
                     primerTurno = listaJugadores.get(i);
                 }
@@ -209,5 +215,6 @@ public class Partida implements IPartidaJuego {
         return pozo.jalarPozo(jugador);
 
     }
+
     
 }
