@@ -8,7 +8,7 @@ package org.itson.listeners;
  *
  * @author aroco
  */
-public interface SetIPListener {
+public interface ConexionListener {
 
     void clickBotonUnirse(String ip, int puerto);
 

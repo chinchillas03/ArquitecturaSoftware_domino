@@ -20,7 +20,6 @@ public class Servidor implements Runnable, Serializable{
 
     private ServerSocket server;
     private Cliente cliente;
-    private Partida partida;
     private SocketServidorDTO nodo;
     private Protocolo protocolo;
     
@@ -51,15 +50,7 @@ public class Servidor implements Runnable, Serializable{
     public void setServer(ServerSocket server) {
         this.server = server;
     }
-
-    public Partida getPartida() {
-        return partida;
-    }
-
-    public void setPartida(Partida partida) {
-        this.partida = partida;
-    }
-
+    
     public void enviarNuevoNodoACliente(SocketServidorDTO nuevoNodo) {
         cliente.agregarNodo(nuevoNodo);
     }

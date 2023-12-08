@@ -13,12 +13,24 @@ import org.itson.observador.*;
  */
 public class Protocolo{
     
+    private Servidor server;
     private List<observarConexion> presentadorConexion;
     private List<observarFicha> agregarFicha;
     private List<observarSalir> salir;
     private List<observarSalirTodos> salirTodos;
     private List<observarCambiarAvatar> cambiarAvatar;
     private List<observarFinPartida> finPartida;
+
+    public Protocolo() {
+    }
+
+    public Servidor getServer() {
+        return server;
+    }
+
+    public void setServer(Servidor server) {
+        this.server = server;
+    }
 
     public void setPresentadorConexion(observarConexion presentadorConexion) {
         this.presentadorConexion.add(presentadorConexion);

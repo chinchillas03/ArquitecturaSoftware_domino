@@ -8,19 +8,23 @@ package com.itson.socketsp2p;
  *
  * @author Usuario
  */
-public class Partida {
+public class JugadorDTO {
     
-    private Estado estado = Estado.VACIA;
+    private String nombre;
 
-    public Partida() {
+    public JugadorDTO() {
     }
 
-    public Estado getEstado() {
-        return estado;
+    public JugadorDTO(String nombre) {
+        this.nombre = nombre;
     }
 
-    public void setEstado(Estado estado) {
-        this.estado = estado;
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
     
 }

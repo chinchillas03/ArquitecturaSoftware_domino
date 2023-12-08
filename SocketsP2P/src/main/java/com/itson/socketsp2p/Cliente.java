@@ -20,7 +20,7 @@ import java.util.List;
 public class Cliente implements Runnable {
 
     private Socket socket;
-    private Jugador jugador;
+    private JugadorDTO jugador;
     private Servidor miServer;
     private List<SocketServidorDTO> servidoresNodos;
 
@@ -110,11 +110,11 @@ public class Cliente implements Runnable {
         this.socket = socket1;
     }
 
-    public Jugador getJugador() {
+    public JugadorDTO getJugador() {
         return jugador;
     }
 
-    public void setJugador(Jugador jugador) {
+    public void setJugador(JugadorDTO jugador) {
         this.jugador = jugador;
     }
 

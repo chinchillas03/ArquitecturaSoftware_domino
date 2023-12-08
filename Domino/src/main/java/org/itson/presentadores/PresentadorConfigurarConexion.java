@@ -4,21 +4,20 @@
  */
 package org.itson.presentadores;
 
-import org.itson.frames.FrmSetIP;
-import org.itson.listeners.SetIPListener;
-import org.itson.modelos.ModelSetIP;
+import org.itson.frames.FrmConexion;
+import org.itson.listeners.ConexionListener;
+import org.itson.modelos.ModelConfigurarConexion;
 
 /**
  *
  * @author aroco
  */
-public class PresentadorSetIP implements SetIPListener {
+public class PresentadorConfigurarConexion implements ConexionListener {
 
-    private final FrmSetIP view = new FrmSetIP();
-        private ModelSetIP model = new ModelSetIP();
+    private final FrmConexion view = new FrmConexion();
+    private ModelConfigurarConexion model = new ModelConfigurarConexion();
 
-
-    public PresentadorSetIP() {
+    public PresentadorConfigurarConexion() {
         this.view.setListener(this);
     }
 

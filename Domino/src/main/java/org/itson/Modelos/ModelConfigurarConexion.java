@@ -10,7 +10,7 @@ import com.itson.socketsp2p.Cliente;
  *
  * @author aroco
  */
-public class ModelSetIP {
+public class ModelConfigurarConexion {
     public int puerto;
     public String ip;
 

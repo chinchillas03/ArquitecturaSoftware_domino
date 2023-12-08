@@ -4,26 +4,25 @@
  */
 package org.itson.frames;
 
-import org.itson.listeners.SetIPListener;
+import org.itson.listeners.ConexionListener;
 import org.itson.listeners.TableroJuegoListener;
-import org.itson.presentadores.PresentadorSetIP;
 
 /**
  *
  * @author aroco
  */
-public class FrmSetIP extends javax.swing.JFrame {
+public class FrmConexion extends javax.swing.JFrame {
 
-    public SetIPListener listener;
+    public ConexionListener listener;
 
     /**
      * Creates new form FrmSetIP
      */
-    public FrmSetIP() {
+    public FrmConexion() {
         initComponents();
     }
 
-    public void setListener(SetIPListener listener) {
+    public void setListener(ConexionListener listener) {
         this.listener = listener;
     }
 

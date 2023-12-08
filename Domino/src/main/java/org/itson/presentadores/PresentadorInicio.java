@@ -28,7 +28,7 @@ public class PresentadorInicio implements InicioListener{
     @Override
     public void clickEntrarPartida() {
         this.cerrarPantallaInicio();
-        new PresentadorSetIP().mostrarPantallaSetIP();
+        new PresentadorConfigurarConexion().mostrarPantallaSetIP();
     }
     
     @Override
