@@ -2,15 +2,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.itson.socketsp2p;
+package org.itson.p2p;
 
+import com.itson.socketsp2p.Protocolo;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.Serializable;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.List;
+import org.itson.dtos.InformacionServidorDTO;
 
 /**
  *
@@ -20,13 +21,13 @@ public class Servidor implements Runnable{
 
     private ServerSocket server;
     private Cliente cliente;
-    private SocketServidorDTO nodo;
+    private InformacionServidorDTO nodo;
     private Protocolo protocolo;
     
     public Servidor(int puerto) throws IOException {
         this.protocolo = new Protocolo();
         this.server = new ServerSocket(puerto);
-        this.nodo = new SocketServidorDTO(server.getInetAddress().toString(), server.getLocalPort());
+        this.nodo = new InformacionServidorDTO(server.getInetAddress().toString(), server.getLocalPort());
         Thread hilo = new Thread(this);
         hilo.start();
     }
@@ -51,15 +52,15 @@ public class Servidor implements Runnable{
         this.server = server;
     }
     
-    public void enviarNuevoNodoACliente(SocketServidorDTO nuevoNodo) {
+    public void enviarNuevoNodoACliente(InformacionServidorDTO nuevoNodo) {
         cliente.agregarNodo(nuevoNodo);
     }
 
-    public void regresarInformacionANodo(SocketServidorDTO nuevoNodo) {
-        List<SocketServidorDTO> nodos = cliente.getServidoresNodos();
+    public void regresarInformacionANodo(InformacionServidorDTO nuevoNodo) {
+        List<InformacionServidorDTO> nodos = cliente.getServidoresNodos();
         boolean entrada = true;
         try {
-            for (SocketServidorDTO nodo : nodos) {
+            for (InformacionServidorDTO nodo : nodos) {
                 if (nodo.getPuerto() == nuevoNodo.getPuerto() && nodo.getIp() == nuevoNodo.getIp()) {
                     entrada = false;
                 }
@@ -68,8 +69,8 @@ public class Servidor implements Runnable{
             while (entrada == true) {
                 Socket nuevo = new Socket("localhost", nuevoNodo.getPuerto());
 
-                SocketServidorDTO nodo
-                        = new SocketServidorDTO(server.getInetAddress().toString(),
+                InformacionServidorDTO nodo
+                        = new InformacionServidorDTO(server.getInetAddress().toString(),
                                 server.getLocalPort());
 
                 ObjectOutputStream out = new ObjectOutputStream(nuevo.getOutputStream());
@@ -96,14 +97,14 @@ public class Servidor implements Runnable{
                     ObjectOutputStream out = new ObjectOutputStream(socketConectado.getOutputStream());
                     Object entrada = in.readObject();
 
-                    if (entrada instanceof SocketServidorDTO) {
-                        SocketServidorDTO nodoNuevo = (SocketServidorDTO) entrada;
+                    if (entrada instanceof InformacionServidorDTO) {
+                        InformacionServidorDTO nodoNuevo = (InformacionServidorDTO) entrada;
                         System.out.println("Nodo con puerto servidor de: " + nodoNuevo.getPuerto() + " IP: " + nodoNuevo.getIp());
 
                         System.out.println("--------------------------------------------");
                         System.out.println("");
 
-                        List<SocketServidorDTO> nodos = cliente.getServidoresNodos();
+                        List<InformacionServidorDTO> nodos = cliente.getServidoresNodos();
 
                         if (nodos.size() <= 0) {
                             nodos.add(this.nodo);
@@ -125,3 +126,4 @@ public class Servidor implements Runnable{
         }
     }
 }
+
