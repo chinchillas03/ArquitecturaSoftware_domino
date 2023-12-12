@@ -8,7 +8,6 @@ D:\GITHUB\Domino\Domino\src\main\java\org\itson\listeners\InicioListener.java
 D:\GITHUB\Domino\Domino\src\main\java\org\itson\listeners\CrearPartidaListener.java
 D:\GITHUB\Domino\Domino\src\main\java\org\itson\Modelos\ModelConfigurarJugador.java
 D:\GITHUB\Domino\Domino\src\main\java\org\itson\frames\FrmConfiguracionJugador.java
-D:\GITHUB\Domino\Domino\src\main\java\org\itson\dibujo\TableroDibujo.java
 D:\GITHUB\Domino\Domino\src\main\java\org\itson\dibujo\FichaJugDibujo.java
 D:\GITHUB\Domino\Domino\src\main\java\org\itson\frames\FrmSalaEspera.java
 D:\GITHUB\Domino\Domino\src\main\java\org\itson\frames\FrmConexion.java
@@ -19,13 +18,15 @@ D:\GITHUB\Domino\Domino\src\main\java\org\itson\presentadores\PresentadorSalaEsp
 D:\GITHUB\Domino\Domino\src\main\java\org\itson\presentadores\PresentadorPuntuaciones.java
 D:\GITHUB\Domino\Domino\src\main\java\org\itson\presentadores\PresentadorConfigurarConexion.java
 D:\GITHUB\Domino\Domino\src\main\java\org\itson\Modelos\ModelCrearPartida.java
-D:\GITHUB\Domino\Domino\src\main\java\org\itson\dibujo\PozoDibujo.java
+D:\GITHUB\Domino\Domino\src\main\java\org\itson\p2p\Cliente.java
+D:\GITHUB\Domino\Domino\src\main\java\org\itson\p2p\Servidor.java
+D:\GITHUB\Domino\Domino\src\main\java\org\itson\dtos\InformacionServidorDTO.java
+D:\GITHUB\Domino\Domino\src\main\java\org\itson\dtos\JugadorDTO.java
 D:\GITHUB\Domino\Domino\src\main\java\org\itson\Modelos\ModelPartida.java
 D:\GITHUB\Domino\Domino\src\main\java\org\itson\dibujo\Dibujante.java
 D:\GITHUB\Domino\Domino\src\main\java\org\itson\Modelos\ModelConfigurarConexion.java
 D:\GITHUB\Domino\Domino\src\main\java\org\itson\Modelos\ModelPuntuaciones.java
 D:\GITHUB\Domino\Domino\src\main\java\org\itson\presentadores\PresentadorConfigurarJugador.java
-D:\GITHUB\Domino\Domino\src\main\java\org\itson\dibujo\JugadorDibujo.java
 D:\GITHUB\Domino\Domino\src\main\java\org\itson\frames\FrmInicio.java
 D:\GITHUB\Domino\Domino\src\main\java\org\itson\presentadores\PresentadorPartida.java
 D:\GITHUB\Domino\Domino\src\main\java\org\itson\Modelos\ModelSalaEspera.java

@@ -1,10 +1,10 @@
-org\itson\dibujo\JugadorDibujo.class
 org\itson\presentadores\PresentadorCrearPartida.class
 org\itson\frames\FrmConfiguracionJugador$2.class
 org\itson\listeners\InicioListener.class
 org\itson\frames\FrmCrearPartida$1.class
 org\itson\frames\FrmPartida$5.class
 org\itson\frames\FrmPuntuaciones$1.class
+org\itson\frames\FrmPartida$8.class
 org\itson\listeners\ConexionListener.class
 org\itson\presentadores\PresentadorPuntuaciones.class
 org\itson\frames\FrmSalaEspera$2.class
@@ -17,6 +17,7 @@ org\itson\listeners\SalaEsperaListener.class
 org\itson\presentadores\PresentadorSalaEspera.class
 org\itson\frames\FrmConexion$1.class
 org\itson\frames\FrmInicio$2.class
+org\itson\frames\FrmPartida$9.class
 org\itson\frames\FrmInicio$3.class
 org\itson\frames\FrmConexion.class
 org\itson\frames\FrmSalaEspera$1.class
@@ -24,7 +25,7 @@ org\itson\listeners\TableroJuegoListener.class
 org\itson\Modelos\ModelSalaEspera.class
 org\itson\Modelos\ModelConfigurarJugador.class
 org\itson\presentadores\PresentadorConfigurarConexion.class
-org\itson\dibujo\PozoDibujo.class
+org\itson\p2p\Cliente.class
 org\itson\frames\FrmInicio.class
 org\itson\frames\FrmPartida.class
 org\itson\domino\Domino.class
@@ -38,14 +39,16 @@ org\itson\presentadores\PresentadorPartida.class
 org\itson\dibujo\FichaJugDibujo.class
 org\itson\Modelos\ModelPartida.class
 org\itson\frames\FrmPartida$6.class
-org\itson\dibujo\TableroDibujo.class
 org\itson\presentadores\PresentadorInicio.class
+org\itson\p2p\Servidor.class
+org\itson\dtos\InformacionServidorDTO.class
 org\itson\frames\FrmCrearPartida$2.class
 org\itson\frames\FrmSalaEspera.class
 org\itson\dibujo\Figuras.class
 org\itson\Modelos\ModelPuntuaciones.class
 org\itson\frames\FrmConfiguracionJugador$1.class
 org\itson\frames\FrmPartida$4.class
+org\itson\dtos\JugadorDTO.class
 org\itson\listeners\CrearPartidaListener.class
 org\itson\frames\FrmInicio$1.class
 org\itson\frames\FrmPuntuaciones.class
