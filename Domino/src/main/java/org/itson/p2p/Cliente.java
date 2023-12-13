@@ -21,6 +21,8 @@ import org.itson.dtos.InformacionServidorDTO;
 public class Cliente implements Runnable {
 
     private Socket socket;
+    private Socket socket2;
+    private Socket socket3;
     private JugadorDTO jugador;
     private Servidor miServer;
     private List<InformacionServidorDTO> servidoresNodos;
@@ -60,7 +62,7 @@ public class Cliente implements Runnable {
             ObjectOutputStream out = new ObjectOutputStream(this.socket.getOutputStream());
 
             out.writeObject(nodo);
-            out.flush(); 
+            out.flush();
 
             ObjectInputStream in = new ObjectInputStream(this.socket.getInputStream());
             List<InformacionServidorDTO> nodosConocidos = (List<InformacionServidorDTO>) in.readObject();
@@ -69,24 +71,32 @@ public class Cliente implements Runnable {
                 System.out.println("IP: " + nodoConocido.getIp() + ", Puerto: " + nodoConocido.getPuerto());
             }
             this.setServidoresNodos(nodosConocidos);
-
-            in.close();
-            out.close();
+            
+            InformacionServidorDTO nodoPrincipal = new InformacionServidorDTO(ip, puerto);
+            
+            this.conectarOtrosNodos(nodoPrincipal);
         } catch (IOException | ClassNotFoundException e) {
             System.out.println("Error: " + e.getMessage());
         }
     }
-
-    public void broadcast(InformacionServidorDTO nuevoNodo) {
+    
+    public void conectarOtrosNodos(InformacionServidorDTO nodoPrincipal) {
         try {
             for (InformacionServidorDTO servidoresNodo : servidoresNodos) {
-                if (miServer.getServer().getInetAddress().toString().equals(servidoresNodo.getIp()) && miServer.getServer().getLocalPort() == servidoresNodo.getPuerto()) {
+                if (servidoresNodo.getPuerto() == this.miServer.getNodo().getPuerto()) {
+                } else if (servidoresNodo.getPuerto() == nodoPrincipal.getPuerto()) {
                 } else {
-                    String ip = servidoresNodo.getIp();
+                    String ip = "192.168.1.66";
                     int puerto = servidoresNodo.getPuerto();
-                    try (Socket socket = new Socket(servidoresNodo.getIp(), servidoresNodo.getPuerto()); ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream())) {
-
-                        out.writeObject(nuevoNodo);
+                    InformacionServidorDTO dat = miServer.getNodo();
+                    if (socket2 == null) {
+                        socket2 = new Socket(ip, puerto);
+                        ObjectOutputStream out = new ObjectOutputStream(socket2.getOutputStream());
+                        out.writeObject(dat);
+                    } else if (socket3 == null) {
+                        socket3 = new Socket(ip, puerto);
+                        ObjectOutputStream out = new ObjectOutputStream(socket3.getOutputStream());
+                        out.writeObject(dat);
                     }
                 }
             }
@@ -121,42 +131,6 @@ public class Cliente implements Runnable {
 
     @Override
     public void run() {
-        try {
-            if (socket != null) {
-                ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
-                SocketServidorDTO nodo = new SocketServidorDTO(miServer.getServer().getInetAddress().toString(), socket.getLocalPort());
-                out.writeObject(nodo);
-                out.flush(); // Agrega un flush después de escribir en el flujo
-
-                ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
-                List<SocketServidorDTO> nodos = (List<SocketServidorDTO>) in.readObject();
-
-                for (SocketServidorDTO nodo1 : nodos) {
-                    System.out.println("Nodos con puerto: " + nodo1.getPuerto() + " IP: " + nodo1.getIp());
-                }
-
-                for (SocketServidorDTO nodo1 : nodos) {
-                    if (!nodo1.getIp().equals(socket.getInetAddress().toString()) && nodo1.getPuerto() == socket.getLocalPort()) {
-
-                    } else if (!"localhost".equals(nodo1.getIp()) && nodo1.getPuerto() == socket.getLocalPort()) {
-
-                    } else {
-                        Socket newSocket = new Socket("localhost", nodo1.getPuerto());
-                        ObjectOutputStream newOut = new ObjectOutputStream(newSocket.getOutputStream());
-                        newOut.writeObject(nodo);
-                        newOut.flush();
-                        newOut.close(); 
-
-                        newSocket.close();
-                    }
-                }
-
-                in.close();
-                out.close();
-            }
-        } catch (IOException | ClassNotFoundException e) {
-            System.out.println(e.getMessage());
-        }
     }
 }
 

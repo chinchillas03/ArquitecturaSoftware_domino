@@ -40,6 +40,14 @@ public class Servidor implements Runnable{
         this.cliente = cliente;
     }
 
+    public InformacionServidorDTO getNodo() {
+        return nodo;
+    }
+
+    public void setNodo(InformacionServidorDTO nodo) {
+        this.nodo = nodo;
+    }
+
     public Servidor(ServerSocket server) {
         this.server = server;
     }
@@ -119,7 +127,6 @@ public class Servidor implements Runnable{
                     System.out.println("Error: " + e.getMessage());
                 }
 
-                socketConectado.close();
             }
         } catch (IOException e) {
             System.out.println("Error: " + e.getMessage());
