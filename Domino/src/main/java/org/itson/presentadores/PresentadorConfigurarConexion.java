@@ -6,19 +6,23 @@ package org.itson.presentadores;
 
 import org.itson.frames.FrmConexion;
 import org.itson.listeners.ConexionListener;
+import org.itson.listeners.ObservadorProtocolo;
 import org.itson.modelos.ModelConfigurarConexion;
+import org.itson.p2p.Protocolo;
 
 /**
  *
  * @author aroco
  */
-public class PresentadorConfigurarConexion implements ConexionListener {
+public class PresentadorConfigurarConexion implements ConexionListener, ObservadorProtocolo {
 
     private final FrmConexion view = new FrmConexion();
     private ModelConfigurarConexion model = new ModelConfigurarConexion();
+    private Protocolo protocolo = new Protocolo();
 
     public PresentadorConfigurarConexion() {
         this.view.setListener(this);
+        this.protocolo.setObserver(this);
     }
 
     @Override
@@ -47,6 +51,11 @@ public class PresentadorConfigurarConexion implements ConexionListener {
     @Override
     public void cerrarPantalla() {
         this.view.dispose();
+    }
+
+    @Override
+    public void regresarInformacion() {
+        
     }
 
 }

@@ -49,7 +49,6 @@ public class Cliente implements Runnable {
 
     public void agregarNodo(InformacionServidorDTO nuevoNodo) {
         this.servidoresNodos.add(nuevoNodo);
-//        this.broadcast(nuevoNodo);
     }
 
     public void conectar(String ip, int puerto) {

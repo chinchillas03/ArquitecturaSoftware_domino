@@ -17,7 +17,7 @@ import org.itson.observador.observarConexion;
  *
  * @author Usuario
  */
-public class PresentadorSalaEspera implements SalaEsperaListener, observarCambiarAvatar, observarConexion{
+public class PresentadorSalaEspera implements SalaEsperaListener{
 
     private final FrmSalaEspera view = new FrmSalaEspera();
     private final ModelSalaEspera model = new ModelSalaEspera();
@@ -91,15 +91,4 @@ public class PresentadorSalaEspera implements SalaEsperaListener, observarCambia
     public void mostrarPantallaSalaEspera() {
         this.view.mostrarPantallaSalaEspera();
     }
-
-    @Override
-    public void cambiarAvatar() {
-        
-    }
-
-    @Override
-    public void conexion() {
-        
-    }
-
 }

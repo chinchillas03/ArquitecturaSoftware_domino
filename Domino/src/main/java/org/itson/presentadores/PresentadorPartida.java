@@ -21,7 +21,7 @@ import org.itson.observador.observarSalirTodos;
  *
  * @author Joel Antonio Lopez Cota ID:228926
  */
-public class PresentadorPartida implements TableroJuegoListener, observarSalir, observarSalirTodos, observarFicha, observarFinPartida {
+public class PresentadorPartida implements TableroJuegoListener{
 
     private FrmPartida view = new FrmPartida();
     private ModelPartida model = new ModelPartida();
@@ -156,25 +156,5 @@ public class PresentadorPartida implements TableroJuegoListener, observarSalir, 
      */
     public void setCantidadFichas(int cantidadFichas) {
         this.model.setCantidadFichas(cantidadFichas);
-    }
-
-    @Override
-    public void salir() {
-
-    }
-
-    @Override
-    public void salirTodos() {
-
-    }
-
-    @Override
-    public void agregarFicha() {
-
-    }
-
-    @Override
-    public void finPartida() {
-
     }
 }

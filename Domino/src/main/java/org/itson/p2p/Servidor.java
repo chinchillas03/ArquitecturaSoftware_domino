@@ -4,7 +4,6 @@
  */
 package org.itson.p2p;
 
-import com.itson.socketsp2p.Protocolo;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -64,31 +63,6 @@ public class Servidor implements Runnable{
         cliente.agregarNodo(nuevoNodo);
     }
 
-    public void regresarInformacionANodo(InformacionServidorDTO nuevoNodo) {
-        List<InformacionServidorDTO> nodos = cliente.getServidoresNodos();
-        boolean entrada = true;
-        try {
-            for (InformacionServidorDTO nodo : nodos) {
-                if (nodo.getPuerto() == nuevoNodo.getPuerto() && nodo.getIp() == nuevoNodo.getIp()) {
-                    entrada = false;
-                }
-            }
-
-            while (entrada == true) {
-                Socket nuevo = new Socket("localhost", nuevoNodo.getPuerto());
-
-                InformacionServidorDTO nodo
-                        = new InformacionServidorDTO(server.getInetAddress().toString(),
-                                server.getLocalPort());
-
-                ObjectOutputStream out = new ObjectOutputStream(nuevo.getOutputStream());
-                out.writeObject(nodo);
-                out.close();
-            }
-        } catch (IOException e) {
-        }
-    }
-
     @Override
     public void run() {
         try {
@@ -104,7 +78,7 @@ public class Servidor implements Runnable{
                 try {
                     ObjectOutputStream out = new ObjectOutputStream(socketConectado.getOutputStream());
                     Object entrada = in.readObject();
-
+                 
                     if (entrada instanceof InformacionServidorDTO) {
                         InformacionServidorDTO nodoNuevo = (InformacionServidorDTO) entrada;
                         System.out.println("Nodo con puerto servidor de: " + nodoNuevo.getPuerto() + " IP: " + nodoNuevo.getIp());
@@ -119,9 +93,6 @@ public class Servidor implements Runnable{
                         }
                         cliente.agregarNodo(nodoNuevo);
                         out.writeObject(nodos);
-
-                        this.protocolo.nuevaConexion();
-
                     }
                 } catch (IOException | ClassNotFoundException e) {
                     System.out.println("Error: " + e.getMessage());
