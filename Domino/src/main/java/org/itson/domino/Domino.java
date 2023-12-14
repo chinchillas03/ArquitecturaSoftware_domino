@@ -5,11 +5,11 @@
 
 package org.itson.domino;
 
-import com.itson.socketsp2p.Cliente;
-import com.itson.socketsp2p.Servidor;
 import java.io.IOException;
 import org.itson.presentadores.PresentadorInicio;
 import javax.swing.SwingUtilities;
+import org.itson.p2p.Cliente;
+import org.itson.p2p.Servidor;
 
 /**
  *

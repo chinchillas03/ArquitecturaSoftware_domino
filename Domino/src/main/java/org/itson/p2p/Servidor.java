@@ -69,25 +69,18 @@ public class Servidor implements Runnable{
             while (true) {
                 System.out.println("--------------------------------------------");
                 System.out.println("Esperando conexión de cliente...");
-
                 Socket socketConectado = this.server.accept();
-
                 System.out.println("Cliente conectado");
                 ObjectInputStream in = new ObjectInputStream(socketConectado.getInputStream());
-
                 try {
                     ObjectOutputStream out = new ObjectOutputStream(socketConectado.getOutputStream());
-                    Object entrada = in.readObject();
-                 
+                    Object entrada = in.readObject();               
                     if (entrada instanceof InformacionServidorDTO) {
                         InformacionServidorDTO nodoNuevo = (InformacionServidorDTO) entrada;
                         System.out.println("Nodo con puerto servidor de: " + nodoNuevo.getPuerto() + " IP: " + nodoNuevo.getIp());
-
                         System.out.println("--------------------------------------------");
                         System.out.println("");
-
                         List<InformacionServidorDTO> nodos = cliente.getServidoresNodos();
-
                         if (nodos.size() <= 0) {
                             nodos.add(this.nodo);
                         }
@@ -97,7 +90,6 @@ public class Servidor implements Runnable{
                 } catch (IOException | ClassNotFoundException e) {
                     System.out.println("Error: " + e.getMessage());
                 }
-
             }
         } catch (IOException e) {
             System.out.println("Error: " + e.getMessage());

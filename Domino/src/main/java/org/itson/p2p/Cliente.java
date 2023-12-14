@@ -4,8 +4,6 @@
  */
 package org.itson.p2p;
 
-import com.itson.socketsp2p.JugadorDTO;
-import com.itson.socketsp2p.SocketServidorDTO;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -13,6 +11,7 @@ import java.net.Socket;
 import java.util.LinkedList;
 import java.util.List;
 import org.itson.dtos.InformacionServidorDTO;
+import org.itson.dtos.JugadorDTO;
 
 /**
  *
@@ -55,24 +54,17 @@ public class Cliente implements Runnable {
         try {
             this.socket = new Socket(ip, puerto);
             setSocket(socket);
-
             InformacionServidorDTO nodo = new InformacionServidorDTO(miServer.getServer().getInetAddress().toString(), miServer.getServer().getLocalPort());
-
             ObjectOutputStream out = new ObjectOutputStream(this.socket.getOutputStream());
-
             out.writeObject(nodo);
             out.flush();
-
             ObjectInputStream in = new ObjectInputStream(this.socket.getInputStream());
             List<InformacionServidorDTO> nodosConocidos = (List<InformacionServidorDTO>) in.readObject();
-
             for (InformacionServidorDTO nodoConocido : nodosConocidos) {
                 System.out.println("IP: " + nodoConocido.getIp() + ", Puerto: " + nodoConocido.getPuerto());
             }
-            this.setServidoresNodos(nodosConocidos);
-            
-            InformacionServidorDTO nodoPrincipal = new InformacionServidorDTO(ip, puerto);
-            
+            this.setServidoresNodos(nodosConocidos);            
+            InformacionServidorDTO nodoPrincipal = new InformacionServidorDTO(ip, puerto);            
             this.conectarOtrosNodos(nodoPrincipal);
         } catch (IOException | ClassNotFoundException e) {
             System.out.println("Error: " + e.getMessage());

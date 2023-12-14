@@ -10,8 +10,6 @@ import org.itson.listeners.SalaEsperaListener;
 import java.util.List;
 import org.itson.Modelos.ModelSalaEspera;
 import org.itson.frames.FrmSalaEspera;
-import org.itson.observador.observarCambiarAvatar;
-import org.itson.observador.observarConexion;
 
 /**
  *

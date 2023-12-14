@@ -11,10 +11,6 @@ import org.itson.listeners.TableroJuegoListener;
 import java.util.List;
 import org.itson.Modelos.ModelPartida;
 import org.itson.frames.FrmPartida;
-import org.itson.observador.observarFicha;
-import org.itson.observador.observarFinPartida;
-import org.itson.observador.observarSalir;
-import org.itson.observador.observarSalirTodos;
 
 /**
  *

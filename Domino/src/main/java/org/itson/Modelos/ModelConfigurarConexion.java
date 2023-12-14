@@ -4,7 +4,7 @@
  */
 package org.itson.modelos;
 
-import com.itson.socketsp2p.Cliente;
+import org.itson.p2p.Cliente;
 
 /**
  *
