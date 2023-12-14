@@ -14,7 +14,7 @@ import org.itson.frames.FrmInicio;
 public class PresentadorInicio implements InicioListener{
     
     private final FrmInicio view = new FrmInicio();
-    
+    private String nombre;
     public PresentadorInicio(){
         this.view.setListener(this);
     }
@@ -28,7 +28,9 @@ public class PresentadorInicio implements InicioListener{
     @Override
     public void clickEntrarPartida() {
         this.cerrarPantallaInicio();
-        new PresentadorConfigurarConexion().mostrarPantallaSetIP();
+        PresentadorConfigurarConexion presentador= new PresentadorConfigurarConexion();
+        presentador.setNombreJugador(nombre);
+        presentador.mostrarPantallaSetIP();
     }
     
     @Override
@@ -37,7 +39,11 @@ public class PresentadorInicio implements InicioListener{
         new PresentadorConfigurarJugador().mostrarPantallaConfigurarJugador();
     }
    
+    public void setNombre(String nombre){
+        this.nombre=nombre;
+    }
     public void mostrarPantallaInicio(){
+        System.out.println(nombre);
         this.view.mostrarPantallaInicio();
     }
     

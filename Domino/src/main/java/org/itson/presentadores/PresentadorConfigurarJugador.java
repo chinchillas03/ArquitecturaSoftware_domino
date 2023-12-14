@@ -24,9 +24,10 @@ public class PresentadorConfigurarJugador implements ConfigurarJugadorListener{
     
     @Override
     public void clickBotonAplicar(String nombre) {
-        this.model.setNombre(nombre);
         this.cerrarPantallaConfigurarJugador();
-        new PresentadorInicio().mostrarPantallaInicio();
+        PresentadorInicio presentador= new PresentadorInicio();
+        presentador.setNombre(nombre);
+        presentador.mostrarPantallaInicio();
     }
     @Override
     public void clickBotonCancelar() {

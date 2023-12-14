@@ -30,8 +30,9 @@ public class ModelConfigurarConexion {
         this.ip = ip;
     }
     
-    public void setModel(String ip, int puerto){
+    public void setModel(String ip, int puerto,String nombre){
         Cliente cliente = new Cliente();
+        
         cliente.conectar(ip, puerto);
     }
     

@@ -19,6 +19,7 @@ public class PresentadorConfigurarConexion implements ConexionListener, Observad
     private final FrmConexion view = new FrmConexion();
     private ModelConfigurarConexion model = new ModelConfigurarConexion();
     private Protocolo protocolo = new Protocolo();
+    private String nombre;
 
     public PresentadorConfigurarConexion() {
         this.view.setListener(this);
@@ -27,7 +28,7 @@ public class PresentadorConfigurarConexion implements ConexionListener, Observad
 
     @Override
     public void clickBotonUnirse(String ip, int puerto) {
-        model.setModel(ip, puerto);
+        model.setModel(ip, puerto,nombre);
         new PresentadorSalaEspera().mostrarPantallaSalaEspera();
     }
 
@@ -45,6 +46,7 @@ public class PresentadorConfigurarConexion implements ConexionListener, Observad
 
     @Override
     public void mostrarPantallaSetIP() {
+        System.out.println(nombre);
         this.view.setVisible(true);
     }
 
@@ -53,9 +55,12 @@ public class PresentadorConfigurarConexion implements ConexionListener, Observad
         this.view.dispose();
     }
 
+
     @Override
     public void regresarInformacion() {
-        
+    }
+    public void setNombreJugador(String nombre) {
+        this.nombre=nombre;
     }
 
 }
