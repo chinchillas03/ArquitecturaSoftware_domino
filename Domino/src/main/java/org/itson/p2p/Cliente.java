@@ -10,8 +10,9 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.LinkedList;
 import java.util.List;
-import org.itson.dtos.InformacionServidorDTO;
+import org.itson.dtos.ConexionSalaEsperaDTO;
 import org.itson.dtos.JugadorDTO;
+import org.itson.listeners.Observador;
 
 /**
  *
@@ -24,7 +25,8 @@ public class Cliente implements Runnable {
     private Socket socket3;
     private JugadorDTO jugador;
     private Servidor miServer;
-    private List<InformacionServidorDTO> servidoresNodos;
+    private List<ConexionSalaEsperaDTO> servidoresNodos;
+    private List<Observador> observadores;
 
     public Cliente() {
         this.servidoresNodos = new LinkedList<>();
@@ -32,7 +34,11 @@ public class Cliente implements Runnable {
         hilo.start();
     }
 
-    public List<InformacionServidorDTO> getServidoresNodos() {
+    public void suscribirse(Observador observar){
+        this.observadores.add(observar);
+    }
+    
+    public List<ConexionSalaEsperaDTO> getServidoresNodos() {
         return servidoresNodos;
     }
 
@@ -42,11 +48,11 @@ public class Cliente implements Runnable {
         }
     }
     
-    public void setServidoresNodos(List<InformacionServidorDTO> servidoresNodos) {
+    public void setServidoresNodos(List<ConexionSalaEsperaDTO> servidoresNodos) {
         this.servidoresNodos = servidoresNodos;
     }
 
-    public void agregarNodo(InformacionServidorDTO nuevoNodo) {
+    public void agregarNodo(ConexionSalaEsperaDTO nuevoNodo) {
         this.servidoresNodos.add(nuevoNodo);
     }
 
@@ -54,32 +60,32 @@ public class Cliente implements Runnable {
         try {
             this.socket = new Socket(ip, puerto);
             setSocket(socket);
-            InformacionServidorDTO nodo = new InformacionServidorDTO(miServer.getServer().getInetAddress().toString(), miServer.getServer().getLocalPort());
+            ConexionSalaEsperaDTO nodo = new ConexionSalaEsperaDTO(miServer.getServer().getInetAddress().toString(), miServer.getServer().getLocalPort());
             ObjectOutputStream out = new ObjectOutputStream(this.socket.getOutputStream());
             out.writeObject(nodo);
             out.flush();
             ObjectInputStream in = new ObjectInputStream(this.socket.getInputStream());
-            List<InformacionServidorDTO> nodosConocidos = (List<InformacionServidorDTO>) in.readObject();
-            for (InformacionServidorDTO nodoConocido : nodosConocidos) {
+            List<ConexionSalaEsperaDTO> nodosConocidos = (List<ConexionSalaEsperaDTO>) in.readObject();
+            for (ConexionSalaEsperaDTO nodoConocido : nodosConocidos) {
                 System.out.println("IP: " + nodoConocido.getIp() + ", Puerto: " + nodoConocido.getPuerto());
             }
             this.setServidoresNodos(nodosConocidos);            
-            InformacionServidorDTO nodoPrincipal = new InformacionServidorDTO(ip, puerto);            
+            ConexionSalaEsperaDTO nodoPrincipal = new ConexionSalaEsperaDTO(ip, puerto);            
             this.conectarOtrosNodos(nodoPrincipal);
         } catch (IOException | ClassNotFoundException e) {
             System.out.println("Error: " + e.getMessage());
         }
     }
     
-    public void conectarOtrosNodos(InformacionServidorDTO nodoPrincipal) {
+    public void conectarOtrosNodos(ConexionSalaEsperaDTO nodoPrincipal) {
         try {
-            for (InformacionServidorDTO servidoresNodo : servidoresNodos) {
+            for (ConexionSalaEsperaDTO servidoresNodo : servidoresNodos) {
                 if (servidoresNodo.getPuerto() == this.miServer.getNodo().getPuerto()) {
                 } else if (servidoresNodo.getPuerto() == nodoPrincipal.getPuerto()) {
                 } else {
                     String ip = "192.168.1.66";
                     int puerto = servidoresNodo.getPuerto();
-                    InformacionServidorDTO dat = miServer.getNodo();
+                    ConexionSalaEsperaDTO dat = miServer.getNodo();
                     if (socket2 == null) {
                         socket2 = new Socket(ip, puerto);
                         ObjectOutputStream out = new ObjectOutputStream(socket2.getOutputStream());

@@ -10,6 +10,7 @@ import com.itson.dominio.Partida;
 import java.util.LinkedList;
 import java.util.List;
 import javax.swing.ImageIcon;
+import org.itson.dtos.ConexionSalaEsperaDTO;
 
 /**
  *
@@ -43,13 +44,25 @@ public class ModelSalaEspera {
      * Inicializa la lista de jugadores en la sala de espera con jugadores predefinidos.
      * Esta función agrega jugadores a la lista de jugadores en la sala de espera.
      */
-    public void setModel() {
+    public void setModel(List<ConexionSalaEsperaDTO> valores) {
         this.jugadores = new LinkedList<>();
-        jugadores.add(new Jugador("Diego"));
-        jugadores.add(new Jugador("Joel"));
-        jugadores.add(new Jugador("Pepe"));
-        jugadores.add(new Jugador("Paco"));    
-       
+        int contador = 0;
+        for (ConexionSalaEsperaDTO valore : valores) {
+            if (contador == 0) {
+                jugadores.add(new Jugador(valore.getNombreJugador()));
+                contador++;
+            } else if (contador == 1) {
+                jugadores.add(new Jugador(valore.getNombreJugador()));
+                contador++;
+            } else if (contador == 2) {
+                jugadores.add(new Jugador(valore.getNombreJugador()));
+                contador++;
+            } else if (contador == 3) {
+                jugadores.add(new Jugador(valore.getNombreJugador()));
+                contador++;
+            }
+
+        }
         this.avatares = new LinkedList<>();
         avatares.add(new Avatar(new ImageIcon("*/avatares/chemFuerte.png")));
         avatares.add(new Avatar(new ImageIcon("/avatares/doge.png")));
@@ -57,7 +70,7 @@ public class ModelSalaEspera {
         avatares.add(new Avatar(new ImageIcon("/avatares/hormiga.png")));
         avatares.add(new Avatar(new ImageIcon("/avatares/messiChiquito.png")));
         avatares.add(new Avatar(new ImageIcon("/avatares/pepe.png")));
-        
+
     }
 
 }

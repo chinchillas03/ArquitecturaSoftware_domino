@@ -7,7 +7,7 @@ package org.itson.p2p;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import org.itson.dtos.InformacionServidorDTO;
+import org.itson.dtos.ConexionSalaEsperaDTO;
 
 /**
  *
