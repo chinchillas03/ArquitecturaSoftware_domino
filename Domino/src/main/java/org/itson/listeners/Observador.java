@@ -4,10 +4,13 @@
  */
 package org.itson.listeners;
 
+import java.util.List;
+import org.itson.dtos.ConexionSalaEsperaDTO;
+
 /**
  *
  * @author Usuario
  */
-public interface ObservadorProtocolo {
-    public void regresarInformacion();
+public interface Observador {
+    public void setearValoresSalaEspera(List<ConexionSalaEsperaDTO> valores);
 }

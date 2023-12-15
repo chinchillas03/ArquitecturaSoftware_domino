@@ -4,32 +4,24 @@
  */
 package org.itson.p2p;
 
-import java.util.List;
-import org.itson.dtos.InformacionServidorDTO;
-import org.itson.listeners.ObservadorProtocolo;
+import org.itson.dtos.ConexionSalaEsperaDTO;
 
 /**
  *
  * @author Usuario
  */
 public class Protocolo {
+  
+    private String evento = "ESPERANDO";
     
-    private List<ObservadorProtocolo> observadores;
-
-    public List<ObservadorProtocolo> getObservadores() {
-        return observadores;
-    }
-
-    public void setObserver(ObservadorProtocolo observer) {
-        this.observadores.add(observer);
-    }
-    
-    public void procesarInformacion(Object objecto){
-        if (objecto instanceof InformacionServidorDTO) {
-            for (ObservadorProtocolo observadore : observadores) {
-                observadore.regresarInformacion();
-            }
+    public String procesarInformacion(Object objecto){
+        if (objecto instanceof ConexionSalaEsperaDTO) {
+            evento = "CONEXION";
+            return evento;
+        } else if(true){
+            return evento;
         }
+        return evento;
     }
     
 }

@@ -10,17 +10,32 @@ import java.io.Serializable;
  *
  * @author Usuario
  */
-public class InformacionServidorDTO implements Serializable {
+public class ConexionSalaEsperaDTO implements Serializable {
 
     private String ip;
     private int puerto;
+    private String nombreJugador;
 
-    public InformacionServidorDTO() {
+    public ConexionSalaEsperaDTO() {
     }
 
-    public InformacionServidorDTO(String ip, int puerto) {
+    public ConexionSalaEsperaDTO(String ip, int puerto) {
         this.ip = ip;
         this.puerto = puerto;
+    }
+
+    public ConexionSalaEsperaDTO(String ip, int puerto, String nombreJugador) {
+        this.ip = ip;
+        this.puerto = puerto;
+        this.nombreJugador = nombreJugador;
+    }
+
+    public String getNombreJugador() {
+        return nombreJugador;
+    }
+
+    public void setNombreJugador(String nombreJugador) {
+        this.nombreJugador = nombreJugador;
     }
 
     public String getIp() {

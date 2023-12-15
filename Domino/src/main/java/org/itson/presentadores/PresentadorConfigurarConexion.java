@@ -6,7 +6,6 @@ package org.itson.presentadores;
 
 import org.itson.frames.FrmConexion;
 import org.itson.listeners.ConexionListener;
-import org.itson.listeners.ObservadorProtocolo;
 import org.itson.modelos.ModelConfigurarConexion;
 import org.itson.p2p.Protocolo;
 
@@ -14,16 +13,14 @@ import org.itson.p2p.Protocolo;
  *
  * @author aroco
  */
-public class PresentadorConfigurarConexion implements ConexionListener, ObservadorProtocolo {
+public class PresentadorConfigurarConexion implements ConexionListener {
 
     private final FrmConexion view = new FrmConexion();
     private ModelConfigurarConexion model = new ModelConfigurarConexion();
-    private Protocolo protocolo = new Protocolo();
     private String nombre;
 
     public PresentadorConfigurarConexion() {
         this.view.setListener(this);
-        this.protocolo.setObserver(this);
     }
 
     @Override
@@ -55,10 +52,6 @@ public class PresentadorConfigurarConexion implements ConexionListener, Observad
         this.view.dispose();
     }
 
-
-    @Override
-    public void regresarInformacion() {
-    }
     public void setNombreJugador(String nombre) {
         this.nombre=nombre;
     }
