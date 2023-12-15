@@ -10,14 +10,16 @@ import com.itson.dominio.PosicionFicha;
 import org.itson.listeners.TableroJuegoListener;
 import java.util.List;
 import org.itson.Modelos.ModelPartida;
+import org.itson.dtos.UnirsePartidaDTO;
 import org.itson.frames.FrmPartida;
+import org.itson.listeners.Observador;
 
 /**
  *
  *
  * @author Joel Antonio Lopez Cota ID:228926
  */
-public class PresentadorPartida implements TableroJuegoListener{
+public class PresentadorPartida implements TableroJuegoListener, Observador{
 
     private FrmPartida view = new FrmPartida();
     private ModelPartida model = new ModelPartida();
@@ -153,4 +155,34 @@ public class PresentadorPartida implements TableroJuegoListener{
     public void setCantidadFichas(int cantidadFichas) {
         this.model.setCantidadFichas(cantidadFichas);
     }
+    
+    @Override
+    public void enviarFicha() {
+    }
+
+    @Override
+    public void cambiarAvatar() {
+    }
+
+    @Override
+    public void salir() {
+    }
+
+    @Override
+    public void mostrarMarcador() {
+    }
+
+    @Override
+    public void salirTodos() {
+    }
+
+    @Override
+    public void jalarPozo() {
+    }
+
+    @Override
+    public void setearValoresSalaEspera(List<UnirsePartidaDTO> valores) {
+        
+    }
+    
 }

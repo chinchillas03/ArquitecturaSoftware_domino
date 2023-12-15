@@ -12,5 +12,12 @@ import org.itson.dtos.UnirsePartidaDTO;
  * @author Usuario
  */
 public interface Observador {
-    public void setearValoresSalaEspera(List<UnirsePartidaDTO> valores);
+    void setearValoresSalaEspera(List<UnirsePartidaDTO> valores);
+    void enviarFicha();
+    void cambiarAvatar();
+    void salir();
+    void mostrarMarcador();
+    void salirTodos();
+    void jalarPozo();
+    void pasarTurno();
 }

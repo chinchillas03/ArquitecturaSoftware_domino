@@ -127,4 +127,32 @@ public class PresentadorSalaEspera implements SalaEsperaListener, Observador{
         this.mostrarJugadores();
         this.mostrarPantallaSalaEspera();
     }
+
+    @Override
+    public void enviarFicha() {
+    }
+
+    @Override
+    public void cambiarAvatar() {
+    }
+
+    @Override
+    public void salir() {
+    }
+
+    @Override
+    public void mostrarMarcador() {
+    }
+
+    @Override
+    public void salirTodos() {
+    }
+
+    @Override
+    public void jalarPozo() {
+    }
+
+    @Override
+    public void pasarTurno() {
+    }
 }
