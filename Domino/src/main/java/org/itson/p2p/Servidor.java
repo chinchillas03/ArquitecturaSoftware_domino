@@ -10,7 +10,7 @@ import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.List;
-import org.itson.dtos.UniserPartidaDTO;
+import org.itson.dtos.UnirsePartidaDTO;
 
 /**
  *
@@ -20,13 +20,13 @@ public class Servidor implements Runnable{
 
     private ServerSocket server;
     private Cliente cliente;
-    private UniserPartidaDTO nodo;
+    private UnirsePartidaDTO nodo;
     private Protocolo protocolo;
     
     public Servidor(int puerto) throws IOException {
         this.protocolo = new Protocolo();
         this.server = new ServerSocket(puerto);
-        this.nodo = new UniserPartidaDTO(server.getInetAddress().toString(), server.getLocalPort());
+        this.nodo = new UnirsePartidaDTO(server.getInetAddress().toString(), server.getLocalPort());
         Thread hilo = new Thread(this);
         hilo.start();
     }
@@ -39,11 +39,11 @@ public class Servidor implements Runnable{
         this.cliente = cliente;
     }
 
-    public UniserPartidaDTO getNodo() {
+    public UnirsePartidaDTO getNodo() {
         return nodo;
     }
 
-    public void setNodo(UniserPartidaDTO nodo) {
+    public void setNodo(UnirsePartidaDTO nodo) {
         this.nodo = nodo;
     }
 
@@ -59,7 +59,7 @@ public class Servidor implements Runnable{
         this.server = server;
     }
     
-    public void enviarNuevoNodoACliente(UniserPartidaDTO nuevoNodo) {
+    public void enviarNuevoNodoACliente(UnirsePartidaDTO nuevoNodo) {
         cliente.agregarNodo(nuevoNodo);
     }
 
@@ -77,11 +77,11 @@ public class Servidor implements Runnable{
                     Object entrada = in.readObject();       
                     String evento = protocolo.procesarInformacion(entrada);
                     if (evento.equals("CONEXION")) {
-                        UniserPartidaDTO nodoNuevo = (UniserPartidaDTO) entrada;
+                        UnirsePartidaDTO nodoNuevo = (UnirsePartidaDTO) entrada;
                         System.out.println("Nodo con puerto servidor de: " + nodoNuevo.getPuerto() + " IP: " + nodoNuevo.getIp());
                         System.out.println("--------------------------------------------");
                         System.out.println("");
-                        List<UniserPartidaDTO> nodos = cliente.getServidoresNodos();
+                        List<UnirsePartidaDTO> nodos = cliente.getServidoresNodos();
                         if (nodos.size() <= 0) {
                             nodos.add(this.nodo);
                         }

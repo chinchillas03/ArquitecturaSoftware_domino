@@ -9,7 +9,7 @@ import com.itson.dominio.Jugador;
 import org.itson.listeners.SalaEsperaListener;
 import java.util.List;
 import org.itson.Modelos.ModelSalaEspera;
-import org.itson.dtos.UniserPartidaDTO;
+import org.itson.dtos.UnirsePartidaDTO;
 import org.itson.frames.FrmSalaEspera;
 import org.itson.listeners.Observador;
 import org.itson.p2p.Cliente;
@@ -109,7 +109,7 @@ public class PresentadorSalaEspera implements SalaEsperaListener, Observador{
     }
 
     @Override
-    public void setearValoresSalaEspera(List<UniserPartidaDTO> valores) {
+    public void setearValoresSalaEspera(List<UnirsePartidaDTO> valores) {
         this.model.setModel(valores);
     }
 }

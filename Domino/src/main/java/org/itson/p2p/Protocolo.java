@@ -4,7 +4,7 @@
  */
 package org.itson.p2p;
 
-import org.itson.dtos.UniserPartidaDTO;
+import org.itson.dtos.UnirsePartidaDTO;
 
 /**
  *
@@ -15,7 +15,7 @@ public class Protocolo {
     private String evento = "ESPERANDO";
     
     public String procesarInformacion(Object objecto){
-        if (objecto instanceof UniserPartidaDTO) {
+        if (objecto instanceof UnirsePartidaDTO) {
             evento = "CONEXION";
             return evento;
         } else if(true){
