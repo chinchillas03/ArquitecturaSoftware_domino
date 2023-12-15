@@ -10,22 +10,23 @@ import java.io.Serializable;
  *
  * @author Usuario
  */
-public class JugadorDTO implements Serializable{
+public class AvatarDTO implements Serializable{
     
-    private String nombre;
+    private String path;
 
-    public JugadorDTO() {
+    public AvatarDTO() {
     }
 
-    public JugadorDTO(String nombre) {
-        this.nombre = nombre;
+    public AvatarDTO(String path) {
+        this.path = path;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getPath() {
+        return path;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setPath(String path) {
+        this.path = path;
     }
+    
 }

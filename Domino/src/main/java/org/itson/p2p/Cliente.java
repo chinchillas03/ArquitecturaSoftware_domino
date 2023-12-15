@@ -11,7 +11,6 @@ import java.net.Socket;
 import java.util.LinkedList;
 import java.util.List;
 import org.itson.dtos.UniserPartidaDTO;
-import org.itson.dtos.JugadorDTO;
 import org.itson.listeners.Observador;
 
 /**
@@ -23,7 +22,6 @@ public class Cliente implements Runnable {
     private Socket socket;
     private Socket socket2;
     private Socket socket3;
-    private JugadorDTO jugador;
     private Servidor miServer;
     private List<UniserPartidaDTO> servidoresNodos;
     private List<Observador> observadores;
@@ -116,14 +114,6 @@ public class Cliente implements Runnable {
 
     public void setSocket(Socket socket1) {
         this.socket = socket1;
-    }
-
-    public JugadorDTO getJugador() {
-        return jugador;
-    }
-
-    public void setJugador(JugadorDTO jugador) {
-        this.jugador = jugador;
     }
 
     @Override
