@@ -59,5 +59,9 @@ public class ModelCrearPartida {
     public void setNombreJugador(String nombre) {
         this.nombre=nombre;
     }
+
+    public String getNombre() {
+        return nombre;
+    }
     
 }

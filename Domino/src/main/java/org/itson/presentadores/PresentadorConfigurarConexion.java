@@ -4,6 +4,9 @@
  */
 package org.itson.presentadores;
 
+import java.util.LinkedList;
+import java.util.List;
+import org.itson.dtos.UnirsePartidaDTO;
 import org.itson.frames.FrmConexion;
 import org.itson.listeners.ConexionListener;
 import org.itson.modelos.ModelConfigurarConexion;
@@ -25,19 +28,14 @@ public class PresentadorConfigurarConexion implements ConexionListener {
     @Override
     public void clickBotonUnirse(String ip, int puerto) {
         model.setModel(ip, puerto,nombre);
-        new PresentadorSalaEspera().mostrarPantallaSalaEspera();
+        this.mostrarSala();
+        this.cerrarPantalla();
     }
 
     @Override
     public void clickBotonRegresar() {
         cerrarPantalla();
         new PresentadorInicio().mostrarPantallaInicio();
-    }
-
-    @Override
-    public void mostrarSala() {
-        PresentadorSalaEspera presentador = new PresentadorSalaEspera();
-        presentador.mostrarJugadores();
     }
 
     @Override
@@ -53,6 +51,10 @@ public class PresentadorConfigurarConexion implements ConexionListener {
 
     public void setNombreJugador(String nombre) {
         this.nombre=nombre;
+    }
+
+    @Override
+    public void mostrarSala() {       
     }
 
 }

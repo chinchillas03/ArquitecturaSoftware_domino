@@ -19,6 +19,10 @@ public class UnirsePartidaDTO implements Serializable {
     public UnirsePartidaDTO() {
     }
 
+    public UnirsePartidaDTO(String nombreJugador) {
+        this.nombreJugador = nombreJugador;
+    }
+
     public UnirsePartidaDTO(String ip, int puerto) {
         this.ip = ip;
         this.puerto = puerto;

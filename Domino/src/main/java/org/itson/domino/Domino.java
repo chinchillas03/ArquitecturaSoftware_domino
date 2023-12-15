@@ -25,17 +25,9 @@ public class Domino {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                try {
-                    int puerto1 = 9999;
-                    Servidor servidor = new Servidor(puerto1);
-                    Cliente cliente = new Cliente();
-                    servidor.setCliente(cliente);
-                    cliente.setMiServer(servidor);
-                } catch (IOException e) {
-                    System.out.println("Error: " + e.getMessage());
-                }
                 new Domino();
             }
         });
+        
     }
 }

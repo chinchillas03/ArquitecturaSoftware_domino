@@ -4,9 +4,15 @@
  */
 package org.itson.presentadores;
 
+import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
 import org.itson.listeners.CrearPartidaListener;
 import org.itson.Modelos.ModelCrearPartida;
+import org.itson.dtos.UnirsePartidaDTO;
 import org.itson.frames.FrmCrearPartida;
+import org.itson.p2p.Cliente;
+import org.itson.p2p.Servidor;
 
 /**
  *
@@ -30,6 +36,16 @@ public class PresentadorCrearPartida implements CrearPartidaListener{
         
         //Hablo al siguiente presentadorra
         this.mostrarPantallaSalaEspera();
+        
+        try {
+            int puerto1 = 9999;
+            Servidor servidor = new Servidor(puerto1);
+            Cliente cliente = new Cliente();
+            servidor.setCliente(cliente);
+            cliente.setMiServer(servidor);
+        } catch (IOException e) {
+            System.out.println("Error: " + e.getMessage());
+        }        
     }
 
     @Override
@@ -46,7 +62,9 @@ public class PresentadorCrearPartida implements CrearPartidaListener{
     }
     
     public void mostrarPantallaSalaEspera(){
-        new PresentadorSalaEspera().mostrarPantallaSalaEspera();
+        List<UnirsePartidaDTO> valores = new LinkedList<>();
+        valores.add(new UnirsePartidaDTO(modelo.getNombre()));
+        new PresentadorSalaEspera(valores);
     }
     public void setNombreJugador(String nombre){
        this.modelo.setNombreJugador(nombre);

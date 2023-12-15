@@ -28,6 +28,7 @@ public class Cliente implements Runnable {
 
     public Cliente() {
         this.servidoresNodos = new LinkedList<>();
+        this.observadores = new LinkedList<>();
         Thread hilo = new Thread(this);
         hilo.start();
     }
@@ -54,11 +55,11 @@ public class Cliente implements Runnable {
         this.servidoresNodos.add(nuevoNodo);
     }
 
-    public void conectar(String ip, int puerto) {
+    public void conectar(String ip, int puerto, String nombre) {
         try {
             this.socket = new Socket(ip, puerto);
             setSocket(socket);
-            UnirsePartidaDTO nodo = new UnirsePartidaDTO(miServer.getServer().getInetAddress().toString(), miServer.getServer().getLocalPort());
+            UnirsePartidaDTO nodo = new UnirsePartidaDTO(miServer.getServer().getInetAddress().toString(), miServer.getServer().getLocalPort(),nombre);
             ObjectOutputStream out = new ObjectOutputStream(this.socket.getOutputStream());
             out.writeObject(nodo);
             out.flush();
@@ -70,6 +71,9 @@ public class Cliente implements Runnable {
             this.setServidoresNodos(nodosConocidos);            
             UnirsePartidaDTO nodoPrincipal = new UnirsePartidaDTO(ip, puerto);            
             this.conectarOtrosNodos(nodoPrincipal);
+            for (Observador obser : observadores) {
+                obser.setearValoresSalaEspera(nodosConocidos);
+            }
         } catch (IOException | ClassNotFoundException e) {
             System.out.println("Error: " + e.getMessage());
         }

@@ -4,7 +4,13 @@
  */
 package org.itson.modelos;
 
+import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
+import org.itson.dtos.UnirsePartidaDTO;
 import org.itson.p2p.Cliente;
+import org.itson.p2p.Servidor;
+import org.itson.presentadores.PresentadorSalaEspera;
 
 /**
  *
@@ -30,10 +36,22 @@ public class ModelConfigurarConexion {
         this.ip = ip;
     }
     
-    public void setModel(String ip, int puerto,String nombre){
-        Cliente cliente = new Cliente();
-        
-        cliente.conectar(ip, puerto);
+    public void setModel(String ip, int puerto,String nombre){       
+        try {
+            int puerto1 = 9998;
+            Servidor servidor = new Servidor(puerto1);
+            Cliente cliente = new Cliente();
+            servidor.setCliente(cliente);
+            cliente.setMiServer(servidor);
+            cliente.conectar(ip, puerto, nombre);
+            List<UnirsePartidaDTO> valores = new LinkedList<>();
+            valores.add(new UnirsePartidaDTO(nombre));
+            PresentadorSalaEspera pres = new PresentadorSalaEspera();
+            pres.setCliente(cliente);
+            pres.suscribirseListener();
+        } catch (IOException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
     }
-    
+
 }

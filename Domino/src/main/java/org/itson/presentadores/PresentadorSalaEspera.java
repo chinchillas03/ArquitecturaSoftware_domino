@@ -22,19 +22,28 @@ public class PresentadorSalaEspera implements SalaEsperaListener, Observador{
 
     private final FrmSalaEspera view = new FrmSalaEspera();
     private final ModelSalaEspera model = new ModelSalaEspera();
-    private final Cliente cliente = new Cliente();
+    private Cliente cliente = new Cliente();
     
     /**
      * Constructor de la clase PresentadorSalaEspera.
      * Inicializa la clase, se suscribe a los eventos de la vista de sala de espera, configura a los jugadores y muestra la lista de jugadores.
      */
     public PresentadorSalaEspera() {
-        this.model.setModel();
-        this.mostrarJugadores();
+        this.view.repaint();
+        this.setPresenter();
+    }
+    
+    public PresentadorSalaEspera(List<UnirsePartidaDTO> valores){
+        this.setearValoresSalaEspera(valores);            
         this.setPresenter();
         this.cliente.suscribirse(this);
+        this.view.repaint();
     }
 
+    public void setCliente(Cliente cliente){
+        this.cliente = cliente;
+    }
+    
     /**
      * Maneja el evento de hacer clic en el botón "Iniciar Partida" en la sala de espera.
      * Cierra la pantalla de sala de espera y muestra la pantalla de partida, pasando la información de los jugadores y la cantidad de fichas.
@@ -56,6 +65,10 @@ public class PresentadorSalaEspera implements SalaEsperaListener, Observador{
         new PresentadorInicio().mostrarPantallaInicio();
     }
 
+    public void suscribirseListener() {
+        this.cliente.suscribirse(this);
+    }
+    
     /**
      * Muestra la lista de jugadores en la sala de espera.
      */
@@ -111,5 +124,7 @@ public class PresentadorSalaEspera implements SalaEsperaListener, Observador{
     @Override
     public void setearValoresSalaEspera(List<UnirsePartidaDTO> valores) {
         this.model.setModel(valores);
+        this.mostrarJugadores();
+        this.mostrarPantallaSalaEspera();
     }
 }

@@ -29,7 +29,6 @@ public class NewMain1 {
             servidor.setCliente(cliente);
             cliente.setMiServer(servidor);
             
-            cliente.conectar("192.168.1.66", puertoServidor);
             
         } catch (IOException e) {
         }
