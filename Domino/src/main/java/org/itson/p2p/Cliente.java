@@ -10,7 +10,7 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.LinkedList;
 import java.util.List;
-import org.itson.dtos.ConexionSalaEsperaDTO;
+import org.itson.dtos.UniserPartidaDTO;
 import org.itson.dtos.JugadorDTO;
 import org.itson.listeners.Observador;
 
@@ -25,7 +25,7 @@ public class Cliente implements Runnable {
     private Socket socket3;
     private JugadorDTO jugador;
     private Servidor miServer;
-    private List<ConexionSalaEsperaDTO> servidoresNodos;
+    private List<UniserPartidaDTO> servidoresNodos;
     private List<Observador> observadores;
 
     public Cliente() {
@@ -38,7 +38,7 @@ public class Cliente implements Runnable {
         this.observadores.add(observar);
     }
     
-    public List<ConexionSalaEsperaDTO> getServidoresNodos() {
+    public List<UniserPartidaDTO> getServidoresNodos() {
         return servidoresNodos;
     }
 
@@ -48,11 +48,11 @@ public class Cliente implements Runnable {
         }
     }
     
-    public void setServidoresNodos(List<ConexionSalaEsperaDTO> servidoresNodos) {
+    public void setServidoresNodos(List<UniserPartidaDTO> servidoresNodos) {
         this.servidoresNodos = servidoresNodos;
     }
 
-    public void agregarNodo(ConexionSalaEsperaDTO nuevoNodo) {
+    public void agregarNodo(UniserPartidaDTO nuevoNodo) {
         this.servidoresNodos.add(nuevoNodo);
     }
 
@@ -60,32 +60,32 @@ public class Cliente implements Runnable {
         try {
             this.socket = new Socket(ip, puerto);
             setSocket(socket);
-            ConexionSalaEsperaDTO nodo = new ConexionSalaEsperaDTO(miServer.getServer().getInetAddress().toString(), miServer.getServer().getLocalPort());
+            UniserPartidaDTO nodo = new UniserPartidaDTO(miServer.getServer().getInetAddress().toString(), miServer.getServer().getLocalPort());
             ObjectOutputStream out = new ObjectOutputStream(this.socket.getOutputStream());
             out.writeObject(nodo);
             out.flush();
             ObjectInputStream in = new ObjectInputStream(this.socket.getInputStream());
-            List<ConexionSalaEsperaDTO> nodosConocidos = (List<ConexionSalaEsperaDTO>) in.readObject();
-            for (ConexionSalaEsperaDTO nodoConocido : nodosConocidos) {
+            List<UniserPartidaDTO> nodosConocidos = (List<UniserPartidaDTO>) in.readObject();
+            for (UniserPartidaDTO nodoConocido : nodosConocidos) {
                 System.out.println("IP: " + nodoConocido.getIp() + ", Puerto: " + nodoConocido.getPuerto());
             }
             this.setServidoresNodos(nodosConocidos);            
-            ConexionSalaEsperaDTO nodoPrincipal = new ConexionSalaEsperaDTO(ip, puerto);            
+            UniserPartidaDTO nodoPrincipal = new UniserPartidaDTO(ip, puerto);            
             this.conectarOtrosNodos(nodoPrincipal);
         } catch (IOException | ClassNotFoundException e) {
             System.out.println("Error: " + e.getMessage());
         }
     }
     
-    public void conectarOtrosNodos(ConexionSalaEsperaDTO nodoPrincipal) {
+    public void conectarOtrosNodos(UniserPartidaDTO nodoPrincipal) {
         try {
-            for (ConexionSalaEsperaDTO servidoresNodo : servidoresNodos) {
+            for (UniserPartidaDTO servidoresNodo : servidoresNodos) {
                 if (servidoresNodo.getPuerto() == this.miServer.getNodo().getPuerto()) {
                 } else if (servidoresNodo.getPuerto() == nodoPrincipal.getPuerto()) {
                 } else {
                     String ip = "192.168.1.66";
                     int puerto = servidoresNodo.getPuerto();
-                    ConexionSalaEsperaDTO dat = miServer.getNodo();
+                    UniserPartidaDTO dat = miServer.getNodo();
                     if (socket2 == null) {
                         socket2 = new Socket(ip, puerto);
                         ObjectOutputStream out = new ObjectOutputStream(socket2.getOutputStream());

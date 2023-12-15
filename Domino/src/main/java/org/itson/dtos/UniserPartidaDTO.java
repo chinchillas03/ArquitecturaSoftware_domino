@@ -10,21 +10,21 @@ import java.io.Serializable;
  *
  * @author Usuario
  */
-public class ConexionSalaEsperaDTO implements Serializable {
+public class UniserPartidaDTO implements Serializable {
 
     private String ip;
     private int puerto;
     private String nombreJugador;
 
-    public ConexionSalaEsperaDTO() {
+    public UniserPartidaDTO() {
     }
 
-    public ConexionSalaEsperaDTO(String ip, int puerto) {
+    public UniserPartidaDTO(String ip, int puerto) {
         this.ip = ip;
         this.puerto = puerto;
     }
 
-    public ConexionSalaEsperaDTO(String ip, int puerto, String nombreJugador) {
+    public UniserPartidaDTO(String ip, int puerto, String nombreJugador) {
         this.ip = ip;
         this.puerto = puerto;
         this.nombreJugador = nombreJugador;

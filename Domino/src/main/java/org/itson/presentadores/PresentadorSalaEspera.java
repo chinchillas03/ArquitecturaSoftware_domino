@@ -9,16 +9,20 @@ import com.itson.dominio.Jugador;
 import org.itson.listeners.SalaEsperaListener;
 import java.util.List;
 import org.itson.Modelos.ModelSalaEspera;
+import org.itson.dtos.UniserPartidaDTO;
 import org.itson.frames.FrmSalaEspera;
+import org.itson.listeners.Observador;
+import org.itson.p2p.Cliente;
 
 /**
  *
  * @author Usuario
  */
-public class PresentadorSalaEspera implements SalaEsperaListener{
+public class PresentadorSalaEspera implements SalaEsperaListener, Observador{
 
     private final FrmSalaEspera view = new FrmSalaEspera();
     private final ModelSalaEspera model = new ModelSalaEspera();
+    private final Cliente cliente = new Cliente();
     
     /**
      * Constructor de la clase PresentadorSalaEspera.
@@ -28,6 +32,7 @@ public class PresentadorSalaEspera implements SalaEsperaListener{
         this.model.setModel();
         this.mostrarJugadores();
         this.setPresenter();
+        this.cliente.suscribirse(this);
     }
 
     /**
@@ -57,12 +62,25 @@ public class PresentadorSalaEspera implements SalaEsperaListener{
     @Override
     public void mostrarJugadores() {
         List<Jugador> jugadores = this.model.getJugadores();
-        this.view.setLblNombreJugador1(jugadores.get(0).getNombre());
-        this.view.setLblNombreJugador2(jugadores.get(1).getNombre());
-        this.view.setLblNombreJugador3(jugadores.get(2).getNombre());
-        this.view.setLblNombreJugador4(jugadores.get(3).getNombre());
+        int contador = 0;
+        for (Jugador jugadore : jugadores) {
+            if (contador == 0) {
+                this.view.setLblNombreJugador1(jugadore.getNombre());
+                contador++;
+            } else if (contador == 1) {
+                this.view.setLblNombreJugador2(jugadore.getNombre());
+                contador++;
+            } else if (contador == 2) {
+
+                this.view.setLblNombreJugador3(jugadore.getNombre());
+            } else if (contador == 3) {
+
+                this.view.setLblNombreJugador4(jugadore.getNombre());
+                contador++;
+            }
+        }
         this.cargarCombosAvatares();
-    } 
+    }
     
     public void cargarCombosAvatares(){
         List<Avatar> avatares = this.model.getAvatares();
@@ -88,5 +106,10 @@ public class PresentadorSalaEspera implements SalaEsperaListener{
      */
     public void mostrarPantallaSalaEspera() {
         this.view.mostrarPantallaSalaEspera();
+    }
+
+    @Override
+    public void setearValoresSalaEspera(List<UniserPartidaDTO> valores) {
+        this.model.setModel(valores);
     }
 }

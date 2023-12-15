@@ -7,7 +7,6 @@ package org.itson.presentadores;
 import org.itson.frames.FrmConexion;
 import org.itson.listeners.ConexionListener;
 import org.itson.modelos.ModelConfigurarConexion;
-import org.itson.p2p.Protocolo;
 
 /**
  *

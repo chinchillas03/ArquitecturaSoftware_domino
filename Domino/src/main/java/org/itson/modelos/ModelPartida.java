@@ -9,7 +9,6 @@ import com.itson.dominio.Jugador;
 import com.itson.dominio.Partida;
 import com.itson.dominio.PosicionFicha;
 import com.itson.interfaces.IPartidaJuego;
-import java.util.ArrayList;
 import java.util.List;
 
 /**

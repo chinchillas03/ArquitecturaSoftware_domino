@@ -10,7 +10,7 @@ import com.itson.dominio.Partida;
 import java.util.LinkedList;
 import java.util.List;
 import javax.swing.ImageIcon;
-import org.itson.dtos.ConexionSalaEsperaDTO;
+import org.itson.dtos.UniserPartidaDTO;
 
 /**
  *
@@ -44,10 +44,10 @@ public class ModelSalaEspera {
      * Inicializa la lista de jugadores en la sala de espera con jugadores predefinidos.
      * Esta función agrega jugadores a la lista de jugadores en la sala de espera.
      */
-    public void setModel(List<ConexionSalaEsperaDTO> valores) {
+    public void setModel(List<UniserPartidaDTO> valores) {
         this.jugadores = new LinkedList<>();
         int contador = 0;
-        for (ConexionSalaEsperaDTO valore : valores) {
+        for (UniserPartidaDTO valore : valores) {
             if (contador == 0) {
                 jugadores.add(new Jugador(valore.getNombreJugador()));
                 contador++;

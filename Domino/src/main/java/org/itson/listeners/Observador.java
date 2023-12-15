@@ -5,12 +5,12 @@
 package org.itson.listeners;
 
 import java.util.List;
-import org.itson.dtos.ConexionSalaEsperaDTO;
+import org.itson.dtos.UniserPartidaDTO;
 
 /**
  *
  * @author Usuario
  */
 public interface Observador {
-    public void setearValoresSalaEspera(List<ConexionSalaEsperaDTO> valores);
+    public void setearValoresSalaEspera(List<UniserPartidaDTO> valores);
 }
