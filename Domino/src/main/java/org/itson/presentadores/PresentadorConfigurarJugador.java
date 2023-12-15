@@ -35,7 +35,6 @@ public class PresentadorConfigurarJugador implements ConfigurarJugadorListener{
         new PresentadorInicio().mostrarPantallaInicio();
     }
     @Override
-    //Modificar
     public boolean validarJugador(String nombre){
         if (!this.model.validarJugador(nombre) == true) {
           this.mostrarMensaje(nombre);

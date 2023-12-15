@@ -22,7 +22,9 @@ public class PresentadorInicio implements InicioListener{
     @Override
     public void clickCrearPartida() {
         this.cerrarPantallaInicio();
-        new PresentadorCrearPartida().mostrarPantallaCrearPartida();
+         PresentadorCrearPartida presentador=new PresentadorCrearPartida();
+         presentador.setNombreJugador(nombre);
+         presentador.mostrarPantallaCrearPartida();
     }
 
     @Override

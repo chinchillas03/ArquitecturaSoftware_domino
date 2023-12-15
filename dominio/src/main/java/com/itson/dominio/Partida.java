@@ -25,6 +25,7 @@ public class Partida implements IPartidaJuego {
     private List<Ficha> listaFichas;
     
     private Partida() {
+                this.listaJugadores=new ArrayList<>();
     }
     
     public static Partida instancia() {
@@ -42,6 +43,9 @@ public class Partida implements IPartidaJuego {
         this.listaJugadores = jugadores;
         this.listaFichas = new ArrayList<>();
         turno = 0;
+    }
+    public void reiniciarPartida(){
+        this.listaJugadores=null;
     }
     
     @Override
@@ -147,9 +151,13 @@ public class Partida implements IPartidaJuego {
         guardarPartida(jugadores);
         repartirFichas();
         setearTurnos();
-         posicionarFicha(getJugadorTurno().getMulaMasAlta(), null);
-        jugadores.get(0).quitarFicha(getJugadorTurno().getMulaMasAlta());
+        if (getJugadorTurno().getMulaMasAlta()!=null) {
+        posicionarFicha(getJugadorTurno().getMulaMasAlta(), null);            
+           jugadores.get(0).quitarFicha(getJugadorTurno().getMulaMasAlta());
         this.pasarTurno();
+        }else{
+            
+        }
     }
     
      public Jugador getJugadorTurno(){

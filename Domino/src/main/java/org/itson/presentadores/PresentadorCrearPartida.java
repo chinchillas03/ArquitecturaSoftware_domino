@@ -16,7 +16,6 @@ public class PresentadorCrearPartida implements CrearPartidaListener{
 
     private final FrmCrearPartida view =  new FrmCrearPartida();
     private final ModelCrearPartida modelo = new ModelCrearPartida();
-    
     public PresentadorCrearPartida(){
         this.view.setListener(this);
     }
@@ -49,7 +48,9 @@ public class PresentadorCrearPartida implements CrearPartidaListener{
     public void mostrarPantallaSalaEspera(){
         new PresentadorSalaEspera().mostrarPantallaSalaEspera();
     }
-    
+    public void setNombreJugador(String nombre){
+       this.modelo.setNombreJugador(nombre);
+    }
     private void pasarPantallaInicio(){
         this.cerrarPantallaCrearPartida();
         new PresentadorInicio().mostrarPantallaInicio();

@@ -4,6 +4,7 @@
  */
 package org.itson.Modelos;
 
+import com.itson.dominio.Jugador;
 import com.itson.dominio.Partida;
 import java.util.LinkedList;
 import java.util.List;
@@ -16,6 +17,7 @@ public class ModelCrearPartida {
     
     private Integer cantidadFichas;
     private Partida partida=Partida.instancia();
+    private String nombre;
     /**
      * Constructor por defecto de la clase ModelCrearPartida.
      * Crea una instancia de la clase sin inicializar la cantidad de fichas.
@@ -48,8 +50,14 @@ public class ModelCrearPartida {
      */
     public void crearPartida(int cantidadFichas) {
         Partida partida = Partida.instancia();
+        partida.getJugadores().add(new Jugador(nombre));
         partida.crearPartida(cantidadFichas);
+        System.out.println(partida);
         
+    }
+
+    public void setNombreJugador(String nombre) {
+        this.nombre=nombre;
     }
     
 }
