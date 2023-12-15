@@ -1,2 +1,18 @@
-/dominio/target/
-/SocketsP2P/target/
+*.bkp
+*.dtmp
+
+# Netbeans
+**/nbproject/private/
+**/nbproject/Makefile-*.mk
+**/nbproject/Package-*.bash
+**/nbproject/build-impl.xml
+**/nbproject/genfiles.properties
+**/nbproject/project.properties
+**/nbactions.xml
+**/nb-configuration.xml
+**/target/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
